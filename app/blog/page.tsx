@@ -20,7 +20,9 @@ type PageProps = {
 
 export default function BlogIndexPage({ searchParams }: PageProps) {
   const activeCategory = (searchParams?.category ?? '').trim();
-  const isFiltered = activeCategory.length > 0 && categories.includes(activeCategory);
+  const isFiltered =
+  activeCategory.length > 0 &&
+  categories.includes(activeCategory as (typeof categories)[number]);
 
   // Apply filter
   const filteredPosts = isFiltered
