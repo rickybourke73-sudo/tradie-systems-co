@@ -1,0 +1,121 @@
+import Link from 'next/link';
+import {
+  MessageSquareText,
+  Mail,
+  RotateCcw,
+  Bell,
+  Inbox,
+  Flame
+} from 'lucide-react';
+import { siteConfig } from '@/lib/site.config';
+
+const includes = [
+  {
+    icon: MessageSquareText,
+    title: 'Automated SMS follow-up',
+    body: 'A short, branded SMS sequence sent after every quote — written in your voice, not a marketing tone.'
+  },
+  {
+    icon: Mail,
+    title: 'Quote reminder emails',
+    body: 'A two- or three-step email sequence with the quote reattached, addressing common questions and objections.'
+  },
+  {
+    icon: RotateCcw,
+    title: 'Missed lead recovery',
+    body: 'Lead recovery for enquiries you never had time to reply to — pulled back into the follow-up sequence automatically.'
+  },
+  {
+    icon: Bell,
+    title: 'Booking & site-visit reminders',
+    body: 'Pre-visit reminders and deposit prompts so site-visit no-shows and late payments stop costing you time.'
+  },
+  {
+    icon: Inbox,
+    title: 'Customer reply handling',
+    body: 'The moment a customer replies, the sequence pauses and you’re notified — no accidental chasing.'
+  },
+  {
+    icon: Flame,
+    title: 'Cold quote reactivation',
+    body: 'A one-time reactivation campaign for cold quotes from the past 6–12 months — often recovers jobs in week one.'
+  }
+];
+
+export function WhatsIncluded() {
+  return (
+    <section
+      id="whats-included"
+      aria-labelledby="whats-included-heading"
+      className="border-y border-white/5 bg-ink-900/30 py-section"
+    >
+      <div className="container">
+        <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-end">
+          <div className="max-w-2xl">
+            <p className="eyebrow mb-5">What&rsquo;s included</p>
+            <h2
+              id="whats-included-heading"
+              className="text-balance font-display text-2xl tracking-tight text-bone-50 sm:text-3xl md:text-4xl"
+            >
+              The six services we set up for every trade business.
+            </h2>
+          </div>
+          <p className="max-w-md text-sm leading-relaxed text-bone-300">
+            Every quote follow-up system we build is some combination of these six services — sized to
+            your trade, your job volume, and the tools you already use. See{' '}
+            <Link
+              href="/services"
+              className="text-signal-400 underline-offset-4 hover:underline"
+            >
+              the full service breakdown
+            </Link>{' '}
+            for detail.
+          </p>
+        </div>
+
+        <ul className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-white/5 bg-white/[0.04] sm:grid-cols-2 lg:grid-cols-3">
+          {includes.map((item) => {
+            const Icon = item.icon;
+            return (
+              <li
+                key={item.title}
+                className="bg-ink-950/95 p-6 transition-colors duration-200 hover:bg-ink-900/80 sm:p-7"
+              >
+                <span
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-signal-500/20 bg-signal-500/10 text-signal-400"
+                  aria-hidden="true"
+                >
+                  <Icon className="h-4 w-4" />
+                </span>
+                <h3 className="mt-4 font-display text-base font-semibold text-bone-50 sm:text-lg">
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-bone-300">{item.body}</p>
+              </li>
+            );
+          })}
+        </ul>
+
+        {/* Software ecosystem strip — entity association for tradie software */}
+        <div className="mt-10 grid gap-4 rounded-2xl border border-white/5 bg-ink-900/40 p-6 sm:mt-12 sm:grid-cols-[auto,1fr] sm:items-center sm:gap-6 sm:p-7">
+          <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-bone-500">
+            Plugs into the tradie software you already use
+          </p>
+          <ul className="flex flex-wrap gap-2" aria-label="Supported tradie software">
+            {siteConfig.integrations.map((tool) => (
+              <li
+                key={tool}
+                className="rounded-full border border-white/10 bg-ink-950/70 px-3 py-1.5 text-xs text-bone-200"
+              >
+                {tool}
+              </li>
+            ))}
+            <li className="rounded-full border border-white/10 bg-ink-950/70 px-3 py-1.5 text-xs text-bone-400">
+              + standard CRM, email and SMS providers
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  );
+}

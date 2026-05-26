@@ -1,0 +1,46 @@
+{
+  "name": "tradie-systems-co",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Production website for Tradie Systems Co — automated quote follow-up systems for Australian tradies.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "sanity:dev": "sanity dev",
+    "sanity:build": "sanity build",
+    "sanity:deploy": "sanity deploy"
+  },
+  "dependencies": {
+    "next": "14.2.5",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "next-sanity": "9.4.7",
+    "@sanity/client": "6.21.3",
+    "@sanity/image-url": "1.0.2",
+    "@portabletext/react": "3.1.0",
+    "@sanity/vision": "3.57.4",
+    "sanity": "3.57.4",
+    "styled-components": "6.1.13",
+    "framer-motion": "11.3.28",
+    "lucide-react": "0.441.0",
+    "clsx": "2.1.1",
+    "tailwind-merge": "2.5.2"
+  },
+  "devDependencies": {
+    "@types/node": "20.16.5",
+    "@types/react": "18.3.5",
+    "@types/react-dom": "18.3.0",
+    "autoprefixer": "10.4.20",
+    "eslint": "8.57.0",
+    "eslint-config-next": "14.2.5",
+    "postcss": "8.4.45",
+    "tailwindcss": "3.4.10",
+    "typescript": "5.5.4"
+  },
+  "engines": {
+    "node": ">=18.17.0"
+  }
+}

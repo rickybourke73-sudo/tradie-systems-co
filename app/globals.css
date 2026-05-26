@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg: 10 13 18;
+  --color-fg: 247 246 242;
+  --color-signal: 243 146 0;
+  --header-h: 64px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --header-h: 80px;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Offset sticky header when navigating to in-page anchors */
+    scroll-padding-top: calc(var(--header-h) + 1rem);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-ink-950 text-bone-100 font-sans;
+    background-image:
+      radial-gradient(at 20% -10%, rgba(243, 146, 0, 0.08), transparent 50%),
+      radial-gradient(at 100% 0%, rgba(63, 77, 99, 0.18), transparent 45%);
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    @apply bg-signal-500/30 text-bone-50;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight text-bone-50;
+  }
+
+  hr {
+    @apply border-white/5;
+  }
+
+  /* Global focus ring for keyboard users — does not affect mouse users */
+  :focus-visible {
+    outline: 2px solid theme('colors.signal.500');
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Buttons that opt into custom focus handle their own ring */
+  .btn:focus-visible,
+  a:focus-visible {
+    outline: 2px solid theme('colors.signal.500');
+    outline-offset: 2px;
+  }
+
+  /* Reasonable default for any image */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@layer components {
+  .container-tight {
+    @apply mx-auto max-w-5xl px-5 sm:px-6 lg:px-8;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-eyebrow uppercase text-signal-400;
+  }
+
+  .eyebrow::before {
+    content: "";
+    @apply inline-block h-px w-6 bg-signal-500;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-base font-semibold tracking-tight transition-all duration-200;
+  }
+
+  .btn[disabled],
+  .btn:disabled {
+    @apply pointer-events-none opacity-60 hover:translate-y-0;
+  }
+
+  .btn-primary {
+    @apply btn bg-signal-500 text-ink-950 shadow-glow-signal hover:-translate-y-0.5 hover:bg-signal-400 active:translate-y-0;
+  }
+
+  .btn-ghost {
+    @apply btn border border-white/10 bg-transparent text-bone-100 hover:border-white/25 hover:bg-ink-800/60;
+  }
+
+  .card {
+    @apply rounded-2xl border border-white/5 bg-ink-900/70 shadow-card backdrop-blur-sm;
+  }
+
+  .link-underline {
+    @apply relative inline-block text-bone-100 hover:text-signal-400;
+  }
+
+  .link-underline::after {
+    content: "";
+    @apply absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-current transition-transform duration-300;
+  }
+
+  .link-underline:hover::after {
+    @apply scale-x-100;
+  }
+
+  /* Subtle moving "data flowing through pipe" effect for the workflow visual */
+  .flow-line {
+    stroke-dasharray: 6 8;
+    animation: pipeFlow 3.2s linear infinite;
+  }
+
+  /* Skip link — hidden until keyboard focus */
+  .skip-link {
+    @apply absolute left-4 top-4 -translate-y-20 rounded-md bg-signal-500 px-4 py-2 text-sm font-semibold text-ink-950 transition-transform focus:translate-y-0;
+    z-index: 100;
+  }
+
+  /* Blog and long-form article styling. Scoped, never global. */
+  .prose-tradie p {
+    @apply text-bone-200;
+  }
+  .prose-tradie a {
+    @apply text-signal-400 underline-offset-4 hover:underline;
+  }
+  .prose-tradie strong {
+    @apply font-semibold text-bone-50;
+  }
+  .prose-tradie h2 {
+    @apply font-display text-2xl font-semibold tracking-tight text-bone-50 md:text-3xl;
+  }
+  .prose-tradie h3 {
+    @apply font-display text-xl font-semibold tracking-tight text-bone-50 md:text-2xl;
+  }
+  .prose-tradie ul,
+  .prose-tradie ol {
+    @apply text-bone-200;
+  }
+}
+
+@keyframes pipeFlow {
+  to { stroke-dashoffset: -28; }
+}
+
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
