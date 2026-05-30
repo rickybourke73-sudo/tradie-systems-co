@@ -2,7 +2,7 @@ export const siteConfig = {
   name: 'Tradie Systems Co',
   shortName: 'Tradie Systems',
   domain: 'tradiesystemsco.com.au',
-  url: 'https://tradiesystemsco.com.au',
+  url: 'https://www.tradiesystemsco.com.au',
   tagline: 'Done-for-you quote follow-up systems for Australian tradies.',
   description:
     'Stop losing jobs to slow, inconsistent quote follow-up. We build automated quote follow-up systems for Australian tradies — so every quote gets chased, every lead gets recovered, and more jobs get won without adding admin to your day.',
