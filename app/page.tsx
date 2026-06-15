@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Hero } from '@/components/sections/Hero';
 import { WhatsIncluded } from '@/components/sections/WhatsIncluded';
 import { Problem } from '@/components/sections/Problem';
@@ -9,6 +10,7 @@ import { WhyLosing } from '@/components/sections/WhyLosing';
 import { Founder } from '@/components/sections/Founder';
 import { FaqSection } from '@/components/sections/FaqSection';
 import { FinalCta } from '@/components/sections/FinalCta';
+import { Section } from '@/components/ui/Section';
 import { JsonLd, faqSchema, howToSchema, speakableSchema } from '@/lib/schema';
 import { homepageFaqs } from '@/content/faqs';
 import { buildMetadata } from '@/lib/seo';
@@ -57,8 +59,6 @@ function stripSmartQuotes(s: string) {
   return s.replace(/[‘’]/g, "'").replace(/[“”]/g, '"');
 }
 
-// Workflow steps mirrored in the on-page WorkflowSection. Kept here so the
-// HowTo schema and the visible content stay in sync.
 const workflowSteps = [
   {
     name: 'Quote sent, confirmation fires',
@@ -82,8 +82,6 @@ const workflowSteps = [
   }
 ];
 
-// Two definition Q&As visible on the page (Problem + WorkflowSection) — included in
-// FAQ schema so AI search engines can extract them alongside the homepage FAQs.
 const definitionFaqs = [
   {
     question: 'What is a tradie quote follow-up system?',
@@ -103,7 +101,6 @@ export default function HomePage() {
     answer: stripSmartQuotes(f.answer)
   }));
 
-  // Definition Q&As first (highest semantic value), then the homepage FAQ subset.
   const allFaqs = [...definitionFaqs, ...cleanFaqs];
 
   return (
@@ -111,6 +108,7 @@ export default function HomePage() {
       <JsonLd data={faqSchema(allFaqs)} />
       <JsonLd data={howToSchema(workflowSteps)} />
       <JsonLd data={speakableSchema(['#hero-heading', '#hero-lede'])} />
+
       <Hero />
       <Problem />
       <WhatsIncluded />
@@ -120,8 +118,72 @@ export default function HomePage() {
       <WhoThisIsFor />
       <WhyLosing />
       <Founder />
+      <HomepageInternalLinks />
       <FaqSection />
       <FinalCta />
     </>
+  );
+}
+
+function HomepageInternalLinks() {
+  return (
+    <Section className="border-y border-white/5 bg-ink-900/30">
+      <div className="mx-auto max-w-5xl">
+        <div className="mb-4 font-mono text-[11px] uppercase tracking-[0.18em] text-signal-400">
+          Explore the system
+        </div>
+
+        <h2 className="max-w-3xl font-display text-2xl tracking-tight text-bone-50 sm:text-3xl md:text-4xl">
+          Learn how quote follow-up systems work before you book a call.
+        </h2>
+
+        <p className="mt-4 max-w-3xl text-bone-300">
+          See what we build, read the full quote follow-up guide, check common questions, or send a
+          message if you want help with your current process.
+        </p>
+
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <Link
+            href="/services"
+            className="rounded-xl border border-white/10 bg-ink-950/40 p-5 transition-all duration-200 hover:border-signal-500/40 hover:bg-ink-900/70"
+          >
+            <h3 className="font-display text-lg font-semibold text-bone-50">Services</h3>
+            <p className="mt-2 text-sm text-bone-400">
+              See the quote follow-up, lead recovery, booking and reminder systems we build.
+            </p>
+          </Link>
+
+          <Link
+            href="/blog/quote-follow-up-system-for-tradies"
+            className="rounded-xl border border-white/10 bg-ink-950/40 p-5 transition-all duration-200 hover:border-signal-500/40 hover:bg-ink-900/70"
+          >
+            <h3 className="font-display text-lg font-semibold text-bone-50">Main guide</h3>
+            <p className="mt-2 text-sm text-bone-400">
+              Read the complete guide to quote follow-up systems for Australian tradies.
+            </p>
+          </Link>
+
+          <Link
+            href="/faqs"
+            className="rounded-xl border border-white/10 bg-ink-950/40 p-5 transition-all duration-200 hover:border-signal-500/40 hover:bg-ink-900/70"
+          >
+            <h3 className="font-display text-lg font-semibold text-bone-50">FAQs</h3>
+            <p className="mt-2 text-sm text-bone-400">
+              Answers about setup, tools, timing, automation and how the process works.
+            </p>
+          </Link>
+
+          <Link
+            href="/contact"
+            className="rounded-xl border border-white/10 bg-ink-950/40 p-5 transition-all duration-200 hover:border-signal-500/40 hover:bg-ink-900/70"
+          >
+            <h3 className="font-display text-lg font-semibold text-bone-50">Contact</h3>
+            <p className="mt-2 text-sm text-bone-400">
+              Send a message or book a free quote follow-up audit for your trade business.
+            </p>
+          </Link>
+        </div>
+      </div>
+    </Section>
   );
 }
