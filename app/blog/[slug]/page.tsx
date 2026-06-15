@@ -34,7 +34,6 @@ export default function BlogPostPage({ params }: PageProps) {
   const post = posts.find((p) => p.slug === params.slug);
   if (!post) notFound();
 
-  // Prefer same-category posts. Top up with recent posts if fewer than 3.
   const sameCategory = posts.filter((p) => p.slug !== post.slug && p.category === post.category);
   const otherRecent = posts
     .filter((p) => p.slug !== post.slug && p.category !== post.category)
@@ -109,8 +108,62 @@ export default function BlogPostPage({ params }: PageProps) {
           </article>
 
           <aside
+            aria-label="Useful next steps"
+            className="mt-14 rounded-2xl border border-white/10 bg-ink-900/50 p-6 sm:p-7"
+          >
+            <div className="mb-3 font-mono text-[11px] uppercase tracking-[0.18em] text-signal-400">
+              Useful next steps
+            </div>
+            <h2 className="font-display text-xl font-semibold text-bone-50 sm:text-2xl">
+              Want to improve how your quotes are followed up?
+            </h2>
+            <p className="mt-2 text-bone-300">
+              Learn what we set up, read the common questions, or send us a message about your
+              current follow-up process.
+            </p>
+
+            <div className="mt-6 grid gap-3 sm:grid-cols-3">
+              <Link
+                href="/services"
+                className="group rounded-xl border border-white/10 bg-ink-950/40 p-4 transition-all duration-200 hover:border-signal-500/40 hover:bg-ink-900/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-500/60"
+              >
+                <span className="block font-display text-base font-semibold text-bone-50">
+                  View services
+                </span>
+                <span className="mt-1 block text-sm text-bone-400 group-hover:text-bone-300">
+                  See the systems we build
+                </span>
+              </Link>
+
+              <Link
+                href="/faqs"
+                className="group rounded-xl border border-white/10 bg-ink-950/40 p-4 transition-all duration-200 hover:border-signal-500/40 hover:bg-ink-900/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-500/60"
+              >
+                <span className="block font-display text-base font-semibold text-bone-50">
+                  Read FAQs
+                </span>
+                <span className="mt-1 block text-sm text-bone-400 group-hover:text-bone-300">
+                  Setup, cost, tools, timing
+                </span>
+              </Link>
+
+              <Link
+                href="/contact"
+                className="group rounded-xl border border-white/10 bg-ink-950/40 p-4 transition-all duration-200 hover:border-signal-500/40 hover:bg-ink-900/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-500/60"
+              >
+                <span className="block font-display text-base font-semibold text-bone-50">
+                  Contact us
+                </span>
+                <span className="mt-1 block text-sm text-bone-400 group-hover:text-bone-300">
+                  Ask about your business
+                </span>
+              </Link>
+            </div>
+          </aside>
+
+          <aside
             aria-label="Call to action"
-            className="mt-14 rounded-2xl border border-signal-500/30 bg-gradient-to-br from-signal-500/[0.08] to-transparent p-6 sm:p-7"
+            className="mt-8 rounded-2xl border border-signal-500/30 bg-gradient-to-br from-signal-500/[0.08] to-transparent p-6 sm:p-7"
           >
             <h2 className="font-display text-xl font-semibold text-bone-50 sm:text-2xl">
               Want this set up for your business?
@@ -166,13 +219,6 @@ export default function BlogPostPage({ params }: PageProps) {
   );
 }
 
-/**
- * Lightweight markdown renderer for static posts in /content/posts.ts.
- * Production posts will go through Sanity's PortableText — see lib/sanity.ts.
- *
- * Escapes HTML on the way in, then re-applies a narrow allowlist of inline
- * formatting (bold, italic, inline code) — so post bodies can never inject HTML.
- */
 function RenderMarkdown({ body }: { body: string }) {
   const blocks = body.split(/\n\n+/);
   return (
@@ -206,10 +252,7 @@ function RenderMarkdown({ body }: { body: string }) {
           return (
             <ul key={i} className="list-outside list-disc space-y-2 pl-6 marker:text-signal-500">
               {items.map((item, j) => (
-                <li
-                  key={j}
-                  dangerouslySetInnerHTML={{ __html: parseInline(item) }}
-                />
+                <li key={j} dangerouslySetInnerHTML={{ __html: parseInline(item) }} />
               ))}
             </ul>
           );
@@ -232,7 +275,7 @@ function RenderMarkdown({ body }: { body: string }) {
           return (
             <blockquote
               key={i}
-              className="border-l-2 border-signal-500 pl-5 py-1 font-display text-lg italic text-bone-100"
+              className="border-l-2 border-signal-500 py-1 pl-5 font-display text-lg italic text-bone-100"
             >
               {lines.map((l, j) => (
                 <p key={j} className="my-1" dangerouslySetInnerHTML={{ __html: parseInline(l) }} />
@@ -258,5 +301,8 @@ function parseInline(text: string): string {
   return escapeHtml(text)
     .replace(/\*\*(.+?)\*\*/g, '<strong class="text-bone-50 font-semibold">$1</strong>')
     .replace(/(^|\s)\*(?!\s)(.+?)\*(?!\w)/g, '$1<em>$2</em>')
-    .replace(/`([^`]+)`/g, '<code class="rounded bg-ink-800 px-1.5 py-0.5 font-mono text-[0.9em] text-signal-300">$1</code>');
+    .replace(
+      /`([^`]+)`/g,
+      '<code class="rounded bg-ink-800 px-1.5 py-0.5 font-mono text-[0.9em] text-signal-300">$1</code>'
+    );
 }
