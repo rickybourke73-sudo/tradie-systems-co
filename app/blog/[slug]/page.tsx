@@ -5,52 +5,95 @@ import { Section } from '@/components/ui/Section';
 import { Button } from '@/components/ui/Button';
 import { buildMetadata } from '@/lib/seo';
 import { JsonLd, articleSchema, breadcrumbSchema } from '@/lib/schema';
-import { posts } from '@/content/posts';
+import { client, POST_BY_SLUG_QUERY, ALL_SLUGS_QUERY } from '@/lib/sanity';
 import { formatDate } from '@/lib/utils';
 import { siteConfig } from '@/lib/site.config';
 import { FinalCta } from '@/components/sections/FinalCta';
 
-interface PageProps {
-  params: { slug: string };
-}
+export const revalidate = 60;
+
+type PortableTextBlock = {
+  _type: string;
+  _key?: string;
+  style?: string;
+  children?: Array<{ _type: string; text?: string; marks?: string[] }>;
+  markDefs?: Array<{ _key: string; _type: string; href?: string }>;
+  listItem?: string;
+  level?: number;
+};
+
+type SanityFullPost = {
+  _id: string;
+  title: string;
+  slug: string;
+  excerpt?: string;
+  body?: PortableTextBlock[] | string;
+  seo?: { metaTitle?: string; metaDescription?: string };
+  publishedAt: string;
+  category?: string;
+  coverImage?: unknown;
+  author?: string;
+  authorDetails?: { name?: string; role?: string; bio?: string };
+  related?: Array<{
+    title: string;
+    slug: string;
+    excerpt?: string;
+    publishedAt: string;
+    category?: string;
+  }>;
+};
 
 export async function generateStaticParams() {
-  return posts.map((p) => ({ slug: p.slug }));
+  const slugs: Array<{ slug: string }> = await client.fetch(ALL_SLUGS_QUERY).catch(() => []);
+  return slugs.map((s) => ({ slug: s.slug }));
 }
 
-export async function generateMetadata({ params }: PageProps) {
-  const post = posts.find((p) => p.slug === params.slug);
+export async function generateMetadata({ params }: { params: { slug: string } }) {
+  const post: SanityFullPost | null = await client
+    .fetch(POST_BY_SLUG_QUERY, { slug: params.slug })
+    .catch(() => null);
+
   if (!post) return {};
+
   return buildMetadata({
-    title: post.metaTitle ?? post.title,
-    description: post.metaDescription ?? post.excerpt,
+    title: post.seo?.metaTitle ?? post.title,
+    description: post.seo?.metaDescription ?? post.excerpt ?? '',
     path: `/blog/${post.slug}`,
     type: 'article',
     publishedTime: post.publishedAt
   });
 }
 
-export default function BlogPostPage({ params }: PageProps) {
-  const post = posts.find((p) => p.slug === params.slug);
-  if (!post) notFound();
+export default async function BlogPostPage({ params }: { params: { slug: string } }) {
+  const post: SanityFullPost | null = await client
+    .fetch(POST_BY_SLUG_QUERY, { slug: params.slug })
+    .catch(() => null);
 
-  const sameCategory = posts.filter((p) => p.slug !== post.slug && p.category === post.category);
-  const otherRecent = posts
-    .filter((p) => p.slug !== post.slug && p.category !== post.category)
-    .slice(0, 3);
-  const related = [...sameCategory, ...otherRecent].slice(0, 3);
+  if (!post) {
+    notFound();
+    return null;
+  }
+
+  let authorName = 'Ricky Bourke';
+
+  if (post.authorDetails?.name) {
+    authorName = post.authorDetails.name;
+  } else if (typeof post.author === 'string' && post.author) {
+    authorName = post.author;
+  }
 
   return (
     <>
       <JsonLd
         data={articleSchema({
           title: post.title,
-          description: post.metaDescription ?? post.excerpt,
+          description: post.seo?.metaDescription ?? post.excerpt ?? '',
           slug: post.slug,
           publishedAt: post.publishedAt,
-          author: post.author
+          author: authorName
         })}
       />
+
       <JsonLd
         data={breadcrumbSchema([
           { name: 'Home', url: siteConfig.url },
@@ -69,28 +112,30 @@ export default function BlogPostPage({ params }: PageProps) {
             All posts
           </Link>
 
-          <div className="mb-4 font-mono text-[11px] uppercase tracking-[0.18em] text-signal-400">
-            {post.category}
-          </div>
+          {post.category && (
+            <div className="mb-4 font-mono text-[11px] uppercase tracking-[0.18em] text-signal-400">
+              {post.category}
+            </div>
+          )}
 
           <h1 className="text-balance font-display text-[2rem] leading-[1.1] tracking-tight text-bone-50 sm:text-4xl md:text-5xl">
             {post.title}
           </h1>
 
           <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 border-b border-white/5 pb-8 text-sm text-bone-400">
-            <span>{post.author}</span>
+            <span>{authorName}</span>
             <span aria-hidden="true">·</span>
             <time dateTime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
             <span aria-hidden="true">·</span>
             <span className="inline-flex items-center gap-1.5">
               <Clock3 className="h-3.5 w-3.5" aria-hidden="true" />
-              {post.readingMinutes} min read
+              {estimateReadingMinutes(post.body)} min read
             </span>
           </div>
 
           <article className="prose-tradie mt-10">
             {post.body ? (
-              <RenderMarkdown body={post.body} />
+              <RenderBody body={post.body} />
             ) : (
               <p className="text-lg italic text-bone-300">
                 Full article coming soon. In the meantime,{' '}
@@ -121,43 +166,25 @@ export default function BlogPostPage({ params }: PageProps) {
               Learn what we set up, read the common questions, or send us a message about your
               current follow-up process.
             </p>
-
             <div className="mt-6 grid gap-3 sm:grid-cols-3">
-              <Link
-                href="/services"
-                className="group rounded-xl border border-white/10 bg-ink-950/40 p-4 transition-all duration-200 hover:border-signal-500/40 hover:bg-ink-900/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-500/60"
-              >
-                <span className="block font-display text-base font-semibold text-bone-50">
-                  View services
-                </span>
-                <span className="mt-1 block text-sm text-bone-400 group-hover:text-bone-300">
-                  See the systems we build
-                </span>
-              </Link>
-
-              <Link
-                href="/faqs"
-                className="group rounded-xl border border-white/10 bg-ink-950/40 p-4 transition-all duration-200 hover:border-signal-500/40 hover:bg-ink-900/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-500/60"
-              >
-                <span className="block font-display text-base font-semibold text-bone-50">
-                  Read FAQs
-                </span>
-                <span className="mt-1 block text-sm text-bone-400 group-hover:text-bone-300">
-                  Setup, cost, tools, timing
-                </span>
-              </Link>
-
-              <Link
-                href="/contact"
-                className="group rounded-xl border border-white/10 bg-ink-950/40 p-4 transition-all duration-200 hover:border-signal-500/40 hover:bg-ink-900/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-500/60"
-              >
-                <span className="block font-display text-base font-semibold text-bone-50">
-                  Contact us
-                </span>
-                <span className="mt-1 block text-sm text-bone-400 group-hover:text-bone-300">
-                  Ask about your business
-                </span>
-              </Link>
+              {[
+                { href: '/services', title: 'View services', sub: 'See the systems we build' },
+                { href: '/faqs', title: 'Read FAQs', sub: 'Setup, cost, tools, timing' },
+                { href: '/contact', title: 'Contact us', sub: 'Ask about your business' }
+              ].map(({ href, title, sub }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  className="group rounded-xl border border-white/10 bg-ink-950/40 p-4 transition-all duration-200 hover:border-signal-500/40 hover:bg-ink-900/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-500/60"
+                >
+                  <span className="block font-display text-base font-semibold text-bone-50">
+                    {title}
+                  </span>
+                  <span className="mt-1 block text-sm text-bone-400 group-hover:text-bone-300">
+                    {sub}
+                  </span>
+                </Link>
+              ))}
             </div>
           </aside>
 
@@ -181,22 +208,24 @@ export default function BlogPostPage({ params }: PageProps) {
         </div>
       </Section>
 
-      {related.length > 0 && (
+      {post.related && post.related.length > 0 && (
         <Section className="border-y border-white/5 bg-ink-900/30">
           <div className="mx-auto max-w-5xl">
             <h2 className="mb-8 font-display text-2xl tracking-tight text-bone-50 sm:mb-10 md:text-3xl">
               Keep reading
             </h2>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {related.map((p) => (
+              {post.related.map((p) => (
                 <Link
                   key={p.slug}
                   href={`/blog/${p.slug}`}
                   className="group flex h-full flex-col rounded-xl border border-white/5 bg-ink-900/40 p-6 transition-all duration-200 hover:-translate-y-1 hover:border-signal-500/30 hover:bg-ink-900/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-500/60"
                 >
-                  <div className="mb-3 font-mono text-[11px] uppercase tracking-[0.18em] text-signal-400">
-                    {p.category}
-                  </div>
+                  {p.category && (
+                    <div className="mb-3 font-mono text-[11px] uppercase tracking-[0.18em] text-signal-400">
+                      {p.category}
+                    </div>
+                  )}
                   <h3 className="text-balance font-display text-lg font-semibold leading-snug text-bone-50 transition-colors duration-200 group-hover:text-signal-300">
                     {p.title}
                   </h3>
@@ -219,12 +248,145 @@ export default function BlogPostPage({ params }: PageProps) {
   );
 }
 
+function estimateReadingMinutes(body: PortableTextBlock[] | string | undefined): number {
+  if (!body) return 4;
+
+  if (typeof body === 'string') {
+    return Math.max(1, Math.ceil(body.split(/\s+/).length / 200));
+  }
+
+  const wordCount = body.reduce((acc, block) => {
+    return (
+      acc +
+      (block.children ?? []).reduce((a, span) => {
+        return a + (span.text ?? '').split(/\s+/).filter(Boolean).length;
+      }, 0)
+    );
+  }, 0);
+
+  return Math.max(1, Math.ceil(wordCount / 200));
+}
+
+function RenderBody({ body }: { body: PortableTextBlock[] | string }) {
+  if (typeof body === 'string') {
+    return <RenderMarkdown body={body} />;
+  }
+
+  return (
+    <div className="space-y-6 text-[1.05rem] leading-relaxed text-bone-200 sm:text-lg">
+      {body.map((block, i) => {
+        if (block._type !== 'block') return null;
+
+        const text = renderSpans(block);
+
+        if (block.listItem === 'bullet') {
+          return (
+            <ul
+              key={block._key ?? i}
+              className="list-outside list-disc space-y-2 pl-6 marker:text-signal-500"
+            >
+              <li dangerouslySetInnerHTML={{ __html: text }} />
+            </ul>
+          );
+        }
+
+        if (block.listItem === 'number') {
+          return (
+            <ol
+              key={block._key ?? i}
+              className="list-outside list-decimal space-y-2 pl-6 marker:text-signal-500"
+            >
+              <li dangerouslySetInnerHTML={{ __html: text }} />
+            </ol>
+          );
+        }
+
+        switch (block.style) {
+          case 'h2':
+            return (
+              <h2
+                key={block._key ?? i}
+                className="pt-4 font-display text-2xl font-semibold tracking-tight text-bone-50 md:text-3xl"
+                dangerouslySetInnerHTML={{ __html: text }}
+              />
+            );
+
+          case 'h3':
+            return (
+              <h3
+                key={block._key ?? i}
+                className="pt-2 font-display text-xl font-semibold tracking-tight text-bone-50 md:text-2xl"
+                dangerouslySetInnerHTML={{ __html: text }}
+              />
+            );
+
+          case 'h4':
+            return (
+              <h4
+                key={block._key ?? i}
+                className="pt-2 font-display text-lg font-semibold tracking-tight text-bone-50"
+                dangerouslySetInnerHTML={{ __html: text }}
+              />
+            );
+
+          case 'blockquote':
+            return (
+              <blockquote
+                key={block._key ?? i}
+                className="border-l-2 border-signal-500 py-1 pl-5 font-display text-lg italic text-bone-100"
+                dangerouslySetInnerHTML={{ __html: text }}
+              />
+            );
+
+          default:
+            if (!text.trim()) return null;
+
+            return <p key={block._key ?? i} dangerouslySetInnerHTML={{ __html: text }} />;
+        }
+      })}
+    </div>
+  );
+}
+
+function renderSpans(block: PortableTextBlock): string {
+  const markDefs = block.markDefs ?? [];
+
+  return (block.children ?? [])
+    .map((span) => {
+      let html = escapeHtml(span.text ?? '');
+
+      for (const mark of span.marks ?? []) {
+        if (mark === 'strong') {
+          html = `<strong class="text-bone-50 font-semibold">${html}</strong>`;
+        } else if (mark === 'em') {
+          html = `<em>${html}</em>`;
+        } else if (mark === 'code') {
+          html = `<code class="rounded bg-ink-800 px-1.5 py-0.5 font-mono text-[0.9em] text-signal-300">${html}</code>`;
+        } else {
+          const def = markDefs.find((d) => d._key === mark);
+
+          if (def?._type === 'link' && def.href) {
+            const isExternal = def.href.startsWith('http');
+            html = `<a href="${escapeHtml(def.href)}"${
+              isExternal ? ' target="_blank" rel="noopener noreferrer"' : ''
+            } class="text-signal-400 underline underline-offset-4 hover:text-signal-300">${html}</a>`;
+          }
+        }
+      }
+
+      return html;
+    })
+    .join('');
+}
+
 function RenderMarkdown({ body }: { body: string }) {
   const blocks = body.split(/\n\n+/);
+
   return (
     <div className="space-y-6 text-[1.05rem] leading-relaxed text-bone-200 sm:text-lg">
       {blocks.map((block, i) => {
         const trimmed = block.trim();
+
         if (!trimmed) return null;
 
         if (trimmed.startsWith('## ')) {
@@ -237,6 +399,7 @@ function RenderMarkdown({ body }: { body: string }) {
             </h2>
           );
         }
+
         if (trimmed.startsWith('### ')) {
           return (
             <h3
@@ -247,8 +410,10 @@ function RenderMarkdown({ body }: { body: string }) {
             </h3>
           );
         }
+
         if (trimmed.startsWith('- ')) {
           const items = trimmed.split('\n').map((l) => l.replace(/^-\s*/, ''));
+
           return (
             <ul key={i} className="list-outside list-disc space-y-2 pl-6 marker:text-signal-500">
               {items.map((item, j) => (
@@ -257,21 +422,28 @@ function RenderMarkdown({ body }: { body: string }) {
             </ul>
           );
         }
+
         if (/^\d+\.\s/.test(trimmed)) {
           const items = trimmed
             .split('\n')
             .map((l) => l.replace(/^\d+\.\s*/, ''))
             .filter(Boolean);
+
           return (
-            <ol key={i} className="list-outside list-decimal space-y-2 pl-6 marker:text-signal-500">
+            <ol
+              key={i}
+              className="list-outside list-decimal space-y-2 pl-6 marker:text-signal-500"
+            >
               {items.map((item, j) => (
                 <li key={j} dangerouslySetInnerHTML={{ __html: parseInline(item) }} />
               ))}
             </ol>
           );
         }
+
         if (trimmed.startsWith('> ')) {
           const lines = trimmed.split('\n').map((l) => l.replace(/^>\s?/, ''));
+
           return (
             <blockquote
               key={i}
@@ -283,6 +455,7 @@ function RenderMarkdown({ body }: { body: string }) {
             </blockquote>
           );
         }
+
         return <p key={i} dangerouslySetInnerHTML={{ __html: parseInline(trimmed) }} />;
       })}
     </div>

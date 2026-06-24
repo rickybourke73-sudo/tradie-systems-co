@@ -10,25 +10,27 @@ export const client: SanityClient = createClient({
   projectId,
   dataset,
   apiVersion,
-  useCdn: process.env.NODE_ENV === 'production',
+  useCdn: false,
   perspective: 'published'
 });
 
 const builder = imageUrlBuilder(client);
 export const urlForImage = (source: SanityImageSource) => builder.image(source);
 
-/* ---------- GROQ queries ---------- */
-
 export const POSTS_QUERY = /* groq */ `
-  *[_type == "post" && defined(slug.current)] | order(publishedAt desc) {
+  *[
+    _type == "post"
+    && defined(slug.current)
+    && defined(publishedAt)
+  ] | order(publishedAt desc) {
     _id,
     title,
     "slug": slug.current,
     excerpt,
-    "category": category->{ title, "slug": slug.current },
+    "category": coalesce(category->title, category),
     publishedAt,
     "coverImage": coverImage,
-    "author": author->{ name, "image": image }
+    "author": coalesce(author->name, author)
   }
 `;
 
@@ -41,12 +43,32 @@ export const POST_BY_SLUG_QUERY = /* groq */ `
     body,
     seo,
     publishedAt,
-    "category": category->{ title, "slug": slug.current },
+    "category": coalesce(category->title, category),
     "coverImage": coverImage,
-    "author": author->{ name, role, "image": image, bio },
-    "related": *[_type == "post" && slug.current != $slug && category._ref == ^.category._ref][0...3] {
-      title, "slug": slug.current, excerpt, publishedAt
+    "author": coalesce(author->name, author),
+    "authorDetails": author->{ name, role, "image": image, bio },
+    "related": *[
+      _type == "post"
+      && slug.current != $slug
+      && defined(slug.current)
+      && defined(publishedAt)
+      && (
+        category._ref == ^.category._ref
+        || coalesce(category->title, category) == coalesce(^.category->title, ^.category)
+      )
+    ][0...3] {
+      title,
+      "slug": slug.current,
+      excerpt,
+      publishedAt,
+      "category": coalesce(category->title, category)
     }
+  }
+`;
+
+export const ALL_SLUGS_QUERY = /* groq */ `
+  *[_type == "post" && defined(slug.current)] {
+    "slug": slug.current
   }
 `;
 
