@@ -3,14 +3,14 @@ export const siteConfig = {
   shortName: 'Tradie Systems',
   domain: 'tradiesystemsco.com.au',
   url: 'https://www.tradiesystemsco.com.au',
-  tagline: 'Done-for-you quote follow-up systems for Australian tradies.',
+  tagline: 'Free quote follow-up audits for Australian tradies.',
   description:
-    'Stop losing jobs to slow, inconsistent quote follow-up. We build automated quote follow-up systems for Australian tradies — so every quote gets chased, every lead gets recovered, and more jobs get won without adding admin to your day.',
+    'Stop losing jobs to slow, inconsistent quote follow-up. We audit what happens after you send a quote, show where quoted jobs are slipping through the cracks, and give you a clear plan to fix it — whether you implement it yourself or hire us to build the system.',
   email: 'ricky@tradiesystemsco.com.au',
   phone: '+61 0 0000 0000',
-  // Booking URL — swap for your real Cal.com / Calendly link.
+  // Booking URL — update this if you rename the Cal.com event later.
   bookingUrl: 'https://cal.com/ricky-bourke-oinvii/free-strategy-call',
-  bookingLabel: 'Book a Free Strategy Call',
+  bookingLabel: 'Book a Free Audit',
   ctaSecondary: 'Get a Free Quote Follow-Up Audit',
 
   social: {
@@ -49,7 +49,7 @@ export const siteConfig = {
     'Solar'
   ],
 
-  // Trade software the systems plug into. Used for entity-association and chips.
+  // Trade software the audit and follow-up systems can work around.
   integrations: [
     'ServiceM8',
     'Tradify',
