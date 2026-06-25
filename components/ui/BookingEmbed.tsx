@@ -31,8 +31,7 @@ export function BookingEmbed({ url, providerLabel = 'our calendar', timeoutMs = 
     !url ||
     url.includes('your-') ||
     url.includes('example.com') ||
-    url === '#' ||
-    url.endsWith('/strategy-call'); // matches the default placeholder in site.config
+    url === '#';
 
   useEffect(() => {
     if (isPlaceholder) {
@@ -58,7 +57,7 @@ export function BookingEmbed({ url, providerLabel = 'our calendar', timeoutMs = 
           <iframe
             ref={iframeRef}
             src={url}
-            title="Book a strategy call with Tradie Systems Co"
+            title="Book a free quote follow-up audit with Tradie Systems Co"
             className="absolute inset-0 h-full w-full"
             loading="lazy"
             referrerPolicy="origin"
@@ -129,7 +128,9 @@ function Fallback({
       <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-signal-500/10 text-signal-500 ring-1 ring-signal-500/20">
         <CalendarClock className="h-6 w-6" aria-hidden="true" />
       </div>
-      <h3 className="font-display text-2xl text-bone-50">Book your strategy call</h3>
+      <h3 className="font-display text-2xl text-bone-50">
+        Book your free quote follow-up audit
+      </h3>
       <p className="mt-3 max-w-md text-bone-300">
         {isPlaceholder
           ? 'Our online booking is being finalised. In the meantime, send a quick message and we’ll get a time locked in within one business day.'
@@ -154,7 +155,7 @@ function Fallback({
       <ul className="mt-7 space-y-2 border-t border-white/5 pt-5 text-sm text-bone-400">
         <li className="flex items-start gap-2">
           <span className="mt-1 inline-block h-1.5 w-1.5 flex-none rounded-full bg-signal-500/70" />
-          30-minute, no-pitch strategy call
+          30-minute, no-pitch quote follow-up audit
         </li>
         <li className="flex items-start gap-2">
           <span className="mt-1 inline-block h-1.5 w-1.5 flex-none rounded-full bg-signal-500/70" />
@@ -162,7 +163,7 @@ function Fallback({
         </li>
         <li className="flex items-start gap-2">
           <span className="mt-1 inline-block h-1.5 w-1.5 flex-none rounded-full bg-signal-500/70" />
-          Free quote follow-up audit included
+          Clear next steps based on your current follow-up process
         </li>
       </ul>
     </div>
