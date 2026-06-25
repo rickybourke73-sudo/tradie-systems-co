@@ -9,159 +9,139 @@ import { WorkflowVisual } from '@/components/sections/WorkflowVisual';
 import { AfterYouSayYes } from '@/components/sections/AfterYouSayYes';
 import {
   MessageSquareText,
+  Workflow,
+  Bot,
   RotateCcw,
   Bell,
   CalendarCheck,
-  Bot,
-  Workflow,
   Check
 } from 'lucide-react';
 
 export const metadata = buildMetadata({
-  title: 'Quote Follow-Up & Lead Recovery Systems for Australian Tradies',
+  title: 'Quote Follow-Up Systems for Australian Tradies',
   description:
-    'Done-for-you systems that follow up every quote, recover cold leads, and convert more enquiries into booked jobs. Built for Australian tradies.',
+    'Done-for-you quote follow-up systems for Australian tradies. Choose from automation-only, automation with AI assistance, or AI-led follow-up systems.',
   path: '/services'
 });
 
-interface ServiceBlock {
+interface TierBlock {
   id: string;
   icon: typeof MessageSquareText;
-  title: string;
-  shortName: string;
+  name: string;
+  model: string;
   tagline: string;
+  bestFor: string;
   body: string;
-  outcomes: string[];
-  setup: string[];
+  includes: string[];
+  humanRole: string[];
   ctaLabel: string;
 }
 
-const services: ServiceBlock[] = [
+const tiers: TierBlock[] = [
   {
-    id: 'quote-follow-up',
+    id: 'follow-up-starter',
     icon: MessageSquareText,
-    title: 'Automated Quote Follow-Up Systems',
-    shortName: 'Quote follow-up',
-    tagline: 'The flagship service. Every quote, chased automatically.',
-    body: 'When a quote leaves your business, it enters a structured, multi-touch follow-up sequence — SMS, email, or both — designed to keep you top of mind, handle common objections, and bring the conversation back to a booking. The system pauses the moment a customer replies and notifies you instantly.',
-    outcomes: [
-      '20–40% lift in quote conversion within 90 days',
-      'Sub-5-minute first response on every enquiry',
-      'Multi-step sequences tailored to your trade',
-      'No more “I forgot to chase that one”'
+    name: 'Follow-Up Starter',
+    model: 'Human + Automation',
+    tagline: 'The simple quote follow-up system that never forgets.',
+    bestFor:
+      'Best for sole traders and small crews who want every quote followed up properly, while still handling replies and decisions themselves.',
+    body:
+      'Follow-Up Starter gives your trade business a clean, consistent quote follow-up process. When a quote is sent, the system triggers polite SMS and/or email follow-ups, creates reminders, tracks open quotes, and stops the sequence when a customer replies. Your team still handles the conversation, but the system makes sure nobody forgets to follow up.',
+    includes: [
+      'Automated SMS and/or email follow-up after a quote is sent',
+      'A simple follow-up sequence written in your tone',
+      'Task reminders for quotes that need a manual call',
+      'Pause logic so follow-ups stop when a customer replies',
+      'A clear view of which quotes are still open',
+      'Setup around your existing quoting process'
     ],
-    setup: [
-      'A 3–5 step SMS sequence triggered the moment a quote goes out',
-      'A 2–3 step email sequence with the quote reattached',
-      'Smart pause logic — sequence stops the second a customer replies',
-      'Live dashboard showing every open quote and where it is in the sequence'
+    humanRole: [
+      'You or your team reply to customers',
+      'You decide which quotes deserve a phone call',
+      'You approve the wording before anything goes live',
+      'You stay fully in control of the customer relationship'
     ],
-    ctaLabel: 'Book a call about quote follow-up'
+    ctaLabel: 'Book a call about Follow-Up Starter'
   },
   {
-    id: 'customer-follow-up',
+    id: 'follow-up-assist',
     icon: Workflow,
-    title: 'Customer Follow-Up Systems',
-    shortName: 'Customer follow-up',
-    tagline: 'Stay in touch with past customers — without the admin.',
-    body: 'Past customers are the easiest jobs you’ll ever win. We build follow-up systems that check in 30 days post-job, request reviews, ask for referrals, and re-engage at the right time of year (think gutter cleans, fence inspections, AC servicing).',
-    outcomes: [
-      'More 5-star reviews on Google',
-      'A reliable stream of repeat work',
-      'Seasonal re-engagement on autopilot',
-      'A customer base that actively refers'
+    name: 'Follow-Up Assist',
+    model: 'Human/AI + Automation',
+    tagline: 'Automation runs the process. AI helps with the thinking.',
+    bestFor:
+      'Best for growing trade businesses that want faster admin support, better quote tracking, and AI assistance without handing the whole conversation to AI.',
+    body:
+      'Follow-Up Assist adds AI support on top of your automated quote follow-up system. The automation keeps the sequence moving, while AI can help draft replies, summarise customer intent, suggest next steps, and flag quotes that look ready to move forward. The human still approves sensitive actions and steps in where judgement matters.',
+    includes: [
+      'Everything in Follow-Up Starter',
+      'AI-assisted reply drafts for common quote follow-up responses',
+      'Quote status summaries so you can quickly see where each lead sits',
+      'Suggested next steps based on customer replies',
+      'Lead intent tagging such as interested, unsure, price-sensitive, or not ready',
+      'Alerts when a quote looks ready for a call or booking'
     ],
-    setup: [
-      'A "thanks for the job" message 1–2 days after completion',
-      'A review request 5–7 days post-job, linking straight to Google',
-      'Seasonal re-engagement messages (winter heating, summer AC, end-of-financial-year)',
-      'A referral ask 30 days in — short, polite, no pressure'
+    humanRole: [
+      'You approve, edit, or ignore AI reply suggestions',
+      'You still handle important customer conversations',
+      'You choose when the AI is allowed to help',
+      'You keep control while reducing admin load'
     ],
-    ctaLabel: 'Book a call about customer follow-up'
+    ctaLabel: 'Book a call about Follow-Up Assist'
   },
   {
-    id: 'lead-recovery',
-    icon: RotateCcw,
-    title: 'Lead Recovery & Cold Quote Reactivation',
-    shortName: 'Lead recovery',
-    tagline: 'Wake up the months of dead quotes sitting in your CRM.',
-    body: 'Every tradie has a graveyard of “open” quotes from 3, 6, 12 months ago. We build a one-time reactivation campaign that contacts every cold lead with a thoughtful, non-pushy message — and recovers jobs you’d already written off.',
-    outcomes: [
-      'Recover quotes from the past 6–12 months',
-      'Often pays for the entire system in week one',
-      'Branded, professional, on-tone messaging',
-      'Re-engaged leads enter your live follow-up sequence'
-    ],
-    setup: [
-      'A one-time audit of every open quote in your CRM or inbox',
-      'A reactivation message tailored to job type (kept short, never pushy)',
-      'Replies routed straight to you for instant follow-up',
-      'A clear report of who came back, who didn’t, and what won'
-    ],
-    ctaLabel: 'Book a call about lead recovery'
-  },
-  {
-    id: 'reminders',
-    icon: Bell,
-    title: 'Automated Reminder Systems',
-    shortName: 'Reminders',
-    tagline: 'No more no-shows, no more chasing payments.',
-    body: 'Appointment reminders, deposit reminders, invoice reminders, site-visit confirmations — all automated, all branded, all timed exactly right. Reduces no-shows, late payments, and the admin time you spend chasing them.',
-    outcomes: [
-      'Up to 80% fewer site-visit no-shows',
-      'Faster invoice payment cycles',
-      'Less time on the phone chasing',
-      'Customers who feel looked after'
-    ],
-    setup: [
-      'Site-visit confirmation the evening before, with a YES/NO reply prompt',
-      'Day-of reminder 1–2 hours before arrival',
-      'Deposit reminders if a quote is accepted but unpaid 48 hours later',
-      'Invoice reminders 7, 14, and 21 days after the job completes'
-    ],
-    ctaLabel: 'Book a call about reminders'
-  },
-  {
-    id: 'bookings',
-    icon: CalendarCheck,
-    title: 'Booking & Calendar Systems',
-    shortName: 'Bookings',
-    tagline: 'Customers book themselves in. You stop playing phone tag.',
-    body: 'When a customer’s ready to move forward, they click a link, pick a time, and the job is in your calendar. Synced with Google or Outlook. Buffered around your work hours. Site-visit forms collect the details you need before you even arrive.',
-    outcomes: [
-      'No more “what time suits you” back-and-forth',
-      'Buffered, smart scheduling that respects job sites',
-      'Pre-visit forms collect job details upfront',
-      'Calendar synced across the team'
-    ],
-    setup: [
-      'A branded booking link added to your quote and follow-up messages',
-      'Time slots configured around your work hours, travel buffers, and days off',
-      'A short pre-visit form (job type, address, access notes, photos) sent on booking',
-      'Direct sync with Google Calendar or Outlook — and your job management software'
-    ],
-    ctaLabel: 'Book a call about bookings'
-  },
-  {
-    id: 'ai-comms',
+    id: 'follow-up-engine',
     icon: Bot,
-    title: 'AI-Assisted Customer Communication',
-    shortName: 'AI-assisted comms',
-    tagline: 'Optional. Used carefully. Always under your control.',
-    body: 'For trade businesses that want it, we offer AI-assisted reply suggestions — used to draft responses to common customer questions, never to take over conversations. You stay in the driver’s seat. Customers stay talking to a human.',
-    outcomes: [
-      'Faster replies to common questions',
-      'Drafts you approve before sending',
-      'Optional — never the default',
-      'Built for trust, not novelty'
+    name: 'Follow-Up Engine',
+    model: 'AI + Automation',
+    tagline: 'The most hands-off quote follow-up system.',
+    bestFor:
+      'Best for trade businesses that want the system to do more of the chasing, sorting, responding and booking — with humans stepping in when needed.',
+    body:
+      'Follow-Up Engine is the highest level quote follow-up system. Automation runs the sequence, while AI can handle more of the customer conversation, qualify customer intent, answer common questions, update the pipeline, and push serious opportunities toward the next step. It is built with guardrails so the system knows when to stop and alert a human.',
+    includes: [
+      'Everything in Follow-Up Assist',
+      'AI-led follow-up conversations for approved customer touchpoints',
+      'Automatic quote status updates based on customer replies',
+      'Customer qualification and intent detection',
+      'Booking links or next-step prompts when a customer is ready',
+      'Human handoff rules for pricing, complaints, complex questions, and edge cases'
     ],
-    setup: [
-      'A "suggested reply" panel that drafts a response when a customer messages',
-      'Drafts grounded in your past quotes, pricing, and FAQs — never made up',
-      'A clear approve/edit/discard flow before anything sends',
-      'Off by default — turned on only for the customer touchpoints you choose'
+    humanRole: [
+      'You define the rules and guardrails',
+      'You decide what AI is allowed to send',
+      'You step in when the system flags a customer for human attention',
+      'You review performance and adjust the process over time'
     ],
-    ctaLabel: 'Book a call about AI comms'
+    ctaLabel: 'Book a call about Follow-Up Engine'
+  }
+];
+
+const systemIncludes = [
+  {
+    icon: Bell,
+    title: 'Follow-up timing',
+    body:
+      'A clear sequence that follows up quotes at the right moments without relying on memory.'
+  },
+  {
+    icon: MessageSquareText,
+    title: 'SMS and email wording',
+    body:
+      'Plain-English messages written to sound like your business, not a generic marketing campaign.'
+  },
+  {
+    icon: RotateCcw,
+    title: 'Cold quote recovery',
+    body:
+      'A way to re-engage old quotes that never formally said yes or no.'
+  },
+  {
+    icon: CalendarCheck,
+    title: 'Next-step prompts',
+    body:
+      'Booking links, call reminders, or task prompts so interested customers do not get left hanging.'
   }
 ];
 
@@ -174,26 +154,33 @@ export default function ServicesPage() {
           { name: 'Services', url: `${siteConfig.url}/services` }
         ])}
       />
-      {services.map((s) => (
+
+      {tiers.map((tier) => (
         <JsonLd
-          key={s.id}
-          data={serviceSchema({ name: s.title, description: s.tagline, slug: s.id })}
+          key={tier.id}
+          data={serviceSchema({
+            name: tier.name,
+            description: `${tier.model}: ${tier.tagline}`,
+            slug: tier.id
+          })}
         />
       ))}
 
       {/* Hero */}
       <Section size="lg" className="pt-20 md:pt-28">
-        <div className="max-w-3xl">
-          <p className="eyebrow mb-5">Services</p>
+        <div className="max-w-4xl">
+          <p className="eyebrow mb-5">Quote follow-up systems for tradies</p>
           <h1 className="text-balance font-display text-[2.25rem] leading-[1.05] tracking-tight text-bone-50 sm:text-5xl md:text-6xl">
-            Systems that <span className="italic text-signal-400">win you more jobs</span> from the
-            leads you’ve already got.
+            Follow up every quote.{' '}
+            <span className="italic text-signal-400">Win more of the jobs</span> you’ve already
+            quoted.
           </h1>
           <p className="mt-6 text-pretty text-lg leading-relaxed text-bone-300 md:text-xl">
-            Every service we build sits inside one bigger goal: stop letting quoted jobs slip through
-            the cracks. Whether it’s automated SMS follow-up, dead lead recovery, or a customer
-            re-engagement system — we focus on the work that actually moves your numbers.
+            Tradie Systems Co builds done-for-you quote follow-up systems for Australian trade
+            businesses. Start with simple automation, add AI assistance when you’re ready, or build
+            a more hands-off AI follow-up engine that keeps your pipeline moving.
           </p>
+
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Button
               href={siteConfig.bookingUrl}
@@ -204,25 +191,123 @@ export default function ServicesPage() {
               {siteConfig.bookingLabel}
             </Button>
             <Button
-              href="#quote-follow-up"
+              href="#tiers"
               variant="ghost"
               arrow={false}
               className="w-full justify-center sm:w-auto"
             >
-              Browse services
+              Compare the tiers
             </Button>
           </div>
         </div>
       </Section>
 
-      {/* Service blocks */}
-      {services.map((service, i) => {
-        const Icon = service.icon;
+      {/* Positioning */}
+      <Section className="border-y border-white/5 bg-ink-900/30">
+        <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+          <div>
+            <p className="eyebrow mb-5">The core problem</p>
+            <h2 className="text-balance font-display text-3xl tracking-tight text-bone-50 sm:text-4xl md:text-5xl">
+              Most trade businesses don’t need more leads first. They need to stop losing the
+              quotes they already sent.
+            </h2>
+          </div>
+          <div className="space-y-5 text-base leading-relaxed text-bone-300 sm:text-lg">
+            <p>
+              A customer asks for a quote. You inspect the job, price it, send it out — then the
+              follow-up depends on memory, spare time, or whoever happens to check the pipeline
+              that week.
+            </p>
+            <p>
+              That is where good jobs go cold. Not because the customer hated the quote, and not
+              always because someone else was cheaper. Often, the business that follows up clearly
+              and consistently is the one that gets the next conversation.
+            </p>
+            <p>
+              Our service is focused on that gap: what happens after the quote is sent.
+            </p>
+          </div>
+        </div>
+      </Section>
+
+      {/* Tier overview */}
+      <Section id="tiers" className="scroll-mt-24">
+        <SectionHeader
+          eyebrow="Three levels"
+          title="Choose the level of follow-up support that fits your business."
+          description="Every tier is built around quote follow-up. The difference is how much work is handled by humans, automation and AI."
+          align="center"
+        />
+
+        <div className="mt-12 grid gap-6 lg:grid-cols-3">
+          {tiers.map((tier) => {
+            const Icon = tier.icon;
+
+            return (
+              <article key={tier.id} className="card flex h-full flex-col p-7 sm:p-8">
+                <div
+                  className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-signal-500/20 bg-signal-500/10 text-signal-400"
+                  aria-hidden="true"
+                >
+                  <Icon className="h-7 w-7" />
+                </div>
+
+                <p className="mb-3 font-mono text-xs uppercase tracking-[0.22em] text-signal-300">
+                  {tier.model}
+                </p>
+
+                <h3 className="font-display text-2xl tracking-tight text-bone-50 sm:text-3xl">
+                  {tier.name}
+                </h3>
+
+                <p className="mt-3 font-display text-lg italic text-signal-300">
+                  {tier.tagline}
+                </p>
+
+                <p className="mt-5 text-sm leading-relaxed text-bone-300 sm:text-base">
+                  {tier.bestFor}
+                </p>
+
+                <div className="mt-7 flex-1">
+                  <p className="eyebrow mb-4">Includes</p>
+                  <ul className="space-y-3">
+                    {tier.includes.slice(0, 4).map((item) => (
+                      <li key={item} className="flex items-start gap-3 text-sm text-bone-200">
+                        <span
+                          className="mt-0.5 inline-flex h-5 w-5 flex-none items-center justify-center rounded-full border border-signal-500/30 bg-signal-500/15 text-signal-400"
+                          aria-hidden="true"
+                        >
+                          <Check className="h-3 w-3" strokeWidth={3} />
+                        </span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <Button
+                  href={`#${tier.id}`}
+                  variant="ghost"
+                  arrow={false}
+                  className="mt-8 w-full justify-center"
+                >
+                  View details
+                </Button>
+              </article>
+            );
+          })}
+        </div>
+      </Section>
+
+      {/* Tier details */}
+      {tiers.map((tier, i) => {
+        const Icon = tier.icon;
         const banded = i % 2 === 1;
+
         return (
           <Section
-            key={service.id}
-            id={service.id}
+            key={tier.id}
+            id={tier.id}
             className={`scroll-mt-24 ${banded ? 'border-y border-white/5 bg-ink-900/30' : ''}`}
           >
             <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-16 xl:gap-20">
@@ -232,64 +317,76 @@ export default function ServicesPage() {
                   <span className="text-bone-500" aria-hidden="true">
                     /
                   </span>
-                  <span>{String(services.length).padStart(2, '0')}</span>
+                  <span>{String(tiers.length).padStart(2, '0')}</span>
                 </div>
+
                 <div
                   className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-signal-500/20 bg-signal-500/10 text-signal-400"
                   aria-hidden="true"
                 >
                   <Icon className="h-7 w-7" />
                 </div>
-                <h2 className="text-balance font-display text-3xl tracking-tight text-bone-50 sm:text-4xl md:text-5xl">
-                  {service.title}
-                </h2>
-                <p className="mt-4 font-display text-lg italic text-signal-300 sm:text-xl">
-                  {service.tagline}
+
+                <p className="mb-3 font-mono text-xs uppercase tracking-[0.22em] text-signal-300">
+                  {tier.model}
                 </p>
+
+                <h2 className="text-balance font-display text-3xl tracking-tight text-bone-50 sm:text-4xl md:text-5xl">
+                  {tier.name}
+                </h2>
+
+                <p className="mt-4 font-display text-lg italic text-signal-300 sm:text-xl">
+                  {tier.tagline}
+                </p>
+
                 <p className="mt-6 text-base leading-relaxed text-bone-300 sm:text-lg">
-                  {service.body}
+                  {tier.body}
                 </p>
               </div>
 
               <div className="card p-7 sm:p-8 md:p-10">
-                <p className="eyebrow mb-6">Outcomes</p>
+                <p className="eyebrow mb-6">What gets set up</p>
                 <ul className="space-y-4">
-                  {service.outcomes.map((o) => (
-                    <li key={o} className="flex items-start gap-4">
+                  {tier.includes.map((item) => (
+                    <li key={item} className="flex items-start gap-4">
                       <span
                         className="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full border border-signal-500/30 bg-signal-500/15 text-signal-400"
                         aria-hidden="true"
                       >
                         <Check className="h-3.5 w-3.5" strokeWidth={3} />
                       </span>
-                      <span className="text-bone-100">{o}</span>
+                      <span className="text-bone-100">{item}</span>
                     </li>
                   ))}
                 </ul>
 
                 <hr className="my-7 border-white/5" />
 
-                <p className="eyebrow mb-5">What gets set up</p>
+                <p className="eyebrow mb-5">The human role</p>
                 <ul className="space-y-3">
-                  {service.setup.map((s) => (
-                    <li key={s} className="flex items-start gap-3 text-sm leading-relaxed text-bone-300 sm:text-base">
+                  {tier.humanRole.map((item) => (
+                    <li
+                      key={item}
+                      className="flex items-start gap-3 text-sm leading-relaxed text-bone-300 sm:text-base"
+                    >
                       <span
                         className="mt-2 inline-block h-1 w-3 flex-none rounded-full bg-signal-500/60"
                         aria-hidden="true"
                       />
-                      <span>{s}</span>
+                      <span>{item}</span>
                     </li>
                   ))}
                 </ul>
 
                 <hr className="my-7 border-white/5" />
+
                 <Button
                   href={siteConfig.bookingUrl}
                   external
                   variant="primary"
                   className="w-full justify-center"
                 >
-                  {service.ctaLabel}
+                  {tier.ctaLabel}
                 </Button>
               </div>
             </div>
@@ -297,12 +394,41 @@ export default function ServicesPage() {
         );
       })}
 
-      {/* Mid-page workflow recap. Kept unbanded so it doesn't stack visually
-          with the banded AfterYouSayYes section that follows. */}
-      <Section id="how" className="scroll-mt-24">
+      {/* What every system includes */}
+      <Section id="included" className="scroll-mt-24">
+        <SectionHeader
+          eyebrow="What every system is built around"
+          title="The same core goal in every tier: follow up quotes consistently."
+          description="The technology changes by tier, but the job stays the same — make sure quoted customers are followed up properly until they reply, book, decline, or go cold."
+          align="center"
+        />
+
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {systemIncludes.map((item) => {
+            const Icon = item.icon;
+
+            return (
+              <article key={item.title} className="card p-6">
+                <div
+                  className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-signal-500/20 bg-signal-500/10 text-signal-400"
+                  aria-hidden="true"
+                >
+                  <Icon className="h-6 w-6" />
+                </div>
+                <h3 className="font-display text-xl tracking-tight text-bone-50">{item.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-bone-300">{item.body}</p>
+              </article>
+            );
+          })}
+        </div>
+      </Section>
+
+      {/* Mid-page workflow recap */}
+      <Section id="how" className="scroll-mt-24 border-y border-white/5 bg-ink-900/30">
         <SectionHeader
           eyebrow="The system in motion"
-          title="Here’s what runs in the background — every time you send a quote."
+          title="Here’s what runs in the background every time you send a quote."
+          description="A quote is sent, the follow-up sequence starts, replies pause the sequence, and your business is alerted when a customer needs attention."
           align="center"
         />
         <div className="mx-auto mt-12 max-w-5xl">
@@ -310,14 +436,8 @@ export default function ServicesPage() {
         </div>
       </Section>
 
-      {/* Long-form SEO authority section — sits between the workflow recap and
-          AfterYouSayYes. Establishes topical depth on quote follow-up systems
-          for Australian tradies without disrupting the conversion flow. */}
-      <Section
-        id="authority"
-        aria-labelledby="authority-heading"
-        className="scroll-mt-24 border-y border-white/5 bg-ink-900/30"
-      >
+      {/* Long-form SEO/AEO authority section */}
+      <Section id="authority" aria-labelledby="authority-heading" className="scroll-mt-24">
         <div className="mx-auto max-w-3xl">
           <p className="eyebrow mb-5">The detail</p>
           <h2
@@ -328,11 +448,11 @@ export default function ServicesPage() {
             <span className="italic text-signal-400">quote follow-up systems</span> for Australian
             tradies.
           </h2>
+
           <p className="mt-6 text-pretty text-lg leading-relaxed text-bone-300 md:text-xl">
-            If you’re considering an automated quote follow-up system for your trade business, this
-            section is the long version. It covers what one actually is, why so many jobs go cold
-            after quoting, how the automation runs in the background, and how it integrates with
-            the tools you already use — ServiceM8, Tradify, simPRO, AroFlo, and Jobber.
+            A quote follow-up system is not a chatbot, not a replacement for your trade software,
+            and not a generic marketing campaign. It is a focused layer that sits after the quote
+            is sent and makes sure every customer is followed up consistently.
           </p>
 
           <div className="prose-tradie mt-12 space-y-10 text-[1.05rem] leading-relaxed text-bone-200 sm:text-lg">
@@ -341,20 +461,56 @@ export default function ServicesPage() {
                 What is a quote follow-up system?
               </h3>
               <p className="mt-4">
-                A quote follow-up system is a structured, automated sequence of SMS and email
-                messages that goes out after a tradie sends a quote. Its job is to keep the
-                customer engaged across the days and weeks following the quote, answer common
-                questions before they become reasons to stall, and bring the conversation back
-                toward a booking. The system pauses the moment the customer replies. From that
-                point, the conversation is yours.
+                A quote follow-up system is a structured process that follows up customers after a
+                trade business sends a quote. Depending on the tier, it can use SMS, email, task
+                reminders, AI-assisted drafts, or AI-led replies to keep the conversation moving
+                until the customer replies, books, declines, or goes cold.
               </p>
               <p className="mt-4">
-                For most trade businesses, a proper system replaces the ad-hoc &ldquo;I&rsquo;ll
-                call them tomorrow&rdquo; cycle with a consistent process that runs whether
-                you&rsquo;re on site, on the road, or finishing a job after dark. It is not a
-                chatbot, not a CRM, and not a generic marketing tool. It is a focused
-                follow-up layer that plugs into the tools you already use and quietly does the
-                chasing for you.
+                For most trade businesses, the first version does not need to be complicated. The
+                biggest win is consistency. Every quote gets followed up. The wording is clear. The
+                timing is set. The system pauses when a customer replies. The business is notified
+                when a human needs to step in.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="pt-2 font-display text-2xl font-semibold tracking-tight text-bone-50 md:text-3xl">
+                Why this site is focused on quote follow-up
+              </h3>
+              <p className="mt-4">
+                Tradie Systems Co is focused on the part of the sales process that happens after a
+                quote is sent. Many trade businesses spend time and money getting enquiries, but
+                then rely on memory, sticky notes, inbox searches, or manual calls to follow up the
+                quotes they have already prepared.
+              </p>
+              <p className="mt-4">
+                That is the niche we are building around: quote follow-up for Australian tradies.
+                Other automation problems can be solved later, but this website is designed to be
+                clear about one thing — helping trade businesses win more of the quoted jobs that
+                are already sitting in their pipeline.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="pt-2 font-display text-2xl font-semibold tracking-tight text-bone-50 md:text-3xl">
+                How the three tiers work
+              </h3>
+              <p className="mt-4">
+                Follow-Up Starter is the simplest version. The client and their team remain fully
+                responsible for replies and decisions, while automation handles the timing,
+                reminders, and basic follow-up messages.
+              </p>
+              <p className="mt-4">
+                Follow-Up Assist adds AI support. The automation still runs the process, but AI can
+                help draft replies, summarise quote status, detect customer intent, and suggest the
+                next step. A human still approves sensitive actions.
+              </p>
+              <p className="mt-4">
+                Follow-Up Engine is the most advanced version. AI can take on more of the
+                follow-up conversation, update quote status, qualify intent, and move serious leads
+                toward a booking or human handoff. This tier is for businesses that want the system
+                to do more of the chasing and sorting.
               </p>
             </div>
 
@@ -363,328 +519,143 @@ export default function ServicesPage() {
                 Why tradies lose jobs after quoting
               </h3>
               <p className="mt-4">
-                Most lost jobs aren&rsquo;t lost on price. They&rsquo;re lost in the gap between
-                sending the quote and the customer&rsquo;s next decision moment. The customer was
-                busy. They had three other things going on. They meant to reply. They got another
-                quote and forgot which was which. By the time anyone follows up — if anyone
-                follows up at all — the moment has passed.
+                Most lost quotes do not disappear in one dramatic moment. They go quiet. The
+                customer gets busy. They compare three quotes. They forget who sent what. The
+                tradie means to follow up but gets pulled onto another job. By the time someone
+                remembers, the customer has either chosen someone else or lost interest.
               </p>
               <p className="mt-4">
-                On top of that, most tradies are quoting in the evening, on the road, or between
-                jobs. Following up properly means remembering who you quoted, when, what for, and
-                what you said. It means doing it at the right time, in the right tone, without
-                sounding desperate. It&rsquo;s not that tradies don&rsquo;t want to follow up — it&rsquo;s
-                that the working day doesn&rsquo;t leave room for it. A quote follow-up system
-                takes that work off your plate without changing the way you quote.
-              </p>
-              <p className="mt-4">
-                Our{' '}
-                <Link
-                  href="/blog/quote-follow-up-system-for-tradies"
-                  className="text-signal-400 underline-offset-4 hover:underline"
-                >
-                  full guide to quote follow-up systems for tradies
-                </Link>{' '}
-                breaks down the specific patterns we see across trade businesses — and what to do
-                about each one.
+                A quote follow-up system gives the business a consistent process instead of hoping
+                someone remembers. It does not replace good quoting, good service, or fair pricing.
+                It simply makes sure the follow-up that should already be happening actually
+                happens.
               </p>
             </div>
 
             <div>
               <h3 className="pt-2 font-display text-2xl font-semibold tracking-tight text-bone-50 md:text-3xl">
-                How automated quote follow-up actually works
+                How automated quote follow-up works
               </h3>
               <p className="mt-4">
-                When a quote leaves your business — through ServiceM8, Tradify, simPRO, AroFlo,
-                Jobber, or just a normal email — the follow-up system picks it up and triggers a
-                pre-built sequence. A short confirmation SMS goes out within minutes, so the
-                customer knows the quote landed. The next morning, a polite check-in. A few days
-                later, an email with the quote reattached and a couple of common questions
-                answered up front. A short SMS around day seven. A no-pressure email around day
-                fourteen. Then, for quotes that have gone quiet, a longer-tail reactivation track.
+                When a quote is sent, the system triggers a follow-up sequence. That might include
+                a short SMS confirming the quote was sent, a polite check-in a few days later, an
+                email with the quote reattached, a task reminder to call higher-value quotes, and a
+                longer-tail message for quotes that have gone quiet.
               </p>
               <p className="mt-4">
-                Every message is written in your voice, approved by you before it goes live, and
-                tuned to the kind of work you do. Wording for a fencing quote isn&rsquo;t the same
-                as wording for a bathroom renovation. The cadence for a $400 job isn&rsquo;t the
-                same as the cadence for a $40,000 one. The system is built around your trade and
-                your typical jobs — not a generic template.
+                The sequence is written around the business, the trade, the job type, and the tone
+                the client wants to use. A fencing quote, an electrical quote, a landscaping quote,
+                and a renovation quote should not all sound exactly the same.
               </p>
               <p className="mt-4">
-                The moment a customer replies anywhere in the sequence, everything stops and
-                you&rsquo;re notified. No accidental chasing, no awkward overlap with conversations
-                that have already moved forward. From there, you take over.
+                The key rule is simple: when the customer replies, the system stops chasing and the
+                business is notified.
               </p>
             </div>
 
             <div>
               <h3 className="pt-2 font-display text-2xl font-semibold tracking-tight text-bone-50 md:text-3xl">
-                Why speed-to-lead matters
+                Cold quote recovery
               </h3>
               <p className="mt-4">
-                Speed-to-lead is the time between a customer expressing interest and the trade
-                business responding. The longer that gap, the more competition you give the lead
-                time to find — and the colder the customer becomes. For most trade enquiries, the
-                first business to reply in a thoughtful, professional way has a significant
-                advantage. Not because they&rsquo;re cheaper. Because they&rsquo;re the one the
-                customer is actively talking to.
+                Many trade businesses have old quotes sitting in their CRM, inbox, spreadsheet, or
+                job management software. The customer never said yes, but they may never have said
+                no either. Cold quote recovery is the process of carefully re-engaging those old
+                quotes with a short, professional message.
               </p>
               <p className="mt-4">
-                An automated quote follow-up system closes that gap by default. The confirmation
-                SMS goes out within minutes, even on a Saturday evening. The first proper
-                follow-up lands the next morning. By the time competitors are still working out
-                whether to chase the lead, you&rsquo;ve already had three thoughtful touchpoints.
-                That&rsquo;s not aggressive — it&rsquo;s consistent. And consistent beats sporadic
-                every time.
+                The aim is not to pressure people. It is to reopen the conversation, clean up the
+                pipeline, and find out which old opportunities are still alive.
               </p>
             </div>
 
             <div>
               <h3 className="pt-2 font-display text-2xl font-semibold tracking-tight text-bone-50 md:text-3xl">
-                Lead recovery systems — turning cold quotes back into jobs
+                How it fits with your existing tools
               </h3>
               <p className="mt-4">
-                Every trade business has a stack of cold quotes. Quotes that went out six months
-                ago, a year ago, longer. The customer never said no. They just stopped replying.
-                Those quotes sit in your CRM or inbox and feel like dead weight — but for most
-                tradies, that pile is the fastest revenue you&rsquo;ll ever recover.
+                The follow-up system is designed to sit alongside the tools a trade business
+                already uses. That might include ServiceM8, Tradify, simPRO, AroFlo, Jobber,
+                Fergus, NextMinute, Buildxact, HubSpot, Pipedrive, Gmail, Outlook, or a simpler
+                quoting process.
               </p>
               <p className="mt-4">
-                A lead recovery system reaches out to those cold quotes in a one-off, carefully
-                worded reactivation. The message acknowledges the time that&rsquo;s passed, gives
-                the customer a low-friction way back into the conversation, and offers a clear
-                next step. It&rsquo;s polite, short, and never pushy. Customers who are still
-                interested come back. Customers who&rsquo;ve moved on close the loop. Either way,
-                you know where you stand.
+                The goal is not to force a business into new software. The goal is to add a
+                follow-up layer around the quoting process they already have.
               </p>
             </div>
 
             <div>
               <h3 className="pt-2 font-display text-2xl font-semibold tracking-tight text-bone-50 md:text-3xl">
-                Cold quote reactivation — the long-tail track
+                Which trade businesses are a good fit?
               </h3>
               <p className="mt-4">
-                Beyond the initial reactivation campaign, the system keeps cold quotes alive on a
-                slow drip. Every couple of months, a short check-in goes out — seasonal where it
-                makes sense (think gutter cleans before winter, AC checks before summer), or
-                straightforward where it doesn&rsquo;t. The volume is small. The cumulative effect
-                isn&rsquo;t. Cold quote reactivation is one of the quietest ways to add jobs to
-                the calendar from leads you&rsquo;d already written off.
+                Quote follow-up systems are useful for trade businesses that send quotes and have
+                enough quote volume that manual follow-up is becoming inconsistent. That can
+                include fencing contractors, landscapers, electricians, plumbers, concreters,
+                builders, carpenters, painters, HVAC businesses, roofers, pool builders, and solar
+                installers.
+              </p>
+              <p className="mt-4">
+                The best fit is usually a business that already gets enquiries and sends quotes,
+                but suspects too many quoted jobs are going cold without a clear reason.
               </p>
             </div>
 
             <div>
               <h3 className="pt-2 font-display text-2xl font-semibold tracking-tight text-bone-50 md:text-3xl">
-                How the system integrates with your existing tools
+                Common questions
               </h3>
               <p className="mt-4">
-                The system is built to sit alongside the software you already use — not to replace
-                it. You keep quoting in the tool you know. The follow-up layer triggers off the
-                quote going out, runs in the background, and reports back into your existing
-                workflow. Here&rsquo;s how that looks across the platforms we work with most.
-              </p>
-
-              <h4 className="mt-8 pt-2 font-display text-xl font-semibold tracking-tight text-bone-50 md:text-2xl">
-                ServiceM8 follow-up
-              </h4>
-              <p className="mt-3">
-                ServiceM8 is one of the most common platforms for Australian trade businesses, and
-                the follow-up system plugs in cleanly. When you send a quote out of ServiceM8, the
-                system picks it up and triggers the sequence automatically. Replies, bookings, and
-                status changes flow back into your ServiceM8 jobs so you have a single source of
-                truth. You don&rsquo;t need to change the way you quote, schedule, or invoice.
-              </p>
-
-              <h4 className="mt-8 pt-2 font-display text-xl font-semibold tracking-tight text-bone-50 md:text-2xl">
-                Tradify follow-up
-              </h4>
-              <p className="mt-3">
-                Tradify users keep quoting and tracking jobs the same way they always have. The
-                follow-up sequence triggers off quote events, and customer replies route directly
-                to your existing communication threads. The system layers a structured follow-up
-                process on top of Tradify without asking you to migrate or learn anything new.
-              </p>
-
-              <h4 className="mt-8 pt-2 font-display text-xl font-semibold tracking-tight text-bone-50 md:text-2xl">
-                simPRO follow-up
-              </h4>
-              <p className="mt-3">
-                simPRO is built for larger trade operations with more moving parts. The follow-up
-                system respects that — sequences can be configured per job type, per branch, or per
-                estimator, so a $2,000 service call and a $200,000 commercial install don&rsquo;t
-                get the same cadence. Reporting feeds back into your simPRO data so the team can
-                see what&rsquo;s converting and where the bottlenecks are.
-              </p>
-
-              <h4 className="mt-8 pt-2 font-display text-xl font-semibold tracking-tight text-bone-50 md:text-2xl">
-                AroFlo follow-up
-              </h4>
-              <p className="mt-3">
-                AroFlo tradies get the same model: keep quoting the way you already do, and let
-                the follow-up layer run quietly underneath. Sequences are built around the trades
-                AroFlo is strongest in — electrical, plumbing, HVAC, mechanical — with wording
-                that fits how those jobs actually get quoted and won.
-              </p>
-
-              <h4 className="mt-8 pt-2 font-display text-xl font-semibold tracking-tight text-bone-50 md:text-2xl">
-                Jobber follow-up
-              </h4>
-              <p className="mt-3">
-                Jobber is popular with sole operators and small crews. The follow-up system is
-                tuned for that scale: lean sequences, less admin, and a clear single inbox for
-                replies. No new dashboards to babysit between jobs.
-              </p>
-
-              <p className="mt-6">
-                Not on this list? Most other systems we work with too — Fergus, NextMinute,
-                Buildxact, HousecallPro, plus general CRMs like HubSpot and Pipedrive, and plain
-                email setups via Gmail or Outlook. If you&rsquo;ve got a tool we haven&rsquo;t
-                named,{' '}
-                <Link
-                  href="/contact"
-                  className="text-signal-400 underline-offset-4 hover:underline"
-                >
-                  send us a message
-                </Link>{' '}
-                and we&rsquo;ll tell you straight whether it&rsquo;s a fit.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="pt-2 font-display text-2xl font-semibold tracking-tight text-bone-50 md:text-3xl">
-                Which trades benefit most
-              </h3>
-              <p className="mt-4">
-                Any trade business that sends quotes and wants more of them to turn into booked
-                work benefits from a follow-up system. In practice, we work most often with
-                fencing contractors, landscapers, electricians, plumbers, concreters, builders,
-                carpenters, painters, HVAC installers, and solar installers. The common thread is
-                volume: businesses sending enough quotes a month that manual follow-up has stopped
-                being realistic, but not so much volume that they&rsquo;ve already hired a
-                full-time admin person to chase quotes.
-              </p>
-              <p className="mt-4">
-                Sole operators benefit because the system is doing the work they don&rsquo;t have
-                time to do themselves. Small crews benefit because everyone follows up the same
-                way, in the same tone, on the same cadence. Larger trade businesses benefit
-                because the inconsistency between estimators and reps disappears.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="pt-2 font-display text-2xl font-semibold tracking-tight text-bone-50 md:text-3xl">
-                Common objections — answered straight
-              </h3>
-              <p className="mt-4">
-                <strong className="font-semibold text-bone-50">
-                  &ldquo;My customers will know it&rsquo;s automated.&rdquo;
-                </strong>{' '}
-                If the wording reads like a marketing email, yes. Ours doesn&rsquo;t. Every message
-                is written to sound like something you&rsquo;d actually send — short, plain, no
-                exclamation marks, no &ldquo;Dear valued customer.&rdquo; You read and approve
-                every message before it goes live.
+                <strong className="font-semibold text-bone-50">Is this just a chatbot?</strong>{' '}
+                No. The core service is quote follow-up. AI can be added in the higher tiers, but
+                the system is built around following up quotes, not replacing your business with a
+                chatbot.
               </p>
               <p className="mt-4">
                 <strong className="font-semibold text-bone-50">
-                  &ldquo;I don&rsquo;t want to annoy people.&rdquo;
+                  Do I have to use AI straight away?
                 </strong>{' '}
-                A polite SMS three days after a quote isn&rsquo;t annoying. Six emails in a week
-                is. The cadence is deliberately spaced, the wording is deliberately calm, and the
-                whole sequence stops the second the customer replies — including a clear opt-out
-                if they want one.
+                No. Follow-Up Starter is automation-only. It is designed for businesses that want a
+                reliable process without AI handling customer conversations.
               </p>
               <p className="mt-4">
                 <strong className="font-semibold text-bone-50">
-                  &ldquo;I already follow up.&rdquo;
+                  Can I approve messages before they go live?
                 </strong>{' '}
-                Most tradies who say this mean &ldquo;I follow up on the big quotes I remember.&rdquo;
-                The system follows up on every quote, every time, on schedule. That&rsquo;s a
-                different thing.
+                Yes. The wording, timing, and rules are agreed before the system goes live.
               </p>
               <p className="mt-4">
                 <strong className="font-semibold text-bone-50">
-                  &ldquo;I&rsquo;ll have to learn new software.&rdquo;
+                  What happens when a customer replies?
                 </strong>{' '}
-                You won&rsquo;t. The system runs behind the tools you already use. Your job is to
-                keep quoting the way you always have. The follow-up happens whether you log into
-                anything or not.
+                The follow-up sequence pauses or stops, and the business is notified so the
+                conversation can continue properly.
               </p>
               <p className="mt-4">
-                More questions? Have a look at the{' '}
+                More questions are covered on the{' '}
                 <Link
                   href="/faqs"
                   className="text-signal-400 underline-offset-4 hover:underline"
                 >
-                  full FAQ
-                </Link>{' '}
-                — it covers setup, integrations, pricing, and what happens in the first 30 days.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="pt-2 font-display text-2xl font-semibold tracking-tight text-bone-50 md:text-3xl">
-                Realistic expectations
-              </h3>
-              <p className="mt-4">
-                A follow-up system isn&rsquo;t a magic switch. It doesn&rsquo;t turn a $500 lead
-                into a $50,000 job, and it doesn&rsquo;t convince customers who genuinely
-                weren&rsquo;t going to buy. What it does is consistently capture the jobs that
-                were already winnable — the ones that would have been lost to silence, distraction,
-                or someone else getting back to the customer first.
-              </p>
-              <p className="mt-4">
-                Most trade businesses start seeing recovered jobs within the first few weeks of
-                going live, particularly if a cold-quote reactivation campaign is running
-                alongside the new-quote sequence. The compounding effect builds over the first
-                three months as the system tunes to your trade and your typical customers. From
-                month three onwards, it just runs.
-              </p>
-              <p className="mt-4">
-                We don&rsquo;t publish blanket conversion-lift percentages. Trade businesses are
-                too different, and any number we put on a website would be either wrong or
-                misleading. On a free strategy call we&rsquo;ll look at your specific quote volume,
-                average job value, and current process, and give you a grounded estimate based on
-                your actual numbers.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="pt-2 font-display text-2xl font-semibold tracking-tight text-bone-50 md:text-3xl">
-                Why consistent follow-up beats manual follow-up
-              </h3>
-              <p className="mt-4">
-                The case for automation isn&rsquo;t that the machine is better than the human. The
-                case is that the human is on a roof at 2pm, on the road at 4pm, and quoting at
-                7pm — and the customer who wanted to be followed up on Tuesday morning is gone by
-                Friday. Consistency is the moat. A polite, on-time, on-brand message every time,
-                without depending on whether anyone remembered, is the difference between a
-                business that wins the quotes it should and one that loses them quietly.
-              </p>
-              <p className="mt-4">
-                That&rsquo;s the entire bet. Not flashier marketing. Not more leads. Just the
-                follow-up that should already be happening, happening every time. If that sounds
-                like the gap in your business, the next step is a short conversation — see{' '}
-                <Link
-                  href="/services"
-                  className="text-signal-400 underline-offset-4 hover:underline"
-                >
-                  the full service range
-                </Link>
-                , read the{' '}
-                <Link
-                  href="/faqs"
-                  className="text-signal-400 underline-offset-4 hover:underline"
-                >
-                  FAQs
-                </Link>
-                , or{' '}
-                <Link
-                  href="/contact"
-                  className="text-signal-400 underline-offset-4 hover:underline"
-                >
-                  book a free strategy call
+                  FAQ page
                 </Link>
                 .
+              </p>
+            </div>
+
+            <div>
+              <h3 className="pt-2 font-display text-2xl font-semibold tracking-tight text-bone-50 md:text-3xl">
+                The first step is a quote follow-up audit
+              </h3>
+              <p className="mt-4">
+                The free audit looks at what happens after a quote is sent. We look at how many
+                quotes you send, how you follow them up now, where the process breaks, what tools
+                you already use, and which tier makes the most sense.
+              </p>
+              <p className="mt-4">
+                From there, you get a clear recommendation: keep it simple with automation, add AI
+                assistance, or build a more advanced AI follow-up engine.
               </p>
             </div>
           </div>
