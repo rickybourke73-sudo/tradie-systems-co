@@ -12,7 +12,7 @@ import { siteConfig } from '@/lib/site.config';
 export const metadata: Metadata = buildMetadata({
   title: 'Contact — Book a Free Quote Follow-Up Audit',
   description:
-    'Talk to Tradie Systems Co about your quote follow-up. Book a free strategy call or send a message — we reply within one business day.',
+    'Talk to Tradie Systems Co about your quote follow-up. Book a free quote follow-up audit or send a message — we reply within one business day.',
   path: '/contact'
 });
 
@@ -20,17 +20,17 @@ const trustItems = [
   {
     icon: ShieldCheck,
     title: 'No pitch, no pressure',
-    body: 'We’ll look at how your quotes get followed up today and tell you straight what’s costing you jobs.'
+    body: 'We’ll look at how your quotes get followed up today and tell you straight where jobs may be going cold.'
   },
   {
     icon: CalendarClock,
-    title: '30-minute strategy call',
+    title: '30-minute quote follow-up audit',
     body: 'Pick a time that suits — early mornings and after-hours slots for tradies on the tools.'
   },
   {
     icon: Wrench,
     title: 'Built for Australian tradies',
-    body: 'Fencing, electrical, plumbing, landscaping, building, concreting, HVAC and more. We get the work.'
+    body: 'Fencing, electrical, plumbing, landscaping, building, concreting, HVAC and more. We understand how quote-based trade work runs.'
   }
 ];
 
@@ -68,12 +68,13 @@ export default function ContactPage() {
             <span className="italic text-signal-500">leaking jobs</span>.
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-bone-300 md:text-xl">
-            Book a free 30-minute strategy call, or send a quick message. We’ll show you exactly
-            where your follow-up is breaking down — and what to do about it.
+            Book a free 30-minute quote follow-up audit, or send a quick message. We’ll look at
+            your current process, show you where follow-up may be breaking down, and explain what
+            to do next.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button href={bookingUrl} variant="primary" arrow external>
-              Book a Strategy Call
+              {siteConfig.bookingLabel}
             </Button>
             <Button href="#message" variant="ghost">
               Send a message instead
@@ -94,11 +95,14 @@ export default function ContactPage() {
               >
                 <CalendarClock className="h-5 w-5" />
               </span>
-              <h2 className="font-display text-2xl text-bone-50 md:text-3xl">Book a strategy call</h2>
+              <h2 className="font-display text-2xl text-bone-50 md:text-3xl">
+                Book a free quote follow-up audit
+              </h2>
             </div>
             <p className="mb-6 max-w-xl text-bone-300">
               Pick a time that suits your day. We’ll review how your quotes are being followed up
-              today and map out a system that wins you more jobs without adding admin.
+              today, where jobs may be going cold, and whether the simplest fix is better templates,
+              reminders, automation, or done-for-you implementation.
             </p>
 
             <BookingEmbed url={bookingUrl} providerLabel="our booking page" />
@@ -164,7 +168,7 @@ export default function ContactPage() {
       {/* Trust strip */}
       <Section size="md" className="border-t border-white/5">
         <SectionHeader
-          eyebrow="Why a call is worth your time"
+          eyebrow="Why an audit is worth your time"
           title="No fluff. No long pitch. Just a straight answer on your follow-up."
         />
         <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3">
@@ -188,7 +192,7 @@ export default function ContactPage() {
         <div className="mt-12 rounded-2xl border border-signal-500/20 bg-gradient-to-br from-signal-500/[0.08] to-transparent p-7 sm:p-9 md:p-10">
           <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
             <div className="max-w-xl">
-              <h3 className="font-display text-2xl text-bone-50 md:text-3xl">Not ready for a call?</h3>
+              <h3 className="font-display text-2xl text-bone-50 md:text-3xl">Not ready to book?</h3>
               <p className="mt-2 text-bone-300">
                 Read the field guide on quote follow-up — written for tradies, not marketers.
               </p>
