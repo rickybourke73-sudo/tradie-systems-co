@@ -3,35 +3,35 @@ import { Section, SectionHeader } from '@/components/ui/Section';
 import { X, Check } from 'lucide-react';
 
 const losing = [
-  'Quote sent. No follow-up. Lead forgets you exist.',
-  'Customer rings on Friday at 4pm. You’re on a roof. Voicemail. Lost.',
+  'Quote sent. No clear next step. Lead forgets you exist.',
+  'Customer rings back while you’re on the tools. You miss it, then forget to return the call.',
   '“I’ll call them back tomorrow” turns into “I’ll call them back next week.”',
   'Email sits in their inbox. They don’t reply. You assume they went elsewhere.',
-  'Your quoting software sends one auto-email. That’s the entire follow-up plan.',
-  'You can’t remember which quotes are still open and which are dead.'
+  'Your quoting software sends one auto-email, but nothing else happens after that.',
+  'You can’t remember which quotes are still open, which need chasing, and which are dead.'
 ];
 
-const winning = [
-  'Every quote gets an instant confirmation reply, even outside hours.',
-  'A polite SMS sequence runs over the next two weeks — no manual effort.',
-  'When the customer replies, follow-up pauses and you’re notified instantly.',
-  'Cold quotes get a final reactivation message — some come back, some politely close out.',
-  'You see exactly which quotes are open, won, and lost.',
-  'Your follow-up looks the same whether you quoted Monday or Saturday night.'
+const improving = [
+  'Every quote has a clear follow-up plan attached to it.',
+  'Customers know what happens next after the quote is sent.',
+  'Follow-up timing is planned instead of left to memory.',
+  'Replies are easier to spot, route, and handle before they go stale.',
+  'Older quotes can be reviewed instead of forgotten completely.',
+  'You know which follow-up gaps need a DIY fix, reminder, template, automation, or done-for-you help.'
 ];
 
 const traits = [
   {
-    title: 'No new software to learn',
-    body: 'The system runs behind the tools you already use — ServiceM8, Tradify, simPRO, AroFlo, Jobber, Gmail. You stay on the tools; nothing changes about how you quote.'
+    title: 'Focused only on quote follow-up',
+    body: 'The audit is not a broad business automation review. It looks specifically at what happens after quotes are sent and where jobs may be going cold.'
   },
   {
     title: 'Built around how tradies actually work',
-    body: 'Quoting at night, on site, between jobs. The system handles the chasing while you handle the work. No dashboards to babysit, no daily check-ins required.'
+    body: 'Quoting at night, on site, between jobs, and from different tools. The aim is to improve follow-up without making you babysit dashboards or learn unnecessary software.'
   },
   {
-    title: 'Set up in about three weeks',
-    body: 'Week 1 we learn your business. Week 2 we build it. Week 3 we switch it on. You approve every message before it goes live.'
+    title: 'Audit before implementation',
+    body: 'Some businesses only need better wording, reminders, or a clearer process. Others may need automation or done-for-you setup. The audit helps decide what actually makes sense.'
   }
 ];
 
@@ -40,17 +40,17 @@ export function WhyLosing() {
     <Section id="why-tradies">
       <SectionHeader
         eyebrow="Why it works for tradies"
-        title="Designed around the way trade businesses actually run."
-        description="We focus on one thing — quote follow-up for Australian tradies — and nothing else. That focus is why the system fits the way you work, instead of asking you to fit it."
+        title="Designed around the way trade businesses actually quote."
+        description="We focus on one thing — quote follow-up for Australian tradies. The goal is to find where quoted jobs are going cold before recommending any fix, system, or implementation."
       />
 
       {/* With/without comparison */}
       <div className="mt-12 grid gap-5 sm:mt-14 md:grid-cols-2">
-        {/* Without a system */}
+        {/* Without a clear process */}
         <div className="card border-danger/20 p-6 sm:p-7 md:p-8">
           <div className="mb-6 flex items-center gap-3">
             <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-danger">
-              Without a follow-up system
+              Without clear quote follow-up
             </span>
             <span className="h-px flex-1 bg-danger/20" aria-hidden="true" />
           </div>
@@ -69,16 +69,16 @@ export function WhyLosing() {
           </ul>
         </div>
 
-        {/* With a follow-up system */}
+        {/* With a clearer follow-up process */}
         <div className="card border-success/20 bg-gradient-to-br from-ink-900 to-ink-900/40 p-6 sm:p-7 md:p-8">
           <div className="mb-6 flex items-center gap-3">
             <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-success">
-              With a proper follow-up system
+              With a clearer follow-up process
             </span>
             <span className="h-px flex-1 bg-success/20" aria-hidden="true" />
           </div>
           <ul className="space-y-4">
-            {winning.map((item) => (
+            {improving.map((item) => (
               <li key={item} className="flex items-start gap-3">
                 <span
                   className="mt-0.5 inline-flex h-5 w-5 flex-none items-center justify-center rounded-full bg-success/15"
@@ -104,12 +104,12 @@ export function WhyLosing() {
       </div>
 
       <p className="mx-auto mt-12 max-w-2xl text-center text-sm text-bone-400">
-        Curious how the system actually runs? See{' '}
+        Curious what your current process is missing? See{' '}
         <Link
           href="/services"
           className="text-signal-400 underline-offset-4 hover:underline"
         >
-          every service we set up
+          what the free audit checks
         </Link>
         , or read the{' '}
         <Link

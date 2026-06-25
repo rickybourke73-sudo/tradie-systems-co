@@ -12,39 +12,39 @@ import {
 const benefits = [
   {
     icon: TrendingUp,
-    metric: 'Higher conversion',
-    title: 'More jobs won from leads you already have',
-    body: 'Better quote conversion without spending another dollar on ads. The leads are already coming in — the system makes sure more of them turn into booked work.'
+    metric: 'More quoted jobs recovered',
+    title: 'Win more work from leads you already have',
+    body: 'The audit helps find where quoted jobs are slipping away so you can improve conversion without relying only on more ads, more leads, or more chasing.'
   },
   {
     icon: Zap,
-    metric: 'Under 5 min',
-    title: 'Speed to lead — even after hours',
-    body: 'Quote enquiries get an automated confirmation in minutes, not days. Speed of first response is one of the strongest signals in winning trade work.'
+    metric: 'Faster first response',
+    title: 'Reduce the delay after a quote is sent',
+    body: 'Many customers go quiet because the next step is unclear or the follow-up comes too late. A better process can make your business feel faster and easier to deal with.'
   },
   {
     icon: Repeat,
-    metric: '7 touchpoints',
-    title: 'Persistence without the admin',
-    body: 'Most tradies stop after the first follow-up. The system runs the next six — politely, on a schedule, until the customer replies or the quote closes out.'
+    metric: 'Consistent follow-up',
+    title: 'Stop relying on memory to chase quotes',
+    body: 'Instead of hoping every quote gets followed up, the audit looks at how reminders, templates, tasks, SMS, email, or automation could make the process more reliable.'
   },
   {
     icon: ClipboardCheck,
-    metric: 'Less chasing',
-    title: 'Hours of admin off your plate each week',
-    body: 'No more copy-pasting follow-up emails, hunting through the inbox, or wondering which quotes are still open. The system tracks every one.'
+    metric: 'Less admin confusion',
+    title: 'Know which quotes still need attention',
+    body: 'A clearer follow-up process helps reduce inbox hunting, forgotten callbacks, missed replies, and the feeling that open quotes are scattered across too many places.'
   },
   {
     icon: Smile,
-    metric: 'Better experience',
-    title: 'Customers who feel looked after',
-    body: 'Clear, on-time communication makes you look like the most organised trade business they’ve dealt with — which is exactly what wins repeat work and referrals.'
+    metric: 'Better customer experience',
+    title: 'Make customers feel looked after',
+    body: 'Clear, timely follow-up can make your trade business look more organised and professional, especially when the customer is comparing you against other quotes.'
   },
   {
     icon: Banknote,
-    metric: 'Pays for itself',
-    title: 'One recovered quote covers the cost',
-    body: 'For most trade businesses, recovering one job a month that would otherwise have gone cold covers the system — usually many times over.'
+    metric: 'Clearer next steps',
+    title: 'Fix the leak before spending more on leads',
+    body: 'Before paying for more enquiries, it makes sense to check what is happening to the quotes you already send. Sometimes the simplest fix is better follow-up, not more marketing.'
   }
 ];
 
@@ -53,8 +53,8 @@ export function Benefits() {
     <Section id="benefits">
       <SectionHeader
         eyebrow="The outcomes"
-        title="What changes when every quote actually gets followed up."
-        description="A proper quote follow-up system doesn’t add software to your business — it plugs the leak that’s quietly costing you the most money every week. Better quote conversion, faster speed to lead, less admin off your plate."
+        title="What can change when quote follow-up stops being random."
+        description="A free quote follow-up audit helps identify where quoted jobs are going cold, where customers are being left waiting, and what would make your follow-up process more consistent."
       />
 
       <div className="mt-12 grid gap-5 sm:mt-14 sm:grid-cols-2 lg:grid-cols-3">
@@ -82,14 +82,14 @@ export function Benefits() {
           href="/services"
           className="text-signal-400 underline-offset-4 hover:underline"
         >
-          See every service we set up
+          See what the free audit checks
         </Link>{' '}
         or read the{' '}
         <Link
           href="/faqs"
           className="text-signal-400 underline-offset-4 hover:underline"
         >
-          common questions about quote conversion
+          common questions about quote follow-up
         </Link>
         .
       </p>
