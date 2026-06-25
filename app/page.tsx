@@ -149,7 +149,7 @@ function HomepageInternalLinks() {
           >
             <h3 className="font-display text-lg font-semibold text-bone-50">Services</h3>
             <p className="mt-2 text-sm text-bone-400">
-              See the quote follow-up, lead recovery, booking and reminder systems we build.
+              Compare our three quote follow-up tiers: automation-only, AI-assisted, and AI-led.
             </p>
           </Link>
 
