@@ -12,33 +12,33 @@ import { siteConfig } from '@/lib/site.config';
 const includes = [
   {
     icon: MessageSquareText,
-    title: 'Automated SMS follow-up',
-    body: 'A short, branded SMS sequence sent after every quote — written in your voice, not a marketing tone.'
+    title: 'SMS follow-up gaps',
+    body: 'We check whether customers are getting a clear, timely SMS after a quote — or whether follow-up depends on memory.'
   },
   {
     icon: Mail,
     title: 'Quote reminder emails',
-    body: 'A two- or three-step email sequence with the quote reattached, addressing common questions and objections.'
+    body: 'We look at whether email follow-ups are being sent, whether the quote is easy to find again, and whether the wording is helping or hurting.'
   },
   {
     icon: RotateCcw,
     title: 'Missed lead recovery',
-    body: 'Lead recovery for enquiries you never had time to reply to — pulled back into the follow-up sequence automatically.'
+    body: 'We look for enquiries and quoted jobs that went quiet before they were properly followed up.'
   },
   {
     icon: Bell,
-    title: 'Booking & site-visit reminders',
-    body: 'Pre-visit reminders and deposit prompts so site-visit no-shows and late payments stop costing you time.'
+    title: 'Reminders and next steps',
+    body: 'We check whether your team has clear reminders for calls, site visits, deposits, approvals and next-step conversations.'
   },
   {
     icon: Inbox,
     title: 'Customer reply handling',
-    body: 'The moment a customer replies, the sequence pauses and you’re notified — no accidental chasing.'
+    body: 'We check what happens when a customer replies, so interested leads are not missed, double-messaged, or left sitting in an inbox.'
   },
   {
     icon: Flame,
     title: 'Cold quote reactivation',
-    body: 'A one-time reactivation campaign for cold quotes from the past 6–12 months — often recovers jobs in week one.'
+    body: 'We look at whether old quotes from the past few months could be re-engaged with a careful follow-up message.'
   }
 ];
 
@@ -52,22 +52,23 @@ export function WhatsIncluded() {
       <div className="container">
         <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-end">
           <div className="max-w-2xl">
-            <p className="eyebrow mb-5">What&rsquo;s included</p>
+            <p className="eyebrow mb-5">What we look for</p>
             <h2
               id="whats-included-heading"
               className="text-balance font-display text-2xl tracking-tight text-bone-50 sm:text-3xl md:text-4xl"
             >
-              The six services we set up for every trade business.
+              The quote follow-up gaps we check during your free audit.
             </h2>
           </div>
           <p className="max-w-md text-sm leading-relaxed text-bone-300">
-            Every quote follow-up system we build is some combination of these six services — sized to
-            your trade, your job volume, and the tools you already use. See{' '}
+            The audit shows what is working, what is being missed, and what should be fixed first.
+            Some businesses only need a better manual process. Others may benefit from automation
+            or AI-assisted follow-up. See{' '}
             <Link
               href="/services"
               className="text-signal-400 underline-offset-4 hover:underline"
             >
-              the full service breakdown
+              how the quote follow-up audit works
             </Link>{' '}
             for detail.
           </p>
@@ -99,7 +100,7 @@ export function WhatsIncluded() {
         {/* Software ecosystem strip — entity association for tradie software */}
         <div className="mt-10 grid gap-4 rounded-2xl border border-white/5 bg-ink-900/40 p-6 sm:mt-12 sm:grid-cols-[auto,1fr] sm:items-center sm:gap-6 sm:p-7">
           <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-bone-500">
-            Plugs into the tradie software you already use
+            Works around the tradie software you already use
           </p>
           <ul className="flex flex-wrap gap-2" aria-label="Supported tradie software">
             {siteConfig.integrations.map((tool) => (
