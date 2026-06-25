@@ -86,7 +86,7 @@ export function Header() {
 
         <div className="hidden md:block">
           <Button href={siteConfig.bookingUrl} external variant="primary">
-            Book Strategy Call
+            {siteConfig.bookingLabel}
           </Button>
         </div>
 
