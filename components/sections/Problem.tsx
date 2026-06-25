@@ -6,22 +6,22 @@ const problems = [
   {
     icon: Clock,
     title: 'Quotes go out — then silence.',
-    body: 'You send a quote, the customer says “I’ll have a look,” and weeks pass. You’re too busy on the tools to chase them. They go cold. The job’s gone.'
+    body: 'You send a quote, the customer says “I’ll have a look,” and weeks pass. You’re too busy on the tools to chase every quote properly. They go cold, and the job quietly disappears.'
   },
   {
     icon: MessageCircleX,
     title: 'Customers ghost — and you never find out why.',
-    body: 'Was it the price? A competitor? Did they just forget? Without follow-up, you never get the chance to handle the objection — or simply remind them you exist.'
+    body: 'Was it the price? A competitor? Bad timing? Did they just forget? Without proper follow-up, you never get the chance to handle the objection — or simply remind them you exist.'
   },
   {
     icon: Phone,
     title: 'Follow-up is inconsistent at best.',
-    body: 'Some quotes get a phone call. Some get an email. Most get nothing. Every gap in your process is money walking out the door — to a competitor with a better system.'
+    body: 'Some quotes get a phone call. Some get an email. Some get followed up late. Some get nothing at all. Every gap in the process is a chance for the customer to drift away.'
   },
   {
     icon: TrendingDown,
     title: 'You’re paying for leads you never close.',
-    body: 'Google Ads, Facebook leads, referrals — they all cost something. When a sizeable share of your quoted jobs disappear without a reply, your real cost-per-job ends up much higher than it looks.'
+    body: 'Google Ads, Facebook leads, referrals and website enquiries all cost something. When quoted jobs disappear without a reply, your real cost per booked job ends up much higher than it looks.'
   }
 ];
 
@@ -30,8 +30,8 @@ export function Problem() {
     <Section id="problem">
       <SectionHeader
         eyebrow="The real problem"
-        title="It’s not your prices. It’s your follow-up."
-        description="Tradies don’t lose jobs because they’re too expensive. They lose jobs because the customer forgets, gets distracted, or talks to a competitor who actually got back to them. Here’s where it’s costing you right now."
+        title="Most quote follow-up problems are process problems."
+        description="A customer going quiet does not always mean they chose someone else. They may have forgotten, got distracted, needed a reminder, had a question, or spoken to a competitor who followed up faster. The first step is finding where your current follow-up process is leaking jobs."
       />
 
       {/* Definition block — extractable Q+A for AI search and snippets */}
@@ -40,15 +40,14 @@ export function Problem() {
           Quick definition
         </p>
         <h3 className="mt-2 font-display text-xl font-semibold text-bone-50 sm:text-2xl">
-          What is a tradie quote follow-up system?
+          What is a tradie quote follow-up audit?
         </h3>
         <p className="mt-3 text-base leading-relaxed text-bone-200 sm:text-lg">
-          A tradie quote follow-up system is an automated sequence of SMS and email messages sent
-          on a schedule after a tradie sends a quote. Its purpose is to keep the customer engaged,
-          answer common questions, and bring the conversation back to a booking before the lead
-          goes cold. For most Australian trade businesses, it replaces ad-hoc &ldquo;I&rsquo;ll
-          call them tomorrow&rdquo; chasing with a consistent, structured process that runs whether
-          you&rsquo;re on site, on the road, or off the tools.
+          A tradie quote follow-up audit is a review of what happens after you send a quote. It
+          looks at how quickly you follow up, what messages you send, whether customers are reminded
+          at the right time, how replies are handled, and where quoted jobs are going cold. The goal
+          is to find the gaps first, then recommend the simplest fix — whether that is a DIY
+          follow-up plan, better reminders, automation, or a done-for-you quote follow-up system.
         </p>
       </div>
 
@@ -81,18 +80,18 @@ export function Problem() {
 
       <div className="mx-auto mt-12 max-w-3xl text-center">
         <p className="text-balance font-display text-2xl text-bone-100 md:text-3xl">
-          The leads aren’t the problem.{' '}
-          <span className="text-signal-400">The follow-up is.</span>
+          The leads may not be the problem.{' '}
+          <span className="text-signal-400">The follow-up process might be.</span>
         </p>
         <p className="mt-4 text-sm text-bone-400">
-          See how a structured{' '}
+          Start with a{' '}
           <Link
             href="/services"
             className="text-signal-400 underline-offset-4 hover:underline"
           >
-            tradie quote follow-up system
+            free quote follow-up audit
           </Link>{' '}
-          changes what happens after the quote goes out — or browse the{' '}
+          to see where quoted jobs are going cold — or browse the{' '}
           <Link
             href="/blog"
             className="text-signal-400 underline-offset-4 hover:underline"
