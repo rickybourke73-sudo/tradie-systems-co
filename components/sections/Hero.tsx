@@ -26,7 +26,7 @@ export function Hero() {
                 <span className="absolute inset-0 animate-pulse-soft rounded-full bg-success" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-success" />
               </span>
-              Quote follow-up systems for Australian tradies
+              Free quote follow-up audits for Australian tradies
             </div>
 
             <h1
@@ -41,20 +41,20 @@ export function Hero() {
               id="hero-lede"
               className="mt-5 max-w-xl text-sm font-medium text-bone-300 sm:text-base"
             >
-              Automated quote follow-up, built around the way Australian tradies actually quote.
+              Find out where your quote follow-up process is leaking jobs.
             </p>
 
             <p className="mt-5 max-w-xl text-pretty text-lg leading-relaxed text-bone-300 md:text-xl">
-              We build done-for-you{' '}
+              We help Australian tradies review what happens after a quote is sent — how quickly
+              customers are followed up, which quotes go cold, where replies get missed, and what
+              could be fixed with better reminders, templates, automation, or a done-for-you{' '}
               <Link
                 href="/services"
                 className="text-bone-100 underline-offset-4 hover:text-signal-400 hover:underline"
               >
-                <strong className="font-semibold">automated quote follow-up systems</strong>
-              </Link>{' '}
-              for trade businesses — designed to chase every quote, recover cold leads, and turn
-              more of the customer enquiries you already pay for into booked work. The system runs
-              quietly in the background while you stay on the tools.
+                <strong className="font-semibold">quote follow-up system</strong>
+              </Link>
+              .
             </p>
 
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
@@ -72,13 +72,13 @@ export function Hero() {
                 arrow={false}
                 className="w-full justify-center sm:w-auto"
               >
-                See how it works
+                See what the audit checks
               </Button>
             </div>
 
             <p className="mt-10 text-sm text-bone-400">
-              Servicing tradies in every state and territory · Set up in around three weeks · No
-              long contracts
+              Servicing tradies in every state and territory · Audit-first recommendations · DIY or
+              done-for-you options after the audit
             </p>
 
             {/* Industries strip */}
@@ -98,7 +98,7 @@ export function Hero() {
           <div>
             <WorkflowVisual />
             <p className="mt-4 text-center font-mono text-xs text-bone-500">
-              Quote sent → automated follow-up → reply captured → job booked.
+              Quote sent → follow-up gap found → fix recommended → more replies captured.
             </p>
           </div>
         </div>
