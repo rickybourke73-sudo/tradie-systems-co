@@ -14,8 +14,8 @@ export function FaqSection() {
             Quote follow-up, answered straight.
           </h2>
           <p className="mt-5 text-base leading-relaxed text-bone-300 sm:text-lg">
-            The questions tradies actually ask before booking a strategy call — about setup,
-            integrations, customer experience, and what really changes in the first 30 days.
+            The questions tradies actually ask before booking a free quote follow-up audit — about
+            their current process, follow-up gaps, customer experience, and what may need to change.
           </p>
           <Link
             href="/faqs"
