@@ -12,32 +12,32 @@ interface Step {
 const steps: Step[] = [
   {
     when: 'Day 0',
-    title: 'Quote sent, confirmation fires',
-    body: 'You send the quote the way you always have. The system picks it up and sends a short confirmation SMS within minutes.',
+    title: 'Quote sent, confirmation message goes out',
+    body: 'After the quote is sent, the customer receives a short confirmation message so they know it has arrived and what to expect next.',
     channel: 'SMS'
   },
   {
     when: 'Day 1–3',
-    title: 'First follow-up',
-    body: 'A polite check-in goes out the next morning. If no reply, a second message with the quote reattached lands on day 3.',
+    title: 'First check-in',
+    body: 'A polite follow-up checks whether they had a chance to review the quote. If there is no reply, a second touchpoint can remind them and make it easy to respond.',
     channel: 'SMS + Email'
   },
   {
     when: 'Day 7–14',
     title: 'Soft re-engagement',
-    body: 'Two further touchpoints over the next fortnight. This is where most replies actually come back — customers who genuinely meant to respond and got busy.',
+    body: 'A few days later, another message can bring the quote back to the top of their mind without sounding pushy. This often catches customers who were interested but got busy.',
     channel: 'SMS + Email'
   },
   {
     when: 'Day 30+',
-    title: 'Cold-quote reactivation',
-    body: 'Quotes that stayed silent move to a longer-term reactivation list. A thoughtful final message recovers jobs that would have been written off.',
+    title: 'Cold quote reactivation',
+    body: 'Older quotes can be moved into a longer-term reactivation list so good opportunities are not forgotten just because the first few follow-ups went quiet.',
     channel: 'SMS + Email'
   },
   {
     when: 'Any moment',
-    title: 'Reply lands → you take over',
-    body: 'The second a customer replies, the sequence pauses and you’re notified. No accidental chasing, no conversations falling through the cracks.',
+    title: 'Customer replies → human takes over',
+    body: 'When the customer replies, the follow-up should stop and the conversation should be routed back to the right person so nothing awkward or automated keeps going.',
     channel: 'You'
   }
 ];
@@ -49,9 +49,9 @@ export function WorkflowSection() {
       className="bg-gradient-to-b from-transparent via-ink-900/40 to-transparent"
     >
       <SectionHeader
-        eyebrow="How it works"
-        title="How an automated quote follow-up system runs in the background."
-        description="You quote the job. The system handles every touchpoint after that — by SMS, email, or both — until the customer replies or the quote politely closes itself out."
+        eyebrow="Example workflow"
+        title="What your quote follow-up process could look like after the audit."
+        description="Every trade business follows up differently. The audit looks at what you already do, where quotes are going cold, and whether a simple follow-up sequence like this would help."
         align="center"
       />
 
@@ -62,7 +62,7 @@ export function WorkflowSection() {
       {/* Condensed timeline */}
       <div className="mx-auto mt-14 max-w-3xl sm:mt-16">
         <p className="mb-8 text-center font-mono text-[11px] uppercase tracking-[0.18em] text-bone-500">
-          What runs between Day 0 and Day 30
+          Example quote follow-up timeline
         </p>
         <ol>
           {steps.map((s, i) => {
@@ -114,14 +114,14 @@ export function WorkflowSection() {
         </ol>
 
         <p className="mt-8 text-center text-sm text-bone-400">
-          Want the full breakdown?{' '}
+          This is only one possible structure. Start with a{' '}
           <Link
             href="/services"
             className="text-signal-400 underline-offset-4 hover:underline"
           >
-            See every service we set up
+            free quote follow-up audit
           </Link>{' '}
-          or{' '}
+          to see what your current process actually needs — or{' '}
           <Link
             href="/faqs"
             className="text-signal-400 underline-offset-4 hover:underline"
@@ -138,15 +138,16 @@ export function WorkflowSection() {
           In plain English
         </p>
         <h3 className="mt-2 font-display text-xl font-semibold text-bone-50 sm:text-2xl">
-          How does an automated quote follow-up system work?
+          How does quote follow-up automation work?
         </h3>
         <p className="mt-3 text-base leading-relaxed text-bone-200 sm:text-lg">
-          When a tradie sends a quote, the follow-up system triggers a sequence of polite,
-          pre-approved messages over the next 14–30 days — typically a confirmation SMS within
-          minutes, a check-in the next day, an email with the quote reattached a few days later,
-          and a final re-engagement message before the quote is parked as cold. The sequence pauses
-          the moment the customer replies, and any reply is routed straight to the tradie. The
-          result is consistent, structured follow-up automation instead of ad-hoc chasing.
+          Quote follow-up automation sends pre-approved SMS or email reminders after a quote is
+          sent, usually across the first few days and weeks. A typical sequence might include a
+          confirmation message, a polite check-in, a reminder with the quote attached, and a later
+          reactivation message for older quotes. The best setup depends on the trade, quote value,
+          sales process, CRM, and how the business already handles replies. That is why the audit
+          comes first: it finds the follow-up gaps before recommending a DIY fix, simple reminders,
+          automation, or done-for-you implementation.
         </p>
       </div>
     </Section>
