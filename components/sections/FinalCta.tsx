@@ -27,7 +27,7 @@ export function FinalCta() {
               </h2>
               <p className="mt-6 max-w-2xl text-pretty text-base leading-relaxed text-bone-300 sm:text-lg md:text-xl">
                 30 minutes. No pitch deck. We’ll review how your quotes are being followed up,
-                show you exactly where revenue is leaking, and give you a clear plan to fix it —
+                show you where jobs may be going cold, and give you a clear plan to fix it —
                 whether you work with us or not.
               </p>
 
@@ -57,10 +57,11 @@ export function FinalCta() {
               </div>
 
               <p className="mt-8 max-w-2xl text-sm leading-relaxed text-bone-400">
-                Tradie Systems Co builds automated quote follow-up systems for Australian trade
-                businesses across fencing, landscaping, electrical, plumbing, concreting, building,
-                carpentry, painting, HVAC and solar. Setup is remote and we work with tradies in
-                every state and territory.
+                Tradie Systems Co helps Australian trade businesses find and fix quote follow-up
+                gaps across fencing, landscaping, electrical, plumbing, concreting, building,
+                carpentry, painting, HVAC and solar. The audit comes first, then we recommend the
+                simplest path forward — DIY improvements, better reminders, automation, or
+                done-for-you implementation.
               </p>
             </div>
           </div>
