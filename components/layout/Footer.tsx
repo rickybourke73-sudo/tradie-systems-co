@@ -5,17 +5,17 @@ import { Logo } from '@/components/ui/Logo';
 
 const footerNav = {
   resources: [
-    { label: 'Services', href: '/services' },
+    { label: 'Free Audit', href: '/services' },
     { label: 'Blog', href: '/blog' },
     { label: 'FAQs', href: '/faqs' },
     { label: 'Contact', href: '/contact' }
   ],
-  services: [
-    { label: 'Quote follow-up', href: '/services#quote-follow-up' },
-    { label: 'Customer follow-up', href: '/services#customer-follow-up' },
-    { label: 'Lead recovery', href: '/services#lead-recovery' },
-    { label: 'Automated reminders', href: '/services#reminders' },
-    { label: 'Booking systems', href: '/services#bookings' }
+  audit: [
+    { label: 'Quote follow-up audit', href: '/services#free-quote-follow-up-audit' },
+    { label: 'DIY follow-up plan', href: '/services#diy-plan' },
+    { label: 'Follow-up starter', href: '/services#follow-up-starter' },
+    { label: 'Follow-up system', href: '/services#follow-up-system' },
+    { label: 'AI-assisted follow-up', href: '/services#ai-assisted-follow-up' }
   ]
 };
 
@@ -32,18 +32,16 @@ export function Footer() {
     <footer className="border-t border-white/5 bg-ink-950">
       <div className="container pt-16 pb-12 md:pt-20">
         <div className="grid gap-10 sm:grid-cols-2 md:gap-12 lg:grid-cols-12">
-          {/* Brand + blurb */}
           <div className="sm:col-span-2 lg:col-span-4">
             <Logo />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-bone-300">
-              Done-for-you quote follow-up systems for Australian tradies. Built to win more jobs
-              from the leads you’ve already paid for.
+              Free quote follow-up audits for Australian tradies. Find where quoted jobs are
+              slipping through and get a clear plan to tighten up your follow-up process.
             </p>
             <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.18em] text-bone-500">
               Servicing tradies Australia-wide
             </p>
 
-            {/* Socials */}
             <ul className="mt-6 flex items-center gap-2">
               {socials.map(({ label, href, Icon }) => (
                 <li key={label}>
@@ -61,9 +59,8 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Nav columns */}
           <FooterCol title="Resources" items={footerNav.resources} className="lg:col-span-4" />
-          <FooterCol title="Services" items={footerNav.services} className="lg:col-span-4" />
+          <FooterCol title="Audit" items={footerNav.audit} className="lg:col-span-4" />
         </div>
 
         <hr className="my-10 border-white/5" />
