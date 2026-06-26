@@ -4,6 +4,7 @@ export function organizationSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
+    '@id': `${siteConfig.url}/#organization`,
     name: siteConfig.name,
     legalName: siteConfig.business.legalName,
     url: siteConfig.url,
@@ -34,30 +35,46 @@ export function localBusinessSchema() {
       '@type': 'Country',
       name: 'Australia'
     },
-    serviceType: 'Quote follow-up systems for tradies',
+    serviceType: 'Free quote follow-up audits for Australian tradies',
+    slogan: siteConfig.tagline,
     knowsAbout: [
+      'Quote follow-up audits',
       'Quote follow-up systems',
-      'Automated quote follow-up',
-      'Tradie follow-up systems',
-      'Lead follow-up automation',
-      'Lead recovery for tradies',
-      'Customer follow-up systems',
-      'Customer follow-up automation',
-      'Quote conversion',
-      'Speed to lead',
+      'Tradie quote follow-up',
+      'Follow-up after sending a quote',
+      'Customer follow-up for tradies',
+      'Quote conversion for tradies',
+      'Lead follow-up',
+      'Lead recovery',
+      'Missed quote follow-up',
       'Cold quote reactivation',
-      'Automated SMS follow-up',
-      'Quote reminder emails',
-      'Missed lead recovery',
-      'Booking and site-visit reminders',
+      'Speed to lead',
+      'SMS quote follow-up',
+      'Email quote follow-up',
+      'Quote reminder sequences',
       'Customer reply handling',
-      'Trade business workflow automation',
+      'Trade business workflow improvement',
       'ServiceM8',
       'Tradify',
       'simPRO',
       'AroFlo',
-      'Jobber'
-    ]
+      'Jobber',
+      'Fergus'
+    ],
+    makesOffer: {
+      '@type': 'Offer',
+      name: 'Free Quote Follow-Up Audit',
+      description:
+        'A free audit for Australian tradies that reviews what happens after a quote is sent, identifies where quoted jobs may be slipping through, and provides a clear follow-up improvement plan.',
+      price: '0',
+      priceCurrency: 'AUD',
+      availability: 'https://schema.org/InStock',
+      url: siteConfig.bookingUrl,
+      areaServed: {
+        '@type': 'Country',
+        name: 'Australia'
+      }
+    }
   };
 }
 
@@ -65,13 +82,14 @@ export function websiteSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
+    '@id': `${siteConfig.url}/#website`,
     name: siteConfig.name,
     url: siteConfig.url,
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: `${siteConfig.url}/blog?q={search_term_string}`,
-      'query-input': 'required name=search_term_string'
-    }
+    description: siteConfig.description,
+    publisher: {
+      '@id': `${siteConfig.url}/#organization`
+    },
+    inLanguage: 'en-AU'
   };
 }
 
@@ -141,29 +159,18 @@ export function serviceSchema(s: { name: string; description: string; slug: stri
     description: s.description,
     provider: { '@type': 'Organization', name: siteConfig.name, url: siteConfig.url },
     areaServed: { '@type': 'Country', name: 'Australia' },
+    serviceType: 'Quote follow-up audit',
     url: `${siteConfig.url}/services#${s.slug}`
   };
 }
 
-/**
- * HowTo schema for the homepage quote follow-up workflow.
- * Lets Google render rich step-by-step results and gives LLMs a clean,
- * extractable representation of what the system actually does.
- */
 export function howToSchema(steps: { name: string; text: string }[]) {
   return {
     '@context': 'https://schema.org',
     '@type': 'HowTo',
-    name: 'How an automated quote follow-up system works for tradies',
+    name: 'How a quote follow-up audit works for tradies',
     description:
-      'Step-by-step overview of what happens after a tradie sends a quote, when the follow-up sequence runs, and when the system hands the conversation back to the tradie.',
-    totalTime: 'P30D',
-    supply: [
-      { '@type': 'HowToSupply', name: 'An existing quoting process or job-management tool' }
-    ],
-    tool: [
-      { '@type': 'HowToTool', name: 'SMS and email follow-up sequences' }
-    ],
+      'Step-by-step overview of how a quote follow-up audit reviews what happens after a tradie sends a quote, identifies gaps, and produces a clear follow-up improvement plan.',
     step: steps.map((step, i) => ({
       '@type': 'HowToStep',
       position: i + 1,
@@ -174,14 +181,6 @@ export function howToSchema(steps: { name: string; text: string }[]) {
   };
 }
 
-/**
- * Speakable schema for voice search and AI voice assistants (Google Assistant,
- * AI Overviews, ChatGPT voice mode, and similar). Declares which CSS selectors
- * point to text that is well-suited to being read aloud as a concise answer.
- *
- * Pass an array of CSS selectors (e.g. '#hero-heading', '#hero-lede') that
- * resolve to short, self-contained snippets summarising the page.
- */
 export function speakableSchema(cssSelectors: string[]) {
   return {
     '@context': 'https://schema.org',
