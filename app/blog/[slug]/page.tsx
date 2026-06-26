@@ -145,7 +145,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
                   rel="noopener noreferrer"
                   className="text-signal-400 underline-offset-4 hover:underline"
                 >
-                  book a strategy call
+                  book a free quote follow-up audit
                 </a>{' '}
                 to talk through how this applies to your business.
               </p>
@@ -168,7 +168,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
             </p>
             <div className="mt-6 grid gap-3 sm:grid-cols-3">
               {[
-                { href: '/services', title: 'View services', sub: 'See the systems we build' },
+                { href: '/services', title: 'View services', sub: 'See the audit and next steps' },
                 { href: '/faqs', title: 'Read FAQs', sub: 'Setup, cost, tools, timing' },
                 { href: '/contact', title: 'Contact us', sub: 'Ask about your business' }
               ].map(({ href, title, sub }) => (
@@ -193,15 +193,14 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
             className="mt-8 rounded-2xl border border-signal-500/30 bg-gradient-to-br from-signal-500/[0.08] to-transparent p-6 sm:p-7"
           >
             <h2 className="font-display text-xl font-semibold text-bone-50 sm:text-2xl">
-              Want this set up for your business?
+              Want to find the gaps in your follow-up?
             </h2>
             <p className="mt-2 text-bone-300">
-              We build done-for-you quote follow-up systems for Australian tradies. Free 30-minute
-              audit, no pitch.
+              Book a free quote follow-up audit for your trade business. We will review what happens after you send a quote and show where jobs may be slipping through the cracks.
             </p>
             <div className="mt-5">
               <Button href={siteConfig.bookingUrl} external variant="primary" arrow>
-                Book a free strategy call
+                Book a Free Audit
               </Button>
             </div>
           </aside>
