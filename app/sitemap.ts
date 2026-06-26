@@ -1,9 +1,13 @@
 import type { MetadataRoute } from 'next';
 import { siteConfig } from '@/lib/site.config';
-import { posts } from '@/content/posts';
-import { faqs } from '@/content/faqs';
+import { client, ALL_SLUGS_QUERY } from '@/lib/sanity';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+type SitemapSlug = {
+  slug: string;
+  publishedAt?: string;
+};
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
 
   const staticRoutes: MetadataRoute.Sitemap = [
@@ -14,16 +18,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteConfig.url}/contact`, lastModified: now, changeFrequency: 'yearly', priority: 0.9 }
   ];
 
-  const blogRoutes: MetadataRoute.Sitemap = posts.map((post) => ({
+  const slugs: SitemapSlug[] = await client.fetch(ALL_SLUGS_QUERY).catch(() => []);
+
+  const blogRoutes: MetadataRoute.Sitemap = slugs.map((post) => ({
     url: `${siteConfig.url}/blog/${post.slug}`,
-    lastModified: new Date(post.publishedAt),
+    lastModified: post.publishedAt ? new Date(post.publishedAt) : now,
     changeFrequency: 'monthly',
     priority: 0.7
   }));
-
-  // FAQ page anchors don't need their own sitemap entries; the page itself ranks.
-  // Reference faqs to confirm they're built into the site (avoid unused import).
-  void faqs;
 
   return [...staticRoutes, ...blogRoutes];
 }
