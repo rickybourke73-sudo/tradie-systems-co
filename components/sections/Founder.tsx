@@ -13,14 +13,14 @@ const livedExperience = [
   { icon: Hammer, text: 'On the tools, six days a week' },
   { icon: ClipboardList, text: 'Quoting at 7pm at the kitchen table' },
   { icon: MessageSquare, text: 'Missed callbacks, ghosted quotes' },
-  { icon: Wrench, text: 'Chasing invoices between jobs' }
+  { icon: Wrench, text: 'Chasing admin between jobs' }
 ];
 
 const howWeWork = [
-  'Built around your existing workflow — no software for you to learn',
-  'Works with ServiceM8, Tradify, simPRO, AroFlo, Jobber and standard email',
-  'Every follow-up message written for you, approved before launch',
-  'Real human oversight — never an autonomous bot talking to your customers',
+  'Built around your existing workflow — no new software for you to learn during the audit',
+  'Checks tools like ServiceM8, Tradify, simPRO, AroFlo, Jobber and standard email',
+  'Shows where SMS, email, calls, reminders and tasks should fit',
+  'Keeps customer communication practical, human and approved by you',
   'Designed for sole operators and small-to-medium trade businesses'
 ];
 
@@ -28,16 +28,13 @@ export function Founder() {
   return (
     <Section id="founder">
       <div className="grid items-start gap-10 lg:grid-cols-[1fr,1.3fr] lg:gap-16">
-        {/* Credibility / experience panel — replaces the placeholder portrait card */}
         <aside className="lg:sticky lg:top-28">
           <div className="card relative overflow-hidden p-6 sm:p-7 md:p-8">
-            {/* Soft signal glow in the corner — adds visual interest without an image */}
             <div
               aria-hidden="true"
               className="pointer-events-none absolute -right-12 -top-12 h-44 w-44 rounded-full bg-signal-500/10 blur-3xl"
             />
 
-            {/* Monogram + label */}
             <div className="relative flex items-center gap-4">
               <div
                 aria-hidden="true"
@@ -58,7 +55,6 @@ export function Founder() {
               </div>
             </div>
 
-            {/* Lived experience */}
             <div className="relative mt-7 border-t border-white/5 pt-6">
               <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-bone-500">
                 The lived experience
@@ -78,7 +74,6 @@ export function Founder() {
               </ul>
             </div>
 
-            {/* How we work — operational trust signals */}
             <div className="relative mt-7 border-t border-white/5 pt-6">
               <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-bone-500">
                 How we work
@@ -96,10 +91,9 @@ export function Founder() {
               </ul>
             </div>
 
-            {/* Anti-positioning */}
             <p className="relative mt-7 border-t border-white/5 pt-6 text-xs leading-relaxed text-bone-500">
-              Not a marketing agency. Not a chatbot company. Not a CRM. We do one thing — quote
-              follow-up systems for Australian tradies — and we do it carefully.
+              Not a marketing agency. Not a chatbot company. Not a CRM. We focus on one problem —
+              what happens after a quote is sent — and help Australian tradies tighten it up.
             </p>
           </div>
         </aside>
@@ -116,28 +110,27 @@ export function Founder() {
               Tradie Systems Co was started after years of running and working alongside trade
               businesses — and watching the same pattern repeat. A quote goes out. The customer says
               they&rsquo;ll have a think. A week passes. Then a month. The job is quietly lost — not
-              because the price was wrong, but because no one ever followed up a second time.
+              always because the price was wrong, but because the follow-up process was not clear.
             </p>
             <p>
               We&rsquo;ve been the person quoting at 7pm after a long day, juggling admin on the way
               home from site, and trying to remember which customer was still waiting for a call
               back. We&rsquo;ve had the stack of open quotes that probably needed chasing — and
-              never quite got to them. That experience shapes every tradie follow-up system we
-              build.
+              never quite got to them. That experience shapes how we audit quote follow-up.
             </p>
             <p>
-              We don&rsquo;t do generic follow-up automation. We don&rsquo;t do flashy AI. We build
-              practical quote follow-up systems for Australian tradies — designed around the real
-              trade business workflow, not a marketing playbook. Set up around the tools you already
-              use, and quietly running in the background while you&rsquo;re on the job.
+              We don&rsquo;t start with generic automation or flashy AI. We start by looking at the
+              real process: what happens after the quote is sent, where customers go cold, where
+              replies get missed, and what should be fixed first. If a system needs to be built
+              after that, it should fit the tools and workflow you already use.
             </p>
           </div>
 
           <blockquote className="mt-8 rounded-2xl border-l-2 border-signal-500 bg-ink-900/50 p-6">
             <Quote className="mb-3 h-5 w-5 text-signal-400" aria-hidden="true" />
             <p className="font-display text-lg italic text-bone-100">
-              &ldquo;The leads are already coming in. The work is already there. Most of what we
-              build is the layer that stops the jobs slipping through the cracks.&rdquo;
+              &ldquo;The leads are already coming in. The quotes are already being sent. Most of the
+              opportunity is in what happens next.&rdquo;
             </p>
           </blockquote>
 
