@@ -21,9 +21,10 @@ export default function NotFound() {
             That page <span className="italic text-signal-500">went cold</span>.
           </h1>
           <p className="mt-6 max-w-xl text-lg text-bone-300">
-            The page you’re after either moved or never existed. A bit like an unfollowed-up
-            quote — let’s get you back to something useful.
+            The page you are after either moved or never existed. A bit like an unfollowed-up
+            quote — let&apos;s get you back to something useful.
           </p>
+
           <div className="mt-8 flex flex-wrap gap-3">
             <Button href="/" variant="primary" arrow>
               Back to home
@@ -37,7 +38,7 @@ export default function NotFound() {
               rel="noopener noreferrer"
               className="btn btn-ghost"
             >
-              Book a strategy call
+              Book a Free Audit
             </a>
           </div>
 
@@ -47,10 +48,10 @@ export default function NotFound() {
               className="group rounded-xl border border-white/5 bg-ink-900/40 p-5 transition-colors hover:border-signal-500/30 hover:bg-ink-900/70"
             >
               <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-bone-500">
-                Services
+                Free Audit
               </p>
               <p className="mt-2 text-bone-100 group-hover:text-bone-50">
-                Quote follow-up, lead recovery, reminders →
+                Check the quote follow-up audit and what we look for →
               </p>
             </Link>
             <Link
@@ -59,7 +60,7 @@ export default function NotFound() {
             >
               <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-bone-500">FAQs</p>
               <p className="mt-2 text-bone-100 group-hover:text-bone-50">
-                Setup, integrations, results →
+                Audit timing, tools, follow-up fixes and implementation →
               </p>
             </Link>
           </div>
