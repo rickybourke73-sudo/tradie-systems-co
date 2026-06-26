@@ -16,36 +16,29 @@ import { homepageFaqs } from '@/content/faqs';
 import { buildMetadata } from '@/lib/seo';
 
 export const metadata = buildMetadata({
-  title: 'Quote Follow-Up Systems for Australian Tradies',
+  title: 'Free Quote Follow-Up Audit for Australian Tradies',
   description:
-    'Done-for-you automated quote follow-up systems for Australian tradies. We chase every quote, recover cold leads, and improve quote conversion — built around ServiceM8, Tradify, simPRO, AroFlo, Jobber and the tools you already use.',
+    'Book a free quote follow-up audit for your trade business. We review what happens after you send a quote, find where quoted jobs may be slipping through the cracks, and give you a clear plan to fix it.',
   path: '/',
   keywords: [
+    'quote follow-up audit',
+    'free quote follow-up audit',
     'quote follow-up',
     'quote follow-up system',
-    'quote follow-up systems',
-    'automated quote follow-up',
-    'automated quote follow-up systems',
-    'tradie follow-up',
-    'tradie follow-up system',
-    'follow-up automation',
+    'tradie quote follow-up',
+    'follow up after quote',
+    'customer follow-up tradies',
     'quote conversion',
-    'lead follow-up',
-    'lead follow-up systems',
-    'customer follow-up',
-    'customer follow-up automation',
+    'lead follow-up Australia',
     'lead recovery for tradies',
     'cold quote reactivation',
-    'recovering lost quotes',
+    'missed quote follow-up',
     'speed to lead',
-    'automated SMS follow-up',
+    'SMS quote follow-up',
+    'email quote follow-up',
     'quote reminder emails',
-    'missed lead recovery',
-    'booking reminders',
-    'customer reply handling',
     'Australian tradies',
     'Australian trade businesses',
-    'tradie quote conversion',
     'trade business workflow',
     'ServiceM8 follow-up',
     'Tradify follow-up',
@@ -61,37 +54,37 @@ function stripSmartQuotes(s: string) {
 
 const workflowSteps = [
   {
-    name: 'Quote sent, confirmation fires',
-    text: 'The tradie sends the quote the way they always have. The system picks it up and sends a short confirmation SMS to the customer within minutes.'
+    name: 'Review the current quote follow-up process',
+    text: 'The audit starts by mapping what happens after a quote is sent, including who follows up, when they follow up, what messages are used, and where the process relies on memory.'
   },
   {
-    name: 'First follow-up on Day 1–3',
-    text: 'A polite check-in goes out the next morning. If there is no reply, a second message with the quote reattached lands on day three.'
+    name: 'Find where quoted jobs are slipping through',
+    text: 'The audit looks for gaps such as slow follow-up, inconsistent reminders, missed replies, cold quotes, unclear ownership, and trade software that is not being used properly.'
   },
   {
-    name: 'Soft re-engagement on Day 7–14',
-    text: 'Two further touchpoints over the next fortnight. This is where most replies come back — customers who genuinely meant to respond and got busy.'
+    name: 'Separate manual tasks from automation opportunities',
+    text: 'The audit identifies which parts of the follow-up process should stay manual and which parts could be improved with reminders, SMS, email, CRM tasks, or automation.'
   },
   {
-    name: 'Cold quote reactivation on Day 30+',
-    text: 'Quotes that stayed silent move to a longer-term reactivation list. A thoughtful final message recovers jobs that would have been written off.'
+    name: 'Build a practical improvement plan',
+    text: 'The audit produces a clear plan showing what to fix first, what messages to use, what timing to follow, and how to reduce the chance of quoted jobs going cold.'
   },
   {
-    name: 'Reply lands and the tradie takes over',
-    text: 'The second a customer replies, the sequence pauses and the tradie is notified. No accidental chasing, no conversations falling through the cracks.'
+    name: 'Decide whether to implement it yourself or get help',
+    text: 'After the audit, the tradie can implement the recommendations themselves or choose to have Tradie Systems Co build the follow-up system for them.'
   }
 ];
 
 const definitionFaqs = [
   {
-    question: 'What is a tradie quote follow-up system?',
+    question: 'What is a quote follow-up audit for tradies?',
     answer:
-      'A tradie quote follow-up system is an automated sequence of SMS and email messages sent on a schedule after a tradie sends a quote. Its purpose is to keep the customer engaged, answer common questions, and bring the conversation back to a booking before the lead goes cold. For most Australian trade businesses, it replaces ad-hoc "I\'ll call them tomorrow" chasing with a consistent, structured process that runs whether you\'re on site, on the road, or off the tools.'
+      'A quote follow-up audit is a review of what happens after a tradie sends a quote. It looks at follow-up timing, messages, reminders, customer replies, old quotes, and whether the current process depends too much on memory or spare time. The goal is to find where quoted jobs may be slipping through the cracks and give the business a clear plan to fix it.'
   },
   {
-    question: 'How does an automated quote follow-up system work?',
+    question: 'What does a quote follow-up audit check?',
     answer:
-      'When a tradie sends a quote, the follow-up system triggers a sequence of polite, pre-approved messages over the next 14-30 days — typically a confirmation SMS within minutes, a check-in the next day, an email with the quote reattached a few days later, and a final re-engagement message before the quote is parked as cold. The sequence pauses the moment the customer replies, and any reply is routed straight to the tradie. The result is consistent, structured follow-up automation instead of ad-hoc chasing.'
+      'A quote follow-up audit checks whether every quote is followed up, how quickly customers hear back, what SMS or email messages are used, whether replies are missed, whether old quotes can be reactivated, and whether tools like ServiceM8, Tradify, simPRO, AroFlo, Jobber, Gmail or Outlook could support a more consistent process.'
   }
 ];
 
@@ -130,36 +123,26 @@ function HomepageInternalLinks() {
     <Section className="border-y border-white/5 bg-ink-900/30">
       <div className="mx-auto max-w-5xl">
         <div className="mb-4 font-mono text-[11px] uppercase tracking-[0.18em] text-signal-400">
-          Explore the system
+          Explore the audit
         </div>
 
         <h2 className="max-w-3xl font-display text-2xl tracking-tight text-bone-50 sm:text-3xl md:text-4xl">
-          Learn how quote follow-up systems work before you book a call.
+          Learn how a better quote follow-up process starts.
         </h2>
 
         <p className="mt-4 max-w-3xl text-bone-300">
-          See what we build, read the full quote follow-up guide, check common questions, or send a
-          message if you want help with your current process.
+          See what the free audit checks, read common questions, or get in touch if you want help
+          tightening up what happens after you send a quote.
         </p>
 
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <Link
             href="/services"
             className="rounded-xl border border-white/10 bg-ink-950/40 p-5 transition-all duration-200 hover:border-signal-500/40 hover:bg-ink-900/70"
           >
-            <h3 className="font-display text-lg font-semibold text-bone-50">Services</h3>
+            <h3 className="font-display text-lg font-semibold text-bone-50">Free Audit</h3>
             <p className="mt-2 text-sm text-bone-400">
-              Compare our three quote follow-up tiers: automation-only, AI-assisted, and AI-led.
-            </p>
-          </Link>
-
-          <Link
-            href="/blog/quote-follow-up-system-for-tradies"
-            className="rounded-xl border border-white/10 bg-ink-950/40 p-5 transition-all duration-200 hover:border-signal-500/40 hover:bg-ink-900/70"
-          >
-            <h3 className="font-display text-lg font-semibold text-bone-50">Main guide</h3>
-            <p className="mt-2 text-sm text-bone-400">
-              Read the complete guide to quote follow-up systems for Australian tradies.
+              See what we check during the quote follow-up audit and what happens after the review.
             </p>
           </Link>
 
@@ -169,7 +152,7 @@ function HomepageInternalLinks() {
           >
             <h3 className="font-display text-lg font-semibold text-bone-50">FAQs</h3>
             <p className="mt-2 text-sm text-bone-400">
-              Answers about setup, tools, timing, automation and how the process works.
+              Answers about quote follow-up, audit timing, tools, automation and implementation.
             </p>
           </Link>
 
