@@ -8,7 +8,6 @@ export const siteConfig = {
     'Stop losing jobs to slow, inconsistent quote follow-up. We audit what happens after you send a quote, show where quoted jobs are slipping through the cracks, and give you a clear plan to fix it — whether you implement it yourself or hire us to build the system.',
   email: 'ricky@tradiesystemsco.com.au',
   phone: '+61 0 0000 0000',
-  // Booking URL — update this if you rename the Cal.com event later.
   bookingUrl: 'https://cal.com/ricky-bourke-oinvii/free-strategy-call',
   bookingLabel: 'Book a Free Audit',
   ctaSecondary: 'Get a Free Quote Follow-Up Audit',
@@ -35,7 +34,6 @@ export const siteConfig = {
     { label: 'Contact', href: '/contact' }
   ],
 
-  // Industry chips on hero / services page
   industries: [
     'Fencing',
     'Landscaping',
@@ -49,7 +47,6 @@ export const siteConfig = {
     'Solar'
   ],
 
-  // Trade software the audit and follow-up systems can work around.
   integrations: [
     'ServiceM8',
     'Tradify',
