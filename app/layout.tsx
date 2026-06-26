@@ -1,5 +1,5 @@
-import { SpeedInsights } from "@vercel/speed-insights/next"
-import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/react';
 import type { Metadata, Viewport } from 'next';
 import { Inter, Fraunces, JetBrains_Mono } from 'next/font/google';
 import Script from 'next/script';
@@ -17,8 +17,6 @@ const sans = Inter({
   weight: ['400', '500', '600', '700']
 });
 
-// Distinctive display face — Fraunces gives a confident, characterful editorial feel
-// without being corporate. Pairs cleanly with Inter body.
 const display = Fraunces({
   subsets: ['latin'],
   display: 'swap',
@@ -42,14 +40,14 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} — Automated Quote Follow-Up for Australian Tradies`,
+    default: `${siteConfig.name} — Free Quote Follow-Up Audit for Australian Tradies`,
     template: `%s | ${siteConfig.name}`
   },
   description: siteConfig.description,
   keywords: [
+    'quote follow up audit',
     'quote follow up',
     'quote follow up system',
-    'automated quote follow up',
     'tradie quote follow up',
     'follow up after quote',
     'customer follow up tradies',
@@ -68,13 +66,13 @@ export const metadata: Metadata = {
     locale: 'en_AU',
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: siteConfig.name,
+    title: `${siteConfig.name} — Free Quote Follow-Up Audit for Australian Tradies`,
     description: siteConfig.description,
     images: [{ url: '/og-default.png', width: 1200, height: 630, alt: siteConfig.name }]
   },
   twitter: {
     card: 'summary_large_image',
-    title: siteConfig.name,
+    title: `${siteConfig.name} — Free Quote Follow-Up Audit`,
     description: siteConfig.description,
     images: ['/og-default.png']
   },
@@ -105,7 +103,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="main">{children}</main>
         <Footer />
 
-        {/* GA4 */}
         {GA4_ID && (
           <>
             <Script
@@ -123,7 +120,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </>
         )}
 
-        {/* Microsoft Clarity */}
         {CLARITY_ID && (
           <Script id="clarity-init" strategy="afterInteractive">
             {`
@@ -135,8 +131,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             `}
           </Script>
         )}
-      <Analytics />
-      <SpeedInsights />
+
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
