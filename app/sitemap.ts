@@ -2,6 +2,8 @@ import type { MetadataRoute } from 'next';
 import { siteConfig } from '@/lib/site.config';
 import { client, ALL_SLUGS_QUERY } from '@/lib/sanity';
 
+export const revalidate = 60;
+
 type SitemapSlug = {
   slug: string;
   publishedAt?: string;
