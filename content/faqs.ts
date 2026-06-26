@@ -6,31 +6,31 @@ export const faqs: (FaqItem & { category: string })[] = [
     category: 'Quote follow-up',
     question: 'What is a quote follow-up system?',
     answer:
-      'A quote follow-up system is an automated process that contacts a customer after a tradie sends them a quote — by SMS, email, or both — at structured intervals over the following days and weeks. The goal is simple: keep the trade business top of mind, answer the questions the customer never quite got around to asking, and bring the conversation back to a booking before the lead goes cold. For most Australian tradies, a proper quote follow-up system replaces ad-hoc "I’ll call them tomorrow" chasing with a consistent process that runs whether you’re on site, on the road, or off the tools. The system pauses the moment the customer replies, so you never accidentally chase someone who has already said yes. Done well, it sounds like a real tradie checking in — not a marketing platform.'
+      'A quote follow-up system is a structured process for what happens after a quote is sent. It can include reminders, SMS, emails, tasks, CRM updates, reply handling, and cold quote reactivation. The goal is to stop quoted jobs from going quiet just because the customer got busy, forgot to reply, or needed a clear next step. For some trade businesses, the best fix is a simple manual checklist. For others, it may be automation or done-for-you implementation. The free quote follow-up audit comes first so we can see what your business actually needs before recommending anything.'
   },
   {
     category: 'Quote follow-up',
     question: 'How many times should I follow up after sending a quote?',
     answer:
-      'Most trade jobs are won between the fourth and seventh touchpoint, yet most tradies stop after one. A solid follow-up sequence usually includes a confirmation message on day 0, a short check-in on day 1 or 2, an email with the quote reattached around day 5, a brief SMS on day 7 to 10, and a final re-engagement message at day 14 to 21. The exact cadence depends on your job size — a $400 fence repair needs faster, lighter follow-up than a $40,000 bathroom renovation. The key is consistency: a polite, structured rhythm beats one big push every time. After about three weeks, the lead moves to a longer-term reactivation list and gets touched once every few months. That way no quote is ever truly "dead" — it’s just resting.'
+      'Most tradies should follow up more than once, but the right number depends on the job size, trade, quote value, and how urgent the work is. A small repair quote usually needs a lighter, faster follow-up process than a large renovation, fencing job, solar install, or landscaping project. A common structure is a confirmation message, a polite check-in, a reminder a few days later, and a final no-pressure follow-up before the quote is treated as cold. During the audit, we look at your current timing and recommend a follow-up rhythm that suits how your customers actually buy.'
   },
   {
     category: 'Quote follow-up',
     question: 'What should you say in a follow-up message after a quote?',
     answer:
-      'Keep it short, polite, and specific. Mention the customer by name, reference the job you quoted, and ask one clear question — like whether they had any questions about the price or scope. Avoid marketing language, exclamation marks, and "we hope this finds you well." A good day-3 SMS reads more like this: "Hi Dave, just checking in on the quote we sent Tuesday for the back fence — any questions on it? Happy to walk through the pricing on a call." It sounds like a real tradie following up because it is. We write every follow-up message as part of the system we build, tailored to your trade, your voice, and the kind of jobs you quote. You read and approve every message before anything goes live to a customer.'
+      'A good follow-up message should be short, clear, and specific to the job. Mention the quote, make it easy for the customer to reply, and avoid sounding pushy or corporate. For example: “Hi Dave, just checking in on the quote for the back fence — did you have any questions on it?” The wording should sound like your business, not a generic marketing platform. As part of the audit, we look at the type of messages you currently send and where clearer wording could help customers respond.'
   },
   {
     category: 'Quote follow-up',
     question: 'Why are customers ghosting my quotes?',
     answer:
-      'Customers usually go quiet on a quote for one of four reasons. They got busy and forgot. They’re still comparing other quotes. The price felt outside their range and they didn’t want to say so. Or a competitor followed up first and locked in the conversation. Only one of those four is genuinely about price — the other three are entirely solved by consistent, automated follow-up. The biggest mistake most tradies make is assuming silence means "no." It usually means "not yet" or "I forgot." A short, well-timed message a few days after the quote often brings the customer straight back into the conversation. The follow-up doesn’t need to be pushy — it just needs to happen. Most lost jobs aren’t lost on price; they’re lost in the gap between sending the quote and the customer’s second decision moment.'
+      'Customers go quiet for many reasons. They may be comparing quotes, waiting on a partner, unsure about price, confused about scope, distracted by work or family, or simply forgetting to reply. Silence does not always mean they chose someone else. The problem is that many tradies have no reliable way to find out why the customer went quiet. A quote follow-up audit helps identify whether the issue is timing, wording, unclear next steps, missed replies, weak reminders, or old quotes being forgotten too early.'
   },
   {
     category: 'Quote follow-up',
     question: 'How long should I keep following up on a quote?',
     answer:
-      'For most trade jobs, three to four weeks is the sweet spot for the active follow-up window. That gives the customer enough time to think, compare, and come back without feeling chased. After that, the lead doesn’t disappear — it moves into a longer-term reactivation list and gets a thoughtful check-in every couple of months. We typically build both flows for tradies: an active follow-up sequence for new quotes, and a lead recovery campaign for older cold quotes. That way every quote you’ve ever sent has a path back to becoming a job. Some of the biggest wins we see come from quotes that were six or twelve months old — customers who genuinely meant to get back to the tradie and never did. A polite message at the right time is often all it takes.'
+      'For many trade businesses, the active follow-up window is around two to four weeks, but it depends on the job. A small urgent job may need faster follow-up. A larger project may need a longer decision period. After the active follow-up window, older quotes can sometimes be moved into a cold quote reactivation process instead of being forgotten. During the audit, we look at your quote value, sales cycle, and current follow-up habits before recommending how long you should keep following up.'
   },
 
   // RESULTS
@@ -38,19 +38,19 @@ export const faqs: (FaqItem & { category: string })[] = [
     category: 'Results',
     question: 'How many extra jobs can I expect to win?',
     answer:
-      'The honest answer is: it depends on where you’re starting from. A tradie sending 30 quotes a month with no follow-up at all will see different numbers from one already doing some manual chasing. The category research on quote follow-up generally points to meaningful uplift in conversion when structured multi-touch follow-up replaces single-touch or no follow-up — but we don’t publish a single guaranteed percentage because trade businesses vary too much. On a free strategy call we’ll look at your current quote volume, average job value, current conversion rate, and follow-up process, and give you a realistic estimate based on your actual numbers. We’d rather give you a grounded number than an inflated one. Most tradies recover the cost of the system from one or two recovered jobs in the first month.'
+      'There is no honest fixed number without looking at your business first. A tradie sending 50 quotes a month with almost no follow-up has a very different opportunity from a business that already follows up consistently. During the free audit, we look at your quote volume, average job value, current follow-up process, and where jobs are going cold. From there, we can give you a realistic view of what might improve and whether the fix is worth doing.'
   },
   {
     category: 'Results',
     question: 'How quickly will I see results?',
     answer:
-      'The first recovered job usually lands within two to four weeks of going live. The follow-up system starts working from the moment a new quote enters it, so the speed depends partly on how many quotes you send. Tradies who go live alongside a cold-quote reactivation campaign often see jobs come back in the first week — those are quotes from the past six or twelve months that the system reaches out to as a one-off. Beyond the immediate wins, the patterns become clear over the first 90 days: you can see exactly how many jobs were recovered that would have gone cold without the system, how long the average customer takes to respond, and which touchpoints are doing the work. From there we tune the sequence to your trade and your customers.'
+      'That depends on how many quotes you send, how many old quotes are sitting cold, and what follow-up process you already have. Some businesses may see replies quickly once old quotes are reviewed or reminders are improved. Others need a more structured process over several weeks before patterns become clear. The audit is designed to identify the fastest practical improvement first, whether that is better wording, clearer reminders, a manual process, automation, or done-for-you help.'
   },
   {
     category: 'Results',
     question: 'Will customers find automated follow-up annoying?',
     answer:
-      'Not when it’s done well. The system uses spaced timing — usually one short message every few days, not multiple touches per day — and stops the moment the customer replies, books, or asks not to be contacted. The wording sounds like a real tradie checking in, not a marketing email. In practice, most customers actually appreciate the follow-up. They were busy, they forgot, and a polite message gives them an easy way back into the conversation. Tradies often hear "I’m glad you got back to me — I had been meaning to reply" rather than complaints. The pattern is consistent: bad follow-up feels pushy and impersonal, good follow-up feels organised and professional. Every message includes a clear opt-out, so anyone who genuinely doesn’t want more contact can stop it instantly.'
+      'Customers usually dislike bad follow-up, not follow-up itself. Pushy, repetitive, generic messages can damage trust. Clear, polite, well-timed follow-up often helps because the customer knows what to do next. The safest approach is to use plain language, sensible timing, and stop once the customer replies or opts out. During the audit, we look at whether automation is even appropriate for your business and how to keep the customer experience respectful.'
   },
 
   // SETUP & ONBOARDING
@@ -58,19 +58,19 @@ export const faqs: (FaqItem & { category: string })[] = [
     category: 'Setup & onboarding',
     question: 'How long does it take to set up?',
     answer:
-      'Most quote follow-up systems are live within seven to fourteen days of the kickoff call. Setup runs in three rough phases. Week one: a 30 to 60 minute discovery call where we learn your trade, your typical jobs, the tools you already use, and how you currently follow up. We also audit any cold quotes sitting in your inbox or CRM. Week two: we draft the SMS and email sequences in your voice and connect them to the tools you already use (ServiceM8, Tradify, simPRO, AroFlo, Jobber, Gmail, Outlook, and similar). Week three: you read and approve every message, we test on dummy quotes, and then we switch the system on for new quotes and run the cold-quote reactivation. You don’t need to learn new software, sit through training, or do any of the technical build — we handle the lot end-to-end.'
+      'The audit itself is usually a 30-minute conversation. What happens after that depends on what we find. Some businesses only need a DIY follow-up plan, message templates, or better reminders. Others may need automation or done-for-you implementation. If implementation is recommended, timing depends on the tools you use, the complexity of your process, and how many follow-up paths need to be built. We explain the likely timeline after the audit, not before.'
   },
   {
     category: 'Setup & onboarding',
     question: 'Do I need to change my quoting software?',
     answer:
-      'No — and you shouldn’t need to. The follow-up system is designed to sit alongside whatever quoting tool you already use. We integrate directly with the common Australian platforms: ServiceM8, Tradify, simPRO, AroFlo, Jobber, Fergus, NextMinute, Buildxact, and HousecallPro. We also connect to general CRMs like HubSpot, Pipedrive, and Zoho, and to email providers like Gmail and Outlook. If you’re still using a spreadsheet, a notebook, or just sending quotes straight from your inbox, we can work with that too. The system reads when a quote goes out, triggers the follow-up sequence, and pauses the moment the customer replies. You keep quoting the way you always have — the layer that chases the quotes is the new piece, and you don’t have to touch it.'
+      'Usually, no. The first step is to look at what you already use. That might be ServiceM8, Tradify, simPRO, AroFlo, Jobber, Fergus, NextMinute, Buildxact, Gmail, Outlook, a spreadsheet, or a manual process. The audit checks whether your existing setup can support better follow-up before recommending any new software. The goal is to improve what happens after a quote is sent, not force you into tools you do not need.'
   },
   {
     category: 'Setup & onboarding',
     question: 'What do I need to provide?',
     answer:
-      'Three things: access to your quoting tool (or wherever your quotes currently go out from), a clear picture of your typical job types and price ranges, and about 30 to 60 minutes for a discovery call. That’s essentially it. You don’t need a marketing background, a content brief, a brand guide, or any technical knowledge. We handle the strategy, write every SMS and email in your voice, build the sequences, connect the tools, and run the testing. The only ongoing input we ask from you is approval of the messaging before anything goes live, and a quick chat each month to look at the numbers together. The whole point is to take the follow-up work off your plate — not to add yet another tool you have to learn or babysit between jobs.'
+      'For the free audit, you only need to explain how quotes are currently handled. Useful details include how many quotes you send, where quotes are stored, how you follow up now, what tools you use, and where customers tend to go quiet. If you have examples of recent quotes or old leads, that can help, but you do not need to prepare a full report. The audit is meant to be simple and practical.'
   },
 
   // INTEGRATIONS
@@ -78,13 +78,13 @@ export const faqs: (FaqItem & { category: string })[] = [
     category: 'Integrations',
     question: 'Which tradie software does this work with?',
     answer:
-      'We integrate with all the major Australian trade business platforms, including ServiceM8, Tradify, simPRO, AroFlo, Jobber, Fergus, NextMinute, Buildxact, and HousecallPro. We also connect to general CRMs that some tradies use — HubSpot, Pipedrive, Zoho — and to standard email providers like Gmail and Outlook. For SMS we work with the major Australian gateways. If you use a calendar like Google Calendar or Outlook for site visits, follow-up messages can include a direct booking link that drops the customer straight into your availability. If you’re using something less common, ask us — the system is designed to plug into the tools you already use, not to replace them. The principle is the same across every integration: the tradie keeps quoting the way they always have, and the follow-up sequence triggers automatically off the quote going out.'
+      'A quote follow-up process can often work with common trade tools such as ServiceM8, Tradify, simPRO, AroFlo, Jobber, Fergus, NextMinute, Buildxact, HousecallPro, Gmail, Outlook, Google Calendar, and general CRMs. The exact setup depends on what you use and what access is available. During the audit, we check your current tools and explain whether better reminders, templates, manual tasks, automation, or integration work makes the most sense.'
   },
   {
     category: 'Integrations',
     question: 'Can the system book customers straight into my calendar?',
     answer:
-      'Yes. When a customer is ready to move forward, the follow-up message can include a direct booking link that drops them straight into your available time slots. The link syncs with Google Calendar, Outlook, or whatever scheduling tool you already use. No more "what time suits you?" back-and-forth over SMS, no more phone tag, no more guessing whether a site-visit slot is still open. We can also build pre-visit forms into the booking flow — short questionnaires that capture the basics (job type, address, access notes, photos) before you arrive, so the visit is more productive when you get there. For tradies juggling a packed week, the booking integration alone often saves several hours and prevents the back-and-forth that loses momentum on a quote.'
+      'It can, if that suits your sales process. Some tradies benefit from giving customers a direct booking link for a call, site visit, or follow-up appointment. Others prefer to keep replies coming back by SMS or phone. The audit looks at how your customers usually move from quote to booking and whether calendar booking would make the process easier or create unnecessary friction.'
   },
 
   // CUSTOMER COMMUNICATION
@@ -92,19 +92,19 @@ export const faqs: (FaqItem & { category: string })[] = [
     category: 'Customer communication',
     question: 'Will the messages sound like me, or generic?',
     answer:
-      'Like you. Every sequence is written specifically for your trade, your job types, and your voice. We do a short voice-and-tone session during onboarding so the messaging sounds like something you would actually say to a customer over the phone — not corporate, not over-polished, not American. Australian English, plain language, no exclamation marks, no "Dear valued customer." A fencer’s messages won’t sound the same as an electrician’s, and a sole operator’s won’t sound the same as a 12-person crew’s. You read and approve every message before it goes live, and you can request edits any time after that. If a phrase doesn’t feel right, we change it. The goal is messaging that a customer reads and thinks "yep, that’s the same bloke who quoted me" — not "this is clearly some automated thing."'
+      'They should sound like your business. Good quote follow-up uses plain Australian English, clear timing, and wording that suits your trade and customer type. A fencer, plumber, builder, electrician, landscaper, and painter should not all sound the same. During the audit, we look at your current tone and recommend message wording that feels natural, not over-polished or robotic.'
   },
   {
     category: 'Customer communication',
     question: 'What happens when a customer replies?',
     answer:
-      'The system pauses the follow-up sequence instantly and notifies you in real time — by SMS, email, or however you prefer to be contacted. You take the conversation from there. The system doesn’t try to reply on your behalf, and it doesn’t keep chasing someone who has just said yes. That’s the whole point of the design: automation does the predictable, scheduled work, and you handle the actual relationship. If the customer replies "STOP" or asks not to be messaged, they’re removed instantly and flagged so you know. If they reply with a question, you see it in your normal inbox or SMS thread the way you always would. Some tradies set up a daily summary of replies; others prefer real-time notifications. Either way, no reply ever falls through the cracks.'
+      'The right process should make replies easy to see and handle. If automation is used, follow-up should pause when the customer replies so they are not accidentally chased again. If the process is manual, there should still be a clear way to flag replies and stop further reminders. The audit checks whether customer replies are currently being missed, delayed, or scattered across too many places.'
   },
   {
     category: 'Customer communication',
     question: 'Is this just AI replying to my customers?',
     answer:
-      'No. The system handles automated follow-up messages — short, pre-approved SMS and emails sent on a schedule — but real customer conversations stay with you. We use automation for the part it’s genuinely good at (consistent, on-time, polite outreach that doesn’t depend on whether you remembered) and we leave the relationship-building, pricing conversations, and scope negotiations entirely to you. Optional AI-assisted reply suggestions are available if you want them — they draft a response based on your past quotes and FAQs, which you can approve, edit, or discard before sending — but they’re off by default. We deliberately don’t put autonomous AI in front of your customers. The risk to your reputation, your brand, and your relationships is too high, and the upside isn’t worth it.'
+      'No. The focus is quote follow-up, not replacing you in customer conversations. AI may be useful in some cases for drafting replies, sorting leads, summarising conversations, or helping with admin, but it should not be forced into the process where it creates risk. The audit looks at what actually needs fixing first. For many tradies, simple reminders and better follow-up structure are more useful than AI.'
   },
 
   // LEAD MANAGEMENT
@@ -112,13 +112,13 @@ export const faqs: (FaqItem & { category: string })[] = [
     category: 'Lead management',
     question: 'Can this recover old quotes that went cold months ago?',
     answer:
-      'Yes — and lead recovery from old quotes is often the biggest quick win. We can build a one-time reactivation campaign that contacts every cold quote sitting in your CRM, inbox, or quoting tool from the past six to twelve months. The message is polite, branded, and thoughtful — never pushy or generic. It acknowledges that some time has passed, gives the customer an easy way back into the conversation, and offers a clear next step. Most tradies recover at least a handful of jobs from this alone, and for many it covers the cost of the entire system in the first month or two. Anyone who comes back gets folded into the live follow-up sequence so the momentum carries forward. Quotes that don’t come back politely close themselves out, which is also useful — it tells you which leads are genuinely dead.'
+      'Possibly. Many trade businesses have old quotes sitting in their inbox, CRM, quoting software, or spreadsheet that were never properly followed up. Some of those customers may no longer be interested, but others may have delayed the job or simply forgotten to respond. The audit checks whether cold quote reactivation makes sense and how to approach it without sounding desperate or pushy.'
   },
   {
     category: 'Lead management',
     question: 'How is this different from a CRM?',
     answer:
-      'A CRM stores customer contacts. A quote follow-up system actually contacts them. Most Australian tradies already have a CRM, a quoting tool, or job management software — ServiceM8, Tradify, simPRO, AroFlo, Jobber — that holds every lead and quote. The problem isn’t storage. The problem is that nothing in those tools is actively reaching out, on a schedule, in your voice, until the customer responds. A follow-up system is the layer that turns stored leads into booked jobs. We don’t replace your CRM; we plug into it. When a new quote enters the CRM, the follow-up sequence fires automatically. When a customer replies, the CRM gets updated and the sequence stops. Think of it less as "another tool" and more as the missing piece between "quote sent" and "job won."'
+      'A CRM stores leads and customer information. Quote follow-up is the process that makes sure those leads are actually followed up after a quote is sent. Many tradies already have a CRM or job management tool, but the follow-up still depends on memory, manual tasks, or inconsistent reminders. The audit looks at whether your existing CRM is being used properly, whether it needs better tasks or templates, or whether automation should be added.'
   },
 
   // SETUP & ONBOARDING — operational clarity
@@ -126,31 +126,31 @@ export const faqs: (FaqItem & { category: string })[] = [
     category: 'Setup & onboarding',
     question: 'What does a follow-up message actually look like?',
     answer:
-      'Short, plain, and written the way a real Australian tradie would write it. A typical day-3 SMS reads: "Hi Dave, just checking in on the quote we sent Tuesday for the back fence — any questions on it? Happy to walk through the pricing on a call." No exclamation marks, no marketing language, no "we hope this finds you well." A day-7 email might be a touch longer — it reattaches the quote, gently addresses a common objection like timing or scope, and ends with a clear question rather than a hard pitch. Every message in the sequence is written specifically for your trade, your job sizes, and your voice. You read and approve everything before it goes live to a customer, and you can request changes any time. The whole point is that the customer can’t tell whether you typed it or the system did.'
+      'A good follow-up message is short, polite, and easy to reply to. For example: “Hi Dave, just checking in on the quote for the back fence — did you have any questions?” A longer email might reattach the quote, clarify the next step, and invite the customer to ask questions. The message should not sound like a newsletter or a sales script. During the audit, we look at what you currently send and where the wording could be clearer.'
   },
   {
     category: 'Setup & onboarding',
     question: 'What does the workflow look like end-to-end?',
     answer:
-      'Day 0: you send the quote the way you always have. Within minutes, the system fires a short confirmation SMS so the customer knows it’s landed. Day 1: a polite first follow-up by SMS. Day 3: an email with the quote reattached and one or two common questions answered. Day 7: a short SMS check-in. Day 14: a final email with a clear, no-pressure close. Day 30 and beyond: cold-quote reactivation, where quietly silent quotes get a thoughtful re-engagement message every couple of months. The moment a customer replies anywhere in the sequence, everything pauses and you take over the conversation. Most jobs land between day 3 and day 14 — those are customers who genuinely meant to reply and got busy. The cadence and wording are tuned to your trade so the customer never feels chased; they just feel like they’re dealing with a tradie who’s on top of it.'
+      'A simple workflow might look like this: quote sent, confirmation message, first check-in, reminder, later follow-up, then cold quote review if there is still no reply. If the customer replies, the process should stop and the conversation should be handled by the right person. That is only one example. The right workflow depends on your trade, job size, quoting process, customer type, and tools.'
   },
   {
     category: 'Setup & onboarding',
     question: 'What happens in the first 30 days after I sign up?',
     answer:
-      'Week one is the kickoff. We run a 30 to 60 minute call to learn your business — your trade, your typical jobs, the tools you use, how you currently follow up, and where leads are leaking. We audit any cold quotes sitting in your CRM or inbox. Week two, we draft every SMS and email sequence in your voice, build the integrations with the tools you already use (ServiceM8, Tradify, simPRO, AroFlo, Jobber, Gmail, etc.), and run internal tests on dummy quotes. Week three, you read and approve everything. Once approved, we switch the system on for new quotes and run the cold-quote reactivation campaign in parallel. By day 30 most tradies are already seeing recovered jobs come back, the sequence is running on autopilot, and we’re tuning the wording or timing based on early data. From month two onwards, the system just runs in the background.'
+      'The better question is what happens after the audit. First, we review your current follow-up process. Then we identify the gaps. After that, we recommend the simplest fix. That might be a DIY plan, better templates, reminder tasks, CRM cleanup, automation, or done-for-you implementation. If you choose to work with us after the audit, the next steps and timeline depend on what your business actually needs.'
   },
   {
     category: 'Customer communication',
     question: 'Do I see what’s being sent and to whom?',
     answer:
-      'Yes — total transparency is built into how the system runs. You get a simple dashboard showing every open quote, where it is in the follow-up sequence, when the next message is scheduled to go out, what the message says, and any customer replies in one thread. You can pause, edit, or skip any quote at any time. You can also pull a single customer out of the sequence if a specific conversation needs hands-on attention. Most tradies don’t check the dashboard daily — they just glance at it once a day or get a short summary email of new replies. The point is to take the follow-up work off your plate, not to add another thing you have to babysit. But the visibility is there if and when you want it, and nothing happens in the background that you can’t see.'
+      'You should. Whether the process is manual, semi-automated, or fully automated, you need visibility over what is being sent, when it is being sent, and who has replied. One of the things we check in the audit is whether your current process gives you enough visibility over open quotes, missed replies, follow-up timing, and old leads.'
   },
   {
     category: 'Customer communication',
     question: 'What happens if someone asks to stop messages?',
     answer:
-      'They’re removed immediately. Every SMS we send includes a simple opt-out — usually "Reply STOP to unsubscribe" — and every email has a clear unsubscribe link. The system honours both instantly, no human intervention required, and flags the contact so you can see exactly who has opted out and when. No customer ever receives a message after they’ve asked you to stop, which protects your reputation, your relationship with that customer, and your compliance with Australian spam law (the Spam Act 2003). We take this seriously because the whole system depends on customers feeling that the tradie is professional and respectful. One bad opt-out experience can do real damage to a small trade business. The opt-out path is short, clear, and irreversible by accident.'
+      'They should stop receiving follow-up. Any follow-up process needs a clear way to respect opt-outs, unsubscribe requests, and customers who say they are no longer interested. If SMS or email automation is used, this becomes even more important. The audit looks at customer experience and follow-up safety, not just conversion.'
   },
 
   // GENERAL
@@ -158,25 +158,25 @@ export const faqs: (FaqItem & { category: string })[] = [
     category: 'General',
     question: 'Do you only work with tradies?',
     answer:
-      'Yes. Tradie Systems Co specialises in Australian trade and home service businesses, and we don’t take on clients outside that scope. The systems are designed around how tradies actually work and quote — including on-site quoting, after-hours enquiries, photo-heavy jobs, variable scope, and trade-specific software like ServiceM8 and Tradify. The trades we work with most often are fencing, landscaping, electrical, plumbing, building, concreting, carpentry, painting, HVAC, and solar — but the same quote follow-up principles apply to most trades that send quotes and lose jobs because the chasing never quite happens. If you run a trade business that doesn’t fit one of those categories, send us a message and we’ll let you know if it’s a fit. We’d rather tell you "we’re not the right people for this" than try to make a system fit a business it wasn’t built for.'
+      'Yes. Tradie Systems Co focuses on Australian trade and home service businesses that quote for work. That includes trades such as fencing, landscaping, electrical, plumbing, building, concreting, carpentry, painting, HVAC, and solar. The website is focused specifically on quote follow-up, not general business automation.'
   },
   {
     category: 'General',
     question: 'Where are you based?',
     answer:
-      'Tradie Systems Co is an Australian business, working with tradies in every state and territory. Setup and ongoing work is fully remote — you don’t need to be in a particular city, and we don’t need to visit your site or your office to build the system. We use SMS, email, and short video calls for everything. That makes us just as accessible to a fencer in regional Queensland or a plumber on the WA mid-coast as we are to a builder in Sydney or Melbourne. We work in Australian business hours and Australian English, with Australian phone numbers for any SMS that goes out, and the messaging is written in plain Australian voice — no "y’all," no "awesome," no American spelling. Tradies anywhere in the country can work with us.'
+      'Tradie Systems Co is an Australian business working with tradies across Australia. The audit and any follow-up work can be done remotely using phone, video, SMS, and email. The focus is Australian trade businesses, Australian customer expectations, and plain Australian English.'
   },
   {
     category: 'General',
     question: 'What does it cost?',
     answer:
-      'Pricing depends on the size and complexity of the system you need. We don’t publish a standard price because every trade business is different — a sole-operator sparkie sending 20 quotes a month needs something very different from a 12-person fencing crew sending 150. Generally, the build cost is a one-off project fee covering discovery, copywriting, integrations, testing, and the cold-quote reactivation campaign, with a modest ongoing fee for hosting, message delivery, monthly tuning, and support. Both are designed so a single recovered job covers the cost many times over. On a free strategy call we’ll look at your quote volume, average job value, and current process, and give you a clear number based on your specific situation. There are no long contracts, and we don’t bundle in features you don’t need.'
+      'The quote follow-up audit is free. If the audit finds that you only need simple DIY improvements, we will tell you that. If you need help implementing changes, the cost depends on what is required. That could be templates, reminder setup, CRM cleanup, automation, or done-for-you implementation. We do not need to force a fixed package before understanding your current process.'
   },
   {
     category: 'General',
     question: 'What’s the first step?',
     answer:
-      'Book a free 30-minute strategy call. There’s no pitch deck, no obligation, and no follow-up sales pressure if the timing isn’t right. On the call we’ll review your current quote process, look at where leads are leaking, and tell you exactly what a follow-up system would look like for your business — whether or not you decide to work with us. You walk away with a clear picture of what to fix and how, even if you do it yourself. If we are a fit, we’ll talk you through the three-week setup timeline and pricing. If we’re not, we’ll happily point you at the right next step. The call is genuinely useful either way — most tradies leave it with a couple of changes they can implement themselves that day.'
+      'The first step is to book a free quote follow-up audit. We review how your quotes are currently followed up, where jobs may be going cold, and what the simplest fix would be. You can use the recommendations yourself or ask us to help implement them. There is no obligation to move ahead after the audit.'
   }
 ];
 
