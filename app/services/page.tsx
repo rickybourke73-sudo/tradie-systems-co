@@ -16,7 +16,10 @@ import {
   Check,
   ClipboardCheck,
   Search,
-  Wrench
+  Wrench,
+  AlertTriangle,
+  Clock3,
+  PhoneCall
 } from 'lucide-react';
 
 export const metadata = buildMetadata({
@@ -35,7 +38,7 @@ const auditSteps = [
   },
   {
     icon: ClipboardCheck,
-    title: 'We find the gaps',
+    title: 'We find the follow-up gaps',
     body:
       'We identify where quoted jobs are going cold, where customers are not being chased, where replies are missed, and where your current tools are not being used properly.'
   },
@@ -44,6 +47,27 @@ const auditSteps = [
     title: 'You get a practical fix plan',
     body:
       'You leave with clear recommendations you can either implement yourself or hire us to build for you.'
+  }
+];
+
+const warningSigns = [
+  {
+    icon: Clock3,
+    title: 'Quotes sit open for weeks',
+    body:
+      'You send the quote, the customer says they will think about it, and then the job slowly disappears from view.'
+  },
+  {
+    icon: AlertTriangle,
+    title: 'Follow-up depends on memory',
+    body:
+      'Some quotes get chased because they seem important, but others are forgotten when the week gets busy.'
+  },
+  {
+    icon: PhoneCall,
+    title: 'Customers reply but nothing happens',
+    body:
+      'Replies, questions and maybes are not always turned into a call, booking, next step or clear decision.'
   }
 ];
 
@@ -152,6 +176,21 @@ const systemAreas = [
   }
 ];
 
+const tradeExamples = [
+  'Fencing contractors',
+  'Landscapers',
+  'Builders',
+  'Electricians',
+  'Plumbers',
+  'Concreters',
+  'Carpenters',
+  'Painters',
+  'Roofers',
+  'Pool builders',
+  'HVAC businesses',
+  'Solar installers'
+];
+
 export default function ServicesPage() {
   return (
     <>
@@ -182,18 +221,17 @@ export default function ServicesPage() {
         />
       ))}
 
-      {/* Hero */}
       <Section size="lg" className="pt-20 md:pt-28">
         <div className="max-w-4xl">
-          <p className="eyebrow mb-5">Free quote follow-up audit</p>
+          <p className="eyebrow mb-5">Free quote follow-up audit for tradies</p>
           <h1 className="text-balance font-display text-[2.25rem] leading-[1.05] tracking-tight text-bone-50 sm:text-5xl md:text-6xl">
             Find out where your quoted jobs are{' '}
             <span className="italic text-signal-400">slipping through the cracks.</span>
           </h1>
           <p className="mt-6 text-pretty text-lg leading-relaxed text-bone-300 md:text-xl">
-            We audit what happens after you send a quote, show you where the follow-up is breaking
-            down, and give you a practical plan to fix it. You can implement the changes yourself
-            or hire us to build the system for you.
+            We review what happens after you send a quote, find the gaps in your follow-up process,
+            and show you what to fix first. You can implement the changes yourself or hire us to
+            build the quote follow-up system for you.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -214,42 +252,76 @@ export default function ServicesPage() {
               See how the audit works
             </Button>
           </div>
+
+          <p className="mt-5 max-w-2xl text-sm leading-relaxed text-bone-400">
+            Built for Australian trade businesses that send quotes and want a clearer, more reliable
+            way to follow them up.
+          </p>
         </div>
       </Section>
 
-      {/* Positioning */}
       <Section className="border-y border-white/5 bg-ink-900/30">
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div>
-            <p className="eyebrow mb-5">The goal</p>
+            <p className="eyebrow mb-5">The problem</p>
             <h2 className="text-balance font-display text-3xl tracking-tight text-bone-50 sm:text-4xl md:text-5xl">
-              This is not about selling you software before we understand the problem.
+              Most quote follow-up problems are not obvious until you map the process.
             </h2>
           </div>
           <div className="space-y-5 text-base leading-relaxed text-bone-300 sm:text-lg">
             <p>
-              The first step is not choosing a package. The first step is understanding what is
-              actually happening after your quotes are sent.
+              A quote can be lost for a lot of reasons: the first follow-up is too slow, no second
+              follow-up happens, the customer reply gets missed, or no one is responsible for moving
+              the quote to the next step.
             </p>
             <p>
-              Some trade businesses only need a better manual process. Some need simple automation.
-              Some are ready for AI-assisted follow-up. Others need a more advanced system that can
-              chase, sort and update quotes with less human involvement.
+              The audit is designed to find those gaps before recommending software, automation or
+              AI. Some trade businesses only need a tighter manual process. Some need reminders.
+              Some need automated SMS and email. Some are ready for AI-assisted follow-up.
             </p>
             <p>
-              The audit gives us the information needed to recommend the right fix instead of
-              guessing.
+              The goal is to diagnose the quote follow-up process first, then decide what should be
+              fixed.
             </p>
           </div>
         </div>
       </Section>
 
-      {/* Audit steps */}
-      <Section id="how-the-audit-works" className="scroll-mt-24">
+      <Section id="warning-signs" className="scroll-mt-24">
+        <SectionHeader
+          eyebrow="Signs you need this"
+          title="A quote follow-up audit is useful when quoted jobs are going cold."
+          description="You do not need a complicated system to have a follow-up problem. Usually, the warning signs are simple."
+          align="center"
+        />
+
+        <div className="mt-12 grid gap-6 lg:grid-cols-3">
+          {warningSigns.map((item) => {
+            const Icon = item.icon;
+
+            return (
+              <article key={item.title} className="card p-7 sm:p-8">
+                <div
+                  className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-signal-500/20 bg-signal-500/10 text-signal-400"
+                  aria-hidden="true"
+                >
+                  <Icon className="h-7 w-7" />
+                </div>
+                <h3 className="font-display text-2xl tracking-tight text-bone-50">
+                  {item.title}
+                </h3>
+                <p className="mt-4 leading-relaxed text-bone-300">{item.body}</p>
+              </article>
+            );
+          })}
+        </div>
+      </Section>
+
+      <Section id="how-the-audit-works" className="scroll-mt-24 border-y border-white/5 bg-ink-900/30">
         <SectionHeader
           eyebrow="How the audit works"
           title="We diagnose the follow-up process before recommending a system."
-          description="The audit is designed to give you a clear view of what is happening after quotes are sent, where jobs may be going cold, and what should be fixed first."
+          description="The audit gives you a clear view of what is happening after quotes are sent, where jobs may be going cold, and what should be fixed first."
           align="center"
         />
 
@@ -275,8 +347,7 @@ export default function ServicesPage() {
         </div>
       </Section>
 
-      {/* Audit checks */}
-      <Section className="border-y border-white/5 bg-ink-900/30">
+      <Section>
         <div className="grid items-start gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <div>
             <p className="eyebrow mb-5">What we look at</p>
@@ -285,7 +356,7 @@ export default function ServicesPage() {
             </h2>
             <p className="mt-6 text-lg leading-relaxed text-bone-300">
               We are not trying to overhaul your whole business on the first call. We are looking
-              for the highest-value follow-up gaps that are causing quoted jobs to go cold.
+              for the highest-value quote follow-up gaps that are causing jobs to go cold.
             </p>
           </div>
 
@@ -307,8 +378,7 @@ export default function ServicesPage() {
         </div>
       </Section>
 
-      {/* System areas */}
-      <Section id="system-areas" className="scroll-mt-24">
+      <Section id="system-areas" className="scroll-mt-24 border-y border-white/5 bg-ink-900/30">
         <SectionHeader
           eyebrow="What the fix may involve"
           title="Most quote follow-up fixes are built from a few practical building blocks."
@@ -336,8 +406,7 @@ export default function ServicesPage() {
         </div>
       </Section>
 
-      {/* Workflow visual */}
-      <Section id="workflow" className="scroll-mt-24 border-y border-white/5 bg-ink-900/30">
+      <Section id="workflow" className="scroll-mt-24">
         <SectionHeader
           eyebrow="Example workflow"
           title="A simple quote follow-up system keeps the conversation moving."
@@ -349,8 +418,7 @@ export default function ServicesPage() {
         </div>
       </Section>
 
-      {/* Implementation options */}
-      <Section id="implementation-options" className="scroll-mt-24">
+      <Section id="implementation-options" className="scroll-mt-24 border-y border-white/5 bg-ink-900/30">
         <SectionHeader
           eyebrow="After the audit"
           title="You can implement the recommendations yourself or have us build the system."
@@ -363,7 +431,11 @@ export default function ServicesPage() {
             const Icon = option.icon;
 
             return (
-              <article id={option.id} key={option.id} className="card flex h-full scroll-mt-28 flex-col p-7 sm:p-8">
+              <article
+                id={option.id}
+                key={option.id}
+                className="card flex h-full scroll-mt-28 flex-col p-7 sm:p-8"
+              >
                 <div
                   className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-signal-500/20 bg-signal-500/10 text-signal-400"
                   aria-hidden="true"
@@ -413,8 +485,38 @@ export default function ServicesPage() {
         </div>
       </Section>
 
-      {/* Long-form SEO/AEO authority section */}
-      <Section id="authority" aria-labelledby="authority-heading" className="scroll-mt-24">
+      <Section id="who-it-is-for" className="scroll-mt-24">
+        <div className="grid items-start gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+          <div>
+            <p className="eyebrow mb-5">Who it is for</p>
+            <h2 className="text-balance font-display text-3xl tracking-tight text-bone-50 sm:text-4xl md:text-5xl">
+              Built for trade businesses that already send quotes.
+            </h2>
+            <p className="mt-6 text-lg leading-relaxed text-bone-300">
+              This is not lead generation. It is for businesses that already get enquiries, already
+              send quotes, and want more of those quoted jobs to receive proper follow-up.
+            </p>
+          </div>
+
+          <div className="card p-7 sm:p-8">
+            <div className="grid gap-3 sm:grid-cols-2">
+              {tradeExamples.map((trade) => (
+                <div key={trade} className="flex items-center gap-3 rounded-xl bg-ink-950/40 p-3">
+                  <span
+                    className="inline-flex h-5 w-5 flex-none items-center justify-center rounded-full border border-signal-500/30 bg-signal-500/15 text-signal-400"
+                    aria-hidden="true"
+                  >
+                    <Check className="h-3 w-3" strokeWidth={3} />
+                  </span>
+                  <span className="text-sm text-bone-100">{trade}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      <Section id="authority" aria-labelledby="authority-heading" className="scroll-mt-24 border-y border-white/5 bg-ink-900/30">
         <div className="mx-auto max-w-3xl">
           <p className="eyebrow mb-5">The detail</p>
           <h2
@@ -437,10 +539,10 @@ export default function ServicesPage() {
                 Why audit before building?
               </h3>
               <p className="mt-4">
-                Not every trade business needs the same follow-up system. A sole trader sending a
-                few quotes each week may need a simple process and a handful of reminders. A larger
-                business with multiple estimators, admin staff and salespeople may need automation,
-                pipeline tracking and AI-assisted response handling.
+                Not every trade business needs the same quote follow-up system. A sole trader
+                sending a few quotes each week may need a simple process and a handful of reminders.
+                A larger business with multiple estimators, admin staff and salespeople may need
+                automation, pipeline tracking and AI-assisted response handling.
               </p>
               <p className="mt-4">
                 The audit prevents the wrong solution from being built. It helps identify whether
@@ -492,22 +594,6 @@ export default function ServicesPage() {
 
             <div>
               <h3 className="pt-2 font-display text-2xl font-semibold tracking-tight text-bone-50 md:text-3xl">
-                What kind of tradies is this for?
-              </h3>
-              <p className="mt-4">
-                This is for trade businesses that send quotes and suspect too many jobs are going
-                cold after the quote is sent. That can include fencing contractors, landscapers,
-                electricians, plumbers, concreters, builders, carpenters, painters, HVAC
-                businesses, roofers, pool builders and solar installers.
-              </p>
-              <p className="mt-4">
-                The best fit is usually a business that already gets enquiries and sends quotes,
-                but does not have a reliable system for following those quotes up.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="pt-2 font-display text-2xl font-semibold tracking-tight text-bone-50 md:text-3xl">
                 The first step is the audit
               </h3>
               <p className="mt-4">
@@ -519,6 +605,33 @@ export default function ServicesPage() {
                 follow-up system for you.
               </p>
             </div>
+          </div>
+
+          <div className="mt-12">
+            <Button href={siteConfig.bookingUrl} external variant="primary">
+              Book a Free Quote Follow-Up Audit
+            </Button>
+          </div>
+        </div>
+      </Section>
+
+      <Section className="border-b border-white/5">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="eyebrow mb-5">Useful reading</p>
+          <h2 className="font-display text-3xl tracking-tight text-bone-50 sm:text-4xl">
+            Want to understand quote follow-up before booking?
+          </h2>
+          <p className="mt-4 text-lg leading-relaxed text-bone-300">
+            Read the blog for practical guides on follow-up timing, wording, calls, texts, emails
+            and how to follow up without sounding annoying.
+          </p>
+          <div className="mt-7">
+            <Link
+              href="/blog"
+              className="inline-flex text-sm font-semibold text-signal-400 underline-offset-4 hover:underline"
+            >
+              Read the quote follow-up guides →
+            </Link>
           </div>
         </div>
       </Section>
