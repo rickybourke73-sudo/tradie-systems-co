@@ -363,7 +363,7 @@ export default function ServicesPage() {
             const Icon = option.icon;
 
             return (
-              <article key={option.id} className="card flex h-full flex-col p-7 sm:p-8">
+              <article id={option.id} key={option.id} className="card flex h-full scroll-mt-28 flex-col p-7 sm:p-8">
                 <div
                   className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-signal-500/20 bg-signal-500/10 text-signal-400"
                   aria-hidden="true"
