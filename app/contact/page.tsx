@@ -12,7 +12,7 @@ import { siteConfig } from '@/lib/site.config';
 export const metadata: Metadata = buildMetadata({
   title: 'Contact — Book a Free Quote Follow-Up Audit',
   description:
-    'Talk to Tradie Systems Co about your quote follow-up. Book a free quote follow-up audit or send a message — we reply within one business day.',
+    'Book a free quote follow-up audit with Tradie Systems Co. We review what happens after your quotes are sent and show where jobs may be slipping through the cracks.',
   path: '/contact'
 });
 
@@ -20,17 +20,20 @@ const trustItems = [
   {
     icon: ShieldCheck,
     title: 'No pitch, no pressure',
-    body: 'We’ll look at how your quotes get followed up today and tell you straight where jobs may be going cold.'
+    body:
+      'We look at how your quotes are followed up today and tell you plainly where jobs may be going cold.'
   },
   {
     icon: CalendarClock,
-    title: '30-minute quote follow-up audit',
-    body: 'Pick a time that suits — early mornings and after-hours slots for tradies on the tools.'
+    title: 'Free quote follow-up audit',
+    body:
+      'Pick a time that suits. We review your current process and show what should be fixed first.'
   },
   {
     icon: Wrench,
     title: 'Built for Australian tradies',
-    body: 'Fencing, electrical, plumbing, landscaping, building, concreting, HVAC and more. We understand how quote-based trade work runs.'
+    body:
+      'Fencing, electrical, plumbing, landscaping, building, concreting, HVAC and other quote-based trade businesses.'
   }
 ];
 
@@ -52,7 +55,6 @@ export default function ContactPage() {
     <>
       <JsonLd data={breadcrumbs} />
 
-      {/* Hero */}
       <Section size="lg" className="relative overflow-hidden">
         <div className="absolute inset-0 -z-10 opacity-60" aria-hidden="true">
           <div className="absolute right-1/4 top-1/4 h-[420px] w-[420px] rounded-full bg-signal-500/10 blur-3xl" />
@@ -64,13 +66,12 @@ export default function ContactPage() {
             Contact
           </p>
           <h1 className="font-display text-[2.25rem] leading-[1.05] tracking-tight text-bone-50 sm:text-5xl md:text-6xl">
-            Let’s look at where your quotes are{' '}
+            Book a free audit and find where your quotes are{' '}
             <span className="italic text-signal-500">leaking jobs</span>.
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-bone-300 md:text-xl">
-            Book a free 30-minute quote follow-up audit, or send a quick message. We’ll look at
-            your current process, show you where follow-up may be breaking down, and explain what
-            to do next.
+            Book a free quote follow-up audit, or send a quick message. We will review your current
+            process, show where follow-up may be breaking down, and explain what to fix next.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button href={bookingUrl} variant="primary" arrow external>
@@ -83,10 +84,8 @@ export default function ContactPage() {
         </div>
       </Section>
 
-      {/* Booking + form, visually joined */}
       <Section size="lg" className="border-t border-white/5">
         <div className="grid items-start gap-10 lg:grid-cols-[1.1fr_1fr] lg:gap-12">
-          {/* Booking column */}
           <div>
             <div className="mb-6 flex items-center gap-3">
               <span
@@ -100,8 +99,8 @@ export default function ContactPage() {
               </h2>
             </div>
             <p className="mb-6 max-w-xl text-bone-300">
-              Pick a time that suits your day. We’ll review how your quotes are being followed up
-              today, where jobs may be going cold, and whether the simplest fix is better templates,
+              Pick a time that suits your day. We will review how your quotes are being followed up,
+              where jobs may be going cold, and whether the simplest fix is better wording,
               reminders, automation, or done-for-you implementation.
             </p>
 
@@ -126,6 +125,7 @@ export default function ContactPage() {
                     </div>
                   </div>
                 );
+
                 return c.href ? (
                   <a
                     key={c.label}
@@ -143,8 +143,7 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Form column */}
-          <div id="message" className="lg:sticky lg:top-28 lg:self-start scroll-mt-28">
+          <div id="message" className="scroll-mt-28 lg:sticky lg:top-28 lg:self-start">
             <div className="card p-6 sm:p-8 md:p-9">
               <div className="mb-6 flex items-center gap-3">
                 <span
@@ -156,7 +155,7 @@ export default function ContactPage() {
                 <h2 className="font-display text-2xl text-bone-50">Prefer to send a message?</h2>
               </div>
               <p className="mb-6 text-sm text-bone-400">
-                Tell us about your business and your follow-up situation. We’ll reply within one
+                Tell us about your business and your follow-up situation. We will reply within one
                 business day.
               </p>
               <ContactForm />
@@ -165,15 +164,15 @@ export default function ContactPage() {
         </div>
       </Section>
 
-      {/* Trust strip */}
       <Section size="md" className="border-t border-white/5">
         <SectionHeader
           eyebrow="Why an audit is worth your time"
-          title="No fluff. No long pitch. Just a straight answer on your follow-up."
+          title="No fluff. No long pitch. Just a straight answer on your quote follow-up."
         />
         <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3">
           {trustItems.map((item) => {
             const Icon = item.icon;
+
             return (
               <div key={item.title} className="card p-6 transition-colors duration-200 hover:border-white/10">
                 <span
