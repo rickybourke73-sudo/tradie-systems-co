@@ -14,8 +14,8 @@ const footerNav = {
     { label: 'Quote follow-up audit', href: '/services#free-quote-follow-up-audit' },
     { label: 'DIY follow-up plan', href: '/services#diy-plan' },
     { label: 'Follow-up starter', href: '/services#follow-up-starter' },
-    { label: 'Follow-up system', href: '/services#follow-up-system' },
-    { label: 'AI-assisted follow-up', href: '/services#ai-assisted-follow-up' }
+    { label: 'Follow-up system', href: '/services#follow-up-assist' },
+    { label: 'AI-assisted follow-up', href: '/services#follow-up-engine' }
   ]
 };
 
