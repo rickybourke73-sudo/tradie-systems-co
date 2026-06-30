@@ -7,9 +7,9 @@ import { FinalCta } from '@/components/sections/FinalCta';
 import { siteConfig } from '@/lib/site.config';
 
 export const metadata = buildMetadata({
-  title: 'FAQs — Quote Follow-Up Systems for Tradies',
+  title: 'FAQs — Free Quote Follow-Up Audit for Tradies',
   description:
-    'Plain answers about quote follow-up, customer follow-up, lead recovery, integrations, setup time, and what to expect in the first 90 days.',
+    'Plain answers about free quote follow-up audits, quote follow-up systems, lead recovery, setup options, automation, AI, and what Australian tradies should expect.',
   path: '/faqs'
 });
 
@@ -21,13 +21,11 @@ function slugify(s: string) {
 }
 
 export default function FaqsPage() {
-  // Group by category, preserving insertion order
   const groups = faqs.reduce<Record<string, typeof faqs>>((acc, f) => {
     (acc[f.category] ??= []).push(f);
     return acc;
   }, {});
 
-  // FAQ schema requires plain text — strip smart quotes for the structured data only.
   const cleanFaqs = faqs.map((f) => ({
     question: f.question.replace(/[‘’]/g, "'").replace(/[“”]/g, '"'),
     answer: f.answer.replace(/[‘’]/g, "'").replace(/[“”]/g, '"')
@@ -49,16 +47,16 @@ export default function FaqsPage() {
         <div className="max-w-3xl">
           <p className="eyebrow mb-5">FAQs</p>
           <h1 className="text-balance font-display text-[2.25rem] leading-[1.05] tracking-tight text-bone-50 sm:text-5xl md:text-6xl">
-            Everything tradies actually want to know.
+            Questions tradies ask before booking a quote follow-up audit.
           </h1>
           <p className="mt-6 text-pretty text-lg leading-relaxed text-bone-300 md:text-xl">
-            Plain answers about how quote follow-up systems work, what they cost, how long setup takes,
-            and what you should expect in the first 90 days.
+            Plain answers about free quote follow-up audits, quote follow-up systems, lead recovery,
+            setup options, automation, AI, and what to expect if you want help tightening up what
+            happens after a quote is sent.
           </p>
         </div>
       </Section>
 
-      {/* Mobile/tablet: horizontal chip nav. Sticky just below the header. */}
       <div className="sticky top-16 z-20 -mt-2 border-y border-white/5 bg-ink-950/85 backdrop-blur lg:hidden">
         <nav aria-label="FAQ categories" className="container-tight">
           <ul className="-mx-4 flex gap-2 overflow-x-auto px-4 py-3 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
@@ -78,7 +76,6 @@ export default function FaqsPage() {
 
       <Section size="md">
         <div className="grid gap-10 lg:grid-cols-[240px,1fr] lg:gap-14">
-          {/* Desktop sidebar */}
           <aside className="hidden self-start lg:sticky lg:top-28 lg:block">
             <p className="mb-4 font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-bone-500">
               Categories
@@ -97,7 +94,6 @@ export default function FaqsPage() {
             </ul>
           </aside>
 
-          {/* FAQ groups */}
           <div className="space-y-14 md:space-y-16">
             {Object.entries(groups).map(([cat, items]) => (
               <section key={cat} id={slugify(cat)} className="scroll-mt-32 lg:scroll-mt-28">
