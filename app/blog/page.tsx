@@ -10,9 +10,9 @@ import { client, POSTS_QUERY } from '@/lib/sanity';
 export const revalidate = 60;
 
 export const metadata = buildMetadata({
-  title: 'Quote Follow-Up & Lead Recovery - Insights for Australian Tradies',
+  title: 'Quote Follow-Up Guides for Australian Tradies',
   description:
-    'Practical guides on quote follow-up, customer communication, lead recovery, and quote conversion - written for Australian tradies, no jargon.',
+    'Practical quote follow-up guides for Australian tradies. Learn when to follow up, what to say, whether to call, text or email, and how to recover cold quotes.',
   path: '/blog'
 });
 
@@ -35,12 +35,14 @@ function estimateReadingMinutes(post: SanityPost): number {
 function deriveCategories(posts: SanityPost[]): string[] {
   const seen = new Set<string>();
   const result: string[] = [];
+
   for (const p of posts) {
     if (p.category && !seen.has(p.category)) {
       seen.add(p.category);
       result.push(p.category);
     }
   }
+
   return result;
 }
 
@@ -76,14 +78,44 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
 
       <Section size="lg" className="pt-20 md:pt-28">
         <div className="max-w-3xl">
-          <p className="eyebrow mb-5">The Field Notes</p>
+          <p className="eyebrow mb-5">Quote follow-up guides</p>
           <h1 className="text-balance font-display text-[2.25rem] leading-[1.05] tracking-tight text-bone-50 sm:text-5xl md:text-6xl">
-            Practical writing on follow-up, lead recovery, and quote conversion.
+            Practical quote follow-up advice for Australian tradies.
           </h1>
           <p className="mt-6 text-pretty text-lg leading-relaxed text-bone-300 md:text-xl">
-            Built for Australian tradies who want to win more jobs without spending more on
-            advertising. Honest, specific, no jargon.
+            Learn when to follow up, what to say, whether to call, text or email, and how to stop
+            quoted jobs from quietly going cold after the quote is sent.
           </p>
+        </div>
+
+        <div className="mt-8 grid max-w-4xl gap-3 sm:grid-cols-3">
+          <Link
+            href="/services"
+            className="rounded-xl border border-white/5 bg-ink-900/40 p-4 text-sm text-bone-200 transition-colors hover:border-signal-500/30 hover:bg-ink-900/70 hover:text-bone-50"
+          >
+            <span className="block font-mono text-[11px] uppercase tracking-[0.18em] text-signal-400">
+              Start here
+            </span>
+            <span className="mt-2 block">Book a free quote follow-up audit</span>
+          </Link>
+          <Link
+            href="/faqs"
+            className="rounded-xl border border-white/5 bg-ink-900/40 p-4 text-sm text-bone-200 transition-colors hover:border-signal-500/30 hover:bg-ink-900/70 hover:text-bone-50"
+          >
+            <span className="block font-mono text-[11px] uppercase tracking-[0.18em] text-signal-400">
+              Questions
+            </span>
+            <span className="mt-2 block">Read common quote follow-up FAQs</span>
+          </Link>
+          <Link
+            href="/contact"
+            className="rounded-xl border border-white/5 bg-ink-900/40 p-4 text-sm text-bone-200 transition-colors hover:border-signal-500/30 hover:bg-ink-900/70 hover:text-bone-50"
+          >
+            <span className="block font-mono text-[11px] uppercase tracking-[0.18em] text-signal-400">
+              Need help?
+            </span>
+            <span className="mt-2 block">Talk through your current process</span>
+          </Link>
         </div>
 
         {categories.length > 0 && (
@@ -105,6 +137,7 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
               </li>
               {categories.map((c) => {
                 const active = activeCategory === c;
+
                 return (
                   <li key={c} className="shrink-0">
                     <Link
@@ -134,7 +167,7 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
             title={
               isFiltered
                 ? `${filteredPosts.length} ${filteredPosts.length === 1 ? 'post' : 'posts'} in ${activeCategory}`
-                : 'Start here.'
+                : 'Start with these quote follow-up guides.'
             }
           />
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -147,13 +180,13 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
 
       {rest.length > 0 ? (
         <Section>
-          <SectionHeader eyebrow="All posts" title="The archive." />
+          <SectionHeader eyebrow="All posts" title="More quote follow-up articles." />
           <ul className="mt-8 divide-y divide-white/5 border-y border-white/5">
             {rest.map((post) => (
               <li key={post.slug}>
                 <Link
                   href={`/blog/${post.slug}`}
-                  className="group grid items-baseline gap-3 py-6 transition-colors duration-200 hover:bg-ink-900/40 sm:gap-6 md:grid-cols-[auto,1fr,auto] md:gap-8 md:py-7 -mx-2 px-2 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-500/60"
+                  className="-mx-2 grid items-baseline gap-3 rounded-lg px-2 py-6 transition-colors duration-200 hover:bg-ink-900/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-500/60 sm:gap-6 md:grid-cols-[auto,1fr,auto] md:gap-8 md:py-7"
                 >
                   <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-bone-500 md:w-32">
                     {formatDate(post.publishedAt)}
@@ -212,7 +245,7 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
           <div className="card p-8 text-center md:p-12">
             <h2 className="font-display text-2xl text-bone-50">No posts published yet.</h2>
             <p className="mx-auto mt-3 max-w-md text-bone-300">
-              Check back soon - we are working on it.
+              Check back soon — we are working on it.
             </p>
           </div>
         </Section>
@@ -244,7 +277,7 @@ function FeaturedCard({ post }: { post: SanityPost }) {
         <span>{formatDate(post.publishedAt)}</span>
         <span className="inline-flex items-center gap-1">
           <Clock3 className="h-3 w-3" aria-hidden="true" />
-          {Math.max(1, Math.ceil(((post.excerpt ?? '').split(/\s+/).length / 200) + 3))} min
+          {estimateReadingMinutes(post)} min
         </span>
       </div>
     </Link>
