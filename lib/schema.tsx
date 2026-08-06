@@ -1,4 +1,9 @@
-import { siteConfig } from './site.config';
+﻿import { siteConfig } from './site.config';
+
+/** Resolves a config path (relative or absolute) to a full URL for structured data. */
+function absoluteUrl(path: string) {
+  return path.startsWith('http') ? path : `${siteConfig.url}${path}`;
+}
 
 export function organizationSchema() {
   return {
@@ -9,13 +14,16 @@ export function organizationSchema() {
     legalName: siteConfig.business.legalName,
     url: siteConfig.url,
     email: siteConfig.email,
-    foundingDate: `${siteConfig.business.foundingYear}-01-01`,
     description: siteConfig.description,
     areaServed: {
       '@type': 'Country',
       name: 'Australia'
     },
-    sameAs: [siteConfig.social.linkedin, siteConfig.social.instagram, siteConfig.social.facebook],
+    sameAs: [
+      siteConfig.social.linkedin,
+      siteConfig.social.instagram,
+      siteConfig.social.facebook
+    ].filter(Boolean),
     logo: `${siteConfig.url}/logo.png`
   };
 }
@@ -30,46 +38,31 @@ export function localBusinessSchema() {
     url: siteConfig.url,
     email: siteConfig.email,
     image: `${siteConfig.url}/og-default.png`,
-    priceRange: '$$',
     areaServed: {
       '@type': 'Country',
       name: 'Australia'
     },
-    serviceType: 'Free quote follow-up audits for Australian tradies',
+    serviceType: siteConfig.tagline,
     slogan: siteConfig.tagline,
     knowsAbout: [
-      'Quote follow-up audits',
+      'Lead response for tradies',
       'Quote follow-up systems',
-      'Tradie quote follow-up',
-      'Follow-up after sending a quote',
-      'Customer follow-up for tradies',
-      'Quote conversion for tradies',
-      'Lead follow-up',
-      'Lead recovery',
-      'Missed quote follow-up',
-      'Cold quote reactivation',
-      'Speed to lead',
-      'SMS quote follow-up',
-      'Email quote follow-up',
-      'Quote reminder sequences',
-      'Customer reply handling',
-      'Trade business workflow improvement',
-      'ServiceM8',
-      'Tradify',
-      'simPRO',
-      'AroFlo',
-      'Jobber',
-      'Fergus'
+      'Booking and scheduling systems',
+      'Customer and job organisation',
+      'Invoice follow-up',
+      'Trade business admin systems',
+      'Workflow systems for tradies',
+      ...siteConfig.integrations
     ],
     makesOffer: {
       '@type': 'Offer',
-      name: 'Free Quote Follow-Up Audit',
+      name: siteConfig.bookingLabel,
       description:
-        'A free audit for Australian tradies that reviews what happens after a quote is sent, identifies where quoted jobs may be slipping through, and provides a clear follow-up improvement plan.',
+        'A free, no-obligation review of how leads, quotes, bookings, invoices and admin are currently being handled, with practical recommendations on what to fix first.',
       price: '0',
       priceCurrency: 'AUD',
       availability: 'https://schema.org/InStock',
-      url: siteConfig.bookingUrl,
+      url: absoluteUrl(siteConfig.bookingUrl),
       areaServed: {
         '@type': 'Country',
         name: 'Australia'
@@ -101,7 +94,7 @@ export function breadcrumbSchema(items: { name: string; url: string }[]) {
       '@type': 'ListItem',
       position: i + 1,
       name: item.name,
-      item: item.url.startsWith('http') ? item.url : `${siteConfig.url}${item.url}`
+      item: absoluteUrl(item.url)
     }))
   };
 }
@@ -144,22 +137,39 @@ export function articleSchema(article: {
     publisher: {
       '@type': 'Organization',
       name: siteConfig.name,
-      logo: { '@type': 'ImageObject', url: `${siteConfig.url}/logo.png` }
+      logo: {
+        '@type': 'ImageObject',
+        url: `${siteConfig.url}/logo.png`
+      }
     },
     image: article.image ?? `${siteConfig.url}/og-default.png`,
-    mainEntityOfPage: { '@type': 'WebPage', '@id': `${siteConfig.url}/blog/${article.slug}` }
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${siteConfig.url}/blog/${article.slug}`
+    }
   };
 }
 
-export function serviceSchema(s: { name: string; description: string; slug: string }) {
+export function serviceSchema(s: {
+  name: string;
+  description: string;
+  slug: string;
+}) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
     name: s.name,
     description: s.description,
-    provider: { '@type': 'Organization', name: siteConfig.name, url: siteConfig.url },
-    areaServed: { '@type': 'Country', name: 'Australia' },
-    serviceType: 'Quote follow-up audit',
+    provider: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      url: siteConfig.url
+    },
+    areaServed: {
+      '@type': 'Country',
+      name: 'Australia'
+    },
+    serviceType: 'Trade business systems',
     url: `${siteConfig.url}/services#${s.slug}`
   };
 }
@@ -168,15 +178,15 @@ export function howToSchema(steps: { name: string; text: string }[]) {
   return {
     '@context': 'https://schema.org',
     '@type': 'HowTo',
-    name: 'How a quote follow-up audit works for tradies',
+    name: 'How Tradie Systems Co builds practical systems for tradies',
     description:
-      'Step-by-step overview of how a quote follow-up audit reviews what happens after a tradie sends a quote, identifies gaps, and produces a clear follow-up improvement plan.',
+      "Step-by-step overview of how Tradie Systems Co reviews a trade business's current process and builds a practical system to improve lead response, quote follow-up, bookings, invoicing and admin.",
     step: steps.map((step, i) => ({
       '@type': 'HowToStep',
       position: i + 1,
       name: step.name,
       text: step.text,
-      url: `${siteConfig.url}/#how-it-works`
+      url: `${siteConfig.url}/how-it-works`
     }))
   };
 }
@@ -198,7 +208,9 @@ export function JsonLd({ data }: { data: object }) {
     <script
       type="application/ld+json"
       // eslint-disable-next-line react/no-danger
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, '\\u003c') }}
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(data).replace(/</g, '\\u003c')
+      }}
     />
   );
 }
