@@ -40,21 +40,21 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} — Free Quote Follow-Up Audit for Australian Tradies`,
+    default: `${siteConfig.name} — Practical Systems for Australian Tradies`,
     template: `%s | ${siteConfig.name}`
   },
   description: siteConfig.description,
   keywords: [
-    'quote follow up audit',
-    'quote follow up',
-    'quote follow up system',
-    'tradie quote follow up',
-    'follow up after quote',
-    'customer follow up tradies',
-    'quote conversion',
-    'lead follow up Australia',
     'tradie business systems',
-    'lead recovery'
+    'lead response for tradies',
+    'quote follow up for tradies',
+    'booking and scheduling systems for tradies',
+    'customer and job organisation',
+    'invoice follow up',
+    'trade business admin systems',
+    'workflow systems for tradies',
+    'Australian tradies',
+    'Australian trade business systems'
   ],
   authors: [{ name: siteConfig.business.legalName }],
   creator: siteConfig.business.legalName,
@@ -66,13 +66,13 @@ export const metadata: Metadata = {
     locale: 'en_AU',
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: `${siteConfig.name} — Free Quote Follow-Up Audit for Australian Tradies`,
+    title: `${siteConfig.name} — Practical Systems for Australian Tradies`,
     description: siteConfig.description,
     images: [{ url: '/og-default.png', width: 1200, height: 630, alt: siteConfig.name }]
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${siteConfig.name} — Free Quote Follow-Up Audit`,
+    title: `${siteConfig.name} — Practical Systems for Australian Tradies`,
     description: siteConfig.description,
     images: ['/og-default.png']
   },
