@@ -4,13 +4,12 @@ export const siteConfig = {
   domain: 'tradiesystemsco.com.au',
   url: 'https://www.tradiesystemsco.com.au',
   tagline: 'Practical systems for Australian tradies.',
-  description:
-    "Tradie Systems Co builds practical systems that help Australian tradies respond faster, follow up better, stay organised, and stop money slipping through the cracks — across leads, quotes, bookings, invoices and admin.",
+  description: "Tradie Systems Co builds practical systems that help Australian tradies respond faster, follow up better, stay organised, and stop money slipping through the cracks — across leads, quotes, bookings, invoices and admin.",
   email: 'ricky@tradiesystemsco.com.au',
   phone: '',
   bookingUrl: '/contact',
-  bookingLabel: 'Request a Free Systems Review',
-  ctaSecondary: 'Request a Free Systems Review',
+  bookingLabel: 'Request a Free Systems Call',
+  ctaSecondary: 'Request a Free Systems Call',
 
   social: {
     linkedin: 'https://www.linkedin.com/company/tradiesystemsco',

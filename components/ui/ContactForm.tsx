@@ -127,11 +127,11 @@ export function ContactForm() {
         </div>
 
         <h3 className="font-display text-2xl text-bone-50">
-          Your message has been received.
+          Your call request has been received.
         </h3>
 
         <p className="mx-auto mt-3 max-w-md text-bone-300">
-          We will get back to you within one business day.
+          We will contact you within one business day to arrange a suitable time for your free systems call.
         </p>
 
         <button
@@ -278,7 +278,7 @@ export function ContactForm() {
         >
           {status === 'submitting'
             ? 'Sending...'
-            : 'Request My Free Systems Review'}
+            : 'Request My Free Systems Call'}
         </Button>
 
         <p className="mt-4 text-xs leading-relaxed text-bone-400">

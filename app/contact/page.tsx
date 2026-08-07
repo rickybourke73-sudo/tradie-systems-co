@@ -18,7 +18,7 @@ import { siteConfig } from '@/lib/site.config';
 export const metadata: Metadata = buildMetadata({
   title: 'Contact Tradie Systems Co',
   description:
-    'Request a free systems review for your trade business. Tell us where leads, quotes, bookings, invoices or admin tasks are slipping through the cracks.',
+    'Request a free systems call for your trade business. Leave your details and we will contact you to arrange a time to discuss where leads, quotes, bookings, invoices or admin tasks are slipping through the cracks.',
   path: '/contact'
 });
 
@@ -83,7 +83,7 @@ export default function ContactPage() {
               className="inline-flex h-1.5 w-1.5 rounded-full bg-signal-500"
               aria-hidden="true"
             />
-            Free Systems Review
+            Free Systems Call
           </p>
 
           <h1 className="font-display text-[2.25rem] leading-[1.05] tracking-tight text-bone-50 sm:text-5xl md:text-6xl">
@@ -101,7 +101,7 @@ export default function ContactPage() {
 
           <div className="mt-8 flex flex-wrap gap-3">
             <Button href="#systems-review" variant="primary" arrow>
-              Request My Free Systems Review
+              Request My Free Systems Call
             </Button>
 
             <Button href="/how-it-works" variant="ghost">
@@ -173,7 +173,7 @@ export default function ContactPage() {
             <div className="card p-6 sm:p-8 md:p-9">
               <div className="mb-6">
                 <h2 className="font-display text-2xl text-bone-50 md:text-3xl">
-                  Request your free systems review
+                  Request your free systems call
                 </h2>
 
                 <p className="mt-3 text-sm leading-relaxed text-bone-400">

@@ -27,7 +27,7 @@ const steps = [
   {
     icon: Search,
     number: '01',
-    name: 'Free Systems Review',
+    name: 'Free Systems Call',
     text:
       'We look at how your business currently handles leads, quotes, bookings, customer details, invoices and daily admin.',
     details: [
@@ -161,7 +161,7 @@ export default function HowItWorksPage() {
 
           <div className="mt-8">
             <Button href="/contact" variant="primary" arrow>
-              Request a Free Systems Review
+              Request a Free Systems Call
             </Button>
           </div>
         </div>
@@ -266,13 +266,13 @@ export default function HowItWorksPage() {
               </h2>
 
               <p className="mt-3 text-bone-300">
-                The Free Systems Review looks at the current process first, so you are not paying
+                The Free Systems Call starts with a conversation about your current process, so you are not paying
                 for tools or complexity the business does not need.
               </p>
             </div>
 
             <Button href="/contact" variant="primary" arrow className="w-full md:w-auto">
-              Request a Free Systems Review
+              Request a Free Systems Call
             </Button>
           </div>
         </div>

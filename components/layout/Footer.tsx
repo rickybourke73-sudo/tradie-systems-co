@@ -6,7 +6,7 @@ import { siteConfig } from '@/lib/site.config';
 
 const footerNav = {
   resources: [
-    { label: 'Free Systems Review', href: '/contact' },
+    { label: 'Free Systems Call', href: '/contact' },
     { label: 'How It Works', href: '/how-it-works' },
     { label: "Who It's For", href: '/who-its-for' },
     { label: 'Blog', href: '/blog' },

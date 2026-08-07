@@ -23,7 +23,7 @@ import { buildMetadata } from '@/lib/seo';
 import { siteConfig } from '@/lib/site.config';
 
 export const metadata: Metadata = buildMetadata({
-  title: "Who It's For â€” Systems for Australian Tradies",
+  title: "Who It's For — Systems for Australian Tradies",
   description:
     'Practical lead response, quote follow-up, booking, invoice and admin systems for Australian tradies, owner-operators and small trade teams.',
   path: '/who-its-for'
@@ -173,7 +173,7 @@ export default function WhoItsForPage() {
 
           <div className="mt-8">
             <Button href="/contact" variant="primary" arrow>
-              Request a Free Systems Review
+              Request a Free Systems Call
             </Button>
           </div>
         </div>
@@ -278,7 +278,7 @@ export default function WhoItsForPage() {
             </div>
 
             <Button href="/contact" variant="primary" arrow className="w-full md:w-auto">
-              Request a Free Systems Review
+              Request a Free Systems Call
             </Button>
           </div>
         </div>
