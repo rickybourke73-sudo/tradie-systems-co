@@ -4,13 +4,9 @@ import { Resend } from 'resend';
 interface ContactPayload {
   name?: string;
   email?: string;
-  phone?: string;
   business?: string;
-  trade?: string;
-  location?: string;
-  mainProblem?: string;
-  currentTools?: string[];
-  message?: string;
+  phone?: string;
+  extraInformation?: string;
   website?: string;
 }
 
@@ -19,16 +15,6 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 function sanitize(value: unknown, max = 2000): string {
   if (typeof value !== 'string') return '';
   return value.trim().slice(0, max);
-}
-
-function sanitizeStringArray(value: unknown, maxItems = 12): string[] {
-  if (!Array.isArray(value)) return [];
-
-  return value
-    .filter((item): item is string => typeof item === 'string')
-    .map((item) => sanitize(item, 100))
-    .filter(Boolean)
-    .slice(0, maxItems);
 }
 
 export async function POST(request: Request) {
@@ -43,32 +29,21 @@ export async function POST(request: Request) {
     );
   }
 
-  // Honeypot: silently accept bot submissions.
   if (sanitize(body.website, 200)) {
     return NextResponse.json({ ok: true });
   }
 
   const name = sanitize(body.name, 120);
   const email = sanitize(body.email, 200);
-  const phone = sanitize(body.phone, 40);
   const business = sanitize(body.business, 200);
-  const trade = sanitize(body.trade, 100);
-  const location = sanitize(body.location, 160);
-  const mainProblem = sanitize(body.mainProblem, 500);
-  const currentTools = sanitizeStringArray(body.currentTools);
-  const message = sanitize(body.message, 4000);
+  const phone = sanitize(body.phone, 40);
+  const extraInformation = sanitize(body.extraInformation, 4000);
 
   const errors: string[] = [];
 
   if (!name) errors.push('Name is required.');
   if (!email || !EMAIL_REGEX.test(email)) {
     errors.push('A valid email is required.');
-  }
-  if (!trade) errors.push('Trade is required.');
-
-  // Supports the current form while we transition to the expanded form.
-  if (!mainProblem && message.length < 10) {
-    errors.push('Please tell us briefly what you need help with.');
   }
 
   if (errors.length > 0) {
@@ -101,27 +76,18 @@ export async function POST(request: Request) {
 
   const subject = `New website enquiry: ${name}${
     business ? ` (${business})` : ''
-  } — ${trade}`;
+  }`;
 
   const text = [
     'New enquiry from tradiesystemsco.com.au',
     '',
     `Name: ${name}`,
     `Email: ${email}`,
-    `Phone: ${phone || 'Not provided'}`,
     `Business: ${business || 'Not provided'}`,
-    `Trade: ${trade}`,
-    `Location: ${location || 'Not provided'}`,
+    `Phone: ${phone || 'Not provided'}`,
     '',
-    'Main problem:',
-    mainProblem || message,
-    '',
-    `Current tools: ${
-      currentTools.length > 0 ? currentTools.join(', ') : 'Not provided'
-    }`,
-    '',
-    'Additional message:',
-    message || 'Not provided',
+    'Tell us a little more:',
+    extraInformation || 'Not provided',
     '',
     '---',
     `Submitted: ${new Date().toISOString()}`

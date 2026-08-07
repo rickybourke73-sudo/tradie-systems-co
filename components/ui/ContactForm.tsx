@@ -7,60 +7,23 @@ import { siteConfig } from '@/lib/site.config';
 
 interface FormState {
   name: string;
-  business: string;
-  trade: string;
-  location: string;
   email: string;
+  business: string;
   phone: string;
-  mainProblem: string;
-  currentTools: string[];
-  message: string;
+  extraInformation: string;
   website: string;
 }
 
 const initialState: FormState = {
   name: '',
-  business: '',
-  trade: '',
-  location: '',
   email: '',
+  business: '',
   phone: '',
-  mainProblem: '',
-  currentTools: [],
-  message: '',
+  extraInformation: '',
   website: ''
 };
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-const TRADES = [
-  'Fencing',
-  'Landscaping',
-  'Electrical',
-  'Plumbing',
-  'Building',
-  'Concreting',
-  'HVAC',
-  'Painting',
-  'Carpentry',
-  'Roofing',
-  'Solar',
-  'Pest control',
-  'Cleaning',
-  'Other'
-] as const;
-
-const TOOL_OPTIONS = [
-  'Paper or notebook',
-  'Phone notes',
-  'Google Sheets',
-  'Xero',
-  'ServiceM8',
-  'Tradify',
-  'Simpro',
-  'Other software',
-  'Nothing consistent'
-] as const;
 
 export function ContactForm() {
   const [form, setForm] = useState<FormState>(initialState);
@@ -70,23 +33,16 @@ export function ContactForm() {
   const [errorMsg, setErrorMsg] = useState('');
   const [touched, setTouched] = useState({
     name: false,
-    email: false,
-    trade: false,
-    location: false,
-    mainProblem: false
+    email: false
   });
 
   const baseId = useId();
   const id = (key: string) => `${baseId}-${key}`;
 
   const update =
+    (key: keyof FormState) =>
     (
-      key: Exclude<keyof FormState, 'currentTools'>
-    ) =>
-    (
-      event: React.ChangeEvent<
-        HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-      >
+      event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
     ) => {
       setForm((current) => ({
         ...current,
@@ -94,30 +50,9 @@ export function ContactForm() {
       }));
     };
 
-  const blur =
-    (key: keyof typeof touched) =>
-    () => {
-      setTouched((current) => ({
-        ...current,
-        [key]: true
-      }));
-    };
-
-  const toggleTool = (tool: string) => {
-    setForm((current) => ({
-      ...current,
-      currentTools: current.currentTools.includes(tool)
-        ? current.currentTools.filter((item) => item !== tool)
-        : [...current.currentTools, tool]
-    }));
-  };
-
   const errors = {
     name: form.name.trim().length === 0,
-    email: !EMAIL_REGEX.test(form.email.trim()),
-    trade: form.trade.trim().length === 0,
-    location: form.location.trim().length === 0,
-    mainProblem: form.mainProblem.trim().length < 10
+    email: !EMAIL_REGEX.test(form.email.trim())
   };
 
   const showError = (key: keyof typeof errors) =>
@@ -128,21 +63,12 @@ export function ContactForm() {
 
     setTouched({
       name: true,
-      email: true,
-      trade: true,
-      location: true,
-      mainProblem: true
+      email: true
     });
 
-    if (
-      errors.name ||
-      errors.email ||
-      errors.trade ||
-      errors.location ||
-      errors.mainProblem
-    ) {
+    if (errors.name || errors.email) {
       setStatus('error');
-      setErrorMsg('Please complete the required fields above.');
+      setErrorMsg('Please add your name and a valid email.');
       return;
     }
 
@@ -173,7 +99,7 @@ export function ContactForm() {
         };
 
         browserWindow.gtag?.('event', 'generate_lead', {
-          method: 'systems_review_form'
+          method: 'contact_form'
         });
       }
 
@@ -201,12 +127,11 @@ export function ContactForm() {
         </div>
 
         <h3 className="font-display text-2xl text-bone-50">
-          Your review request has been received.
+          Your message has been received.
         </h3>
 
         <p className="mx-auto mt-3 max-w-md text-bone-300">
-          We will review what you have shared and reply within one business
-          day.
+          We will get back to you within one business day.
         </p>
 
         <button
@@ -214,14 +139,14 @@ export function ContactForm() {
           onClick={() => setStatus('idle')}
           className="btn btn-ghost mt-7"
         >
-          Send another enquiry
+          Send another message
         </button>
       </div>
     );
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate className="space-y-6">
+    <form onSubmit={onSubmit} noValidate className="space-y-5">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -left-[9999px] h-0 w-0 overflow-hidden"
@@ -250,7 +175,9 @@ export function ContactForm() {
             required
             value={form.name}
             onChange={update('name')}
-            onBlur={blur('name')}
+            onBlur={() =>
+              setTouched((current) => ({ ...current, name: true }))
+            }
             autoComplete="name"
             aria-invalid={showError('name') || undefined}
             className={fieldClass(showError('name'))}
@@ -275,58 +202,6 @@ export function ContactForm() {
 
       <div className="grid gap-5 sm:grid-cols-2">
         <Field
-          label="Your trade"
-          htmlFor={id('trade')}
-          required
-          error={
-            showError('trade') ? 'Please select your trade.' : undefined
-          }
-        >
-          <select
-            id={id('trade')}
-            required
-            value={form.trade}
-            onChange={update('trade')}
-            onBlur={blur('trade')}
-            aria-invalid={showError('trade') || undefined}
-            className={fieldClass(showError('trade'))}
-          >
-            <option value="">Select your trade...</option>
-            {TRADES.map((trade) => (
-              <option key={trade} value={trade}>
-                {trade}
-              </option>
-            ))}
-          </select>
-        </Field>
-
-        <Field
-          label="Location"
-          htmlFor={id('location')}
-          required
-          error={
-            showError('location')
-              ? 'Please add your suburb, town or service area.'
-              : undefined
-          }
-        >
-          <input
-            id={id('location')}
-            type="text"
-            required
-            value={form.location}
-            onChange={update('location')}
-            onBlur={blur('location')}
-            placeholder="Example: Townsville, QLD"
-            autoComplete="address-level2"
-            aria-invalid={showError('location') || undefined}
-            className={fieldClass(showError('location'))}
-          />
-        </Field>
-      </div>
-
-      <div className="grid gap-5 sm:grid-cols-2">
-        <Field
           label="Email"
           htmlFor={id('email')}
           required
@@ -341,7 +216,9 @@ export function ContactForm() {
             inputMode="email"
             value={form.email}
             onChange={update('email')}
-            onBlur={blur('email')}
+            onBlur={() =>
+              setTouched((current) => ({ ...current, email: true }))
+            }
             autoComplete="email"
             aria-invalid={showError('email') || undefined}
             className={fieldClass(showError('email'))}
@@ -362,78 +239,19 @@ export function ContactForm() {
       </div>
 
       <Field
-        label="What is the main problem you want to fix?"
-        htmlFor={id('mainProblem')}
-        required
-        error={
-          showError('mainProblem')
-            ? 'Please give us a short description of the problem.'
-            : undefined
-        }
-      >
-        <textarea
-          id={id('mainProblem')}
-          required
-          rows={5}
-          value={form.mainProblem}
-          onChange={update('mainProblem')}
-          onBlur={blur('mainProblem')}
-          placeholder="For example: quotes are not being followed up, missed calls are being forgotten, invoices are overdue, or jobs are hard to keep organised."
-          aria-invalid={showError('mainProblem') || undefined}
-          className={`${fieldClass(
-            showError('mainProblem')
-          )} min-h-[130px] resize-y leading-relaxed`}
-        />
-      </Field>
-
-      <fieldset>
-        <legend className="text-sm font-medium text-bone-100">
-          What are you currently using?
-        </legend>
-        <p className="mt-1 text-xs text-bone-400">
-          Select all that apply. This is optional.
-        </p>
-
-        <div className="mt-3 grid gap-3 sm:grid-cols-2">
-          {TOOL_OPTIONS.map((tool) => {
-            const checked = form.currentTools.includes(tool);
-
-            return (
-              <label
-                key={tool}
-                className={`flex cursor-pointer items-center gap-3 rounded-xl border px-4 py-3 text-sm transition-colors ${
-                  checked
-                    ? 'border-signal-500 bg-signal-500/10 text-bone-50'
-                    : 'border-white/10 bg-ink-900/40 text-bone-300 hover:border-white/20'
-                }`}
-              >
-                <input
-                  type="checkbox"
-                  checked={checked}
-                  onChange={() => toggleTool(tool)}
-                  className="h-4 w-4 rounded border-white/20 bg-ink-900 text-signal-500 focus:ring-signal-500"
-                />
-                <span>{tool}</span>
-              </label>
-            );
-          })}
-        </div>
-      </fieldset>
-
-      <Field
-        label="Anything else we should know?"
-        htmlFor={id('message')}
+        label="Tell us a little more"
+        htmlFor={id('extraInformation')}
         hint="Optional"
       >
         <textarea
-          id={id('message')}
-          rows={4}
-          value={form.message}
-          onChange={update('message')}
-          placeholder="Add any extra context, goals, deadlines or questions."
+          id={id('extraInformation')}
+          rows={5}
+          value={form.extraInformation}
+          onChange={update('extraInformation')}
+          placeholder="What would you like help with? A few details about what is happening in your business will help us understand where to start."
           className={`${fieldClass(
             false
-          )} min-h-[110px] resize-y leading-relaxed`}
+          )} min-h-[130px] resize-y leading-relaxed`}
         />
       </Field>
 
