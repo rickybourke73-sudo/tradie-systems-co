@@ -85,7 +85,7 @@ export function Header() {
         </nav>
 
         <div className="hidden md:block">
-          <Button href={siteConfig.bookingUrl} external variant="primary">
+          <Button href={siteConfig.bookingUrl} variant="primary">
             {siteConfig.bookingLabel}
           </Button>
         </div>
@@ -135,16 +135,12 @@ export function Header() {
           <div className="mt-auto space-y-3 pt-8">
             <Button
               href={siteConfig.bookingUrl}
-              external
               variant="primary"
               arrow
               className="w-full justify-center"
             >
               {siteConfig.bookingLabel}
             </Button>
-            <Link href="/contact" className="btn btn-ghost w-full justify-center">
-              Send a message
-            </Link>
           </div>
         </div>
       </div>
