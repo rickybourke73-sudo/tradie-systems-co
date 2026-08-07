@@ -278,7 +278,7 @@ export function ContactForm() {
         >
           {status === 'submitting'
             ? 'Sending...'
-            : 'Request My Free Systems Call'}
+            : 'Request a Free Systems Call'}
         </Button>
 
         <p className="mt-4 text-xs leading-relaxed text-bone-400">
