@@ -2,7 +2,7 @@
   "name": "tradie-systems-co",
   "version": "1.0.0",
   "private": true,
-  "description": "Production website for Tradie Systems Co — automated quote follow-up systems for Australian tradies.",
+  "description": "Production website for Tradie Systems Co â€” automated quote follow-up systems for Australian tradies.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -27,6 +27,7 @@
     "next-sanity": "9.4.7",
     "react": "18.3.1",
     "react-dom": "18.3.1",
+    "resend": "^6.18.1",
     "sanity": "3.57.4",
     "styled-components": "6.1.13",
     "tailwind-merge": "2.5.2"
@@ -43,6 +44,6 @@
     "typescript": "5.5.4"
   },
   "engines": {
-    "node": ">=18.17.0"
+    "node": ">=20.0.0"
   }
 }
