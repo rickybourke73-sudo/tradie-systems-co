@@ -1,20 +1,5 @@
 import { NextResponse } from 'next/server';
-
-/**
- * POST /api/contact
- *
- * Receives lead form submissions from the contact page.
- *
- * INTEGRATION NOTES
- * - Drop in Resend / SendGrid / Postmark by uncommenting the relevant block below.
- * - Forward to a CRM (HubSpot / Pipedrive) by adding a second fetch call.
- * - Push the lead to Slack / Discord with an incoming webhook for instant notifications.
- *
- * Required env vars when wired up:
- *   CONTACT_EMAIL        — destination inbox (e.g. ricky@tradiesystemsco.com.au)
- *   RESEND_API_KEY       — if using Resend
- *   SLACK_WEBHOOK_URL    — optional, for live notifications
- */
+import { Resend } from 'resend';
 
 interface ContactPayload {
   name?: string;
@@ -22,8 +7,10 @@ interface ContactPayload {
   phone?: string;
   business?: string;
   trade?: string;
+  location?: string;
+  mainProblem?: string;
+  currentTools?: string[];
   message?: string;
-  // honeypot — should always be empty
   website?: string;
 }
 
@@ -34,18 +21,30 @@ function sanitize(value: unknown, max = 2000): string {
   return value.trim().slice(0, max);
 }
 
+function sanitizeStringArray(value: unknown, maxItems = 12): string[] {
+  if (!Array.isArray(value)) return [];
+
+  return value
+    .filter((item): item is string => typeof item === 'string')
+    .map((item) => sanitize(item, 100))
+    .filter(Boolean)
+    .slice(0, maxItems);
+}
+
 export async function POST(request: Request) {
   let body: ContactPayload;
 
   try {
     body = (await request.json()) as ContactPayload;
   } catch {
-    return NextResponse.json({ ok: false, error: 'Invalid JSON.' }, { status: 400 });
+    return NextResponse.json(
+      { ok: false, error: 'Invalid request.' },
+      { status: 400 }
+    );
   }
 
-  // Honeypot: bots will fill the hidden `website` field. Real users won't.
-  if (body.website && body.website.trim().length > 0) {
-    // Pretend success so bots don't retry.
+  // Honeypot: silently accept bot submissions.
+  if (sanitize(body.website, 200)) {
     return NextResponse.json({ ok: true });
   }
 
@@ -53,78 +52,116 @@ export async function POST(request: Request) {
   const email = sanitize(body.email, 200);
   const phone = sanitize(body.phone, 40);
   const business = sanitize(body.business, 200);
-  const trade = sanitize(body.trade, 80);
+  const trade = sanitize(body.trade, 100);
+  const location = sanitize(body.location, 160);
+  const mainProblem = sanitize(body.mainProblem, 500);
+  const currentTools = sanitizeStringArray(body.currentTools);
   const message = sanitize(body.message, 4000);
 
-  // Validation
   const errors: string[] = [];
-  if (!name) errors.push('Name is required.');
-  if (!email || !EMAIL_REGEX.test(email)) errors.push('A valid email is required.');
-  if (!trade) errors.push('Trade is required.');
-  if (!message || message.length < 10) errors.push('Please add a short message (10+ characters).');
 
-  if (errors.length) {
-    return NextResponse.json({ ok: false, error: errors.join(' ') }, { status: 422 });
+  if (!name) errors.push('Name is required.');
+  if (!email || !EMAIL_REGEX.test(email)) {
+    errors.push('A valid email is required.');
+  }
+  if (!trade) errors.push('Trade is required.');
+
+  // Supports the current form while we transition to the expanded form.
+  if (!mainProblem && message.length < 10) {
+    errors.push('Please tell us briefly what you need help with.');
   }
 
-  // Build the email content
-  const subject = `New lead: ${name}${business ? ` (${business})` : ''} — ${trade}`;
-  const lines = [
-    `New lead from tradiesystemsco.com.au`,
-    ``,
-    `Name:     ${name}`,
-    `Email:    ${email}`,
-    `Phone:    ${phone || '—'}`,
-    `Business: ${business || '—'}`,
-    `Trade:    ${trade}`,
-    ``,
-    `Message:`,
-    message,
-    ``,
-    `---`,
+  if (errors.length > 0) {
+    return NextResponse.json(
+      { ok: false, error: errors.join(' ') },
+      { status: 422 }
+    );
+  }
+
+  const apiKey = process.env.RESEND_API_KEY;
+  const contactEmail = process.env.CONTACT_EMAIL;
+  const fromEmail = process.env.CONTACT_FROM_EMAIL;
+
+  if (!apiKey || !contactEmail || !fromEmail) {
+    console.error('[contact] Missing email configuration.', {
+      hasApiKey: Boolean(apiKey),
+      hasContactEmail: Boolean(contactEmail),
+      hasFromEmail: Boolean(fromEmail)
+    });
+
+    return NextResponse.json(
+      {
+        ok: false,
+        error:
+          'The contact form is temporarily unavailable. Please email us directly.'
+      },
+      { status: 503 }
+    );
+  }
+
+  const subject = `New website enquiry: ${name}${
+    business ? ` (${business})` : ''
+  } — ${trade}`;
+
+  const text = [
+    'New enquiry from tradiesystemsco.com.au',
+    '',
+    `Name: ${name}`,
+    `Email: ${email}`,
+    `Phone: ${phone || 'Not provided'}`,
+    `Business: ${business || 'Not provided'}`,
+    `Trade: ${trade}`,
+    `Location: ${location || 'Not provided'}`,
+    '',
+    'Main problem:',
+    mainProblem || message,
+    '',
+    `Current tools: ${
+      currentTools.length > 0 ? currentTools.join(', ') : 'Not provided'
+    }`,
+    '',
+    'Additional message:',
+    message || 'Not provided',
+    '',
+    '---',
     `Submitted: ${new Date().toISOString()}`
-  ];
-  const text = lines.join('\n');
+  ].join('\n');
 
-  // ────────────────────────────────────────────────────────────────────────
-  // RESEND INTEGRATION (recommended). Uncomment after `pnpm add resend`.
-  // ────────────────────────────────────────────────────────────────────────
-  // try {
-  //   const { Resend } = await import('resend');
-  //   const resend = new Resend(process.env.RESEND_API_KEY);
-  //   await resend.emails.send({
-  //     from: 'Tradie Systems Co <leads@tradiesystemsco.com.au>',
-  //     to: [process.env.CONTACT_EMAIL ?? 'ricky@tradiesystemsco.com.au'],
-  //     replyTo: email,
-  //     subject,
-  //     text
-  //   });
-  // } catch (err) {
-  //   console.error('[contact] Resend failed:', err);
-  //   return NextResponse.json(
-  //     { ok: false, error: 'Could not send right now. Please email us directly.' },
-  //     { status: 500 }
-  //   );
-  // }
+  try {
+    const resend = new Resend(apiKey);
 
-  // ────────────────────────────────────────────────────────────────────────
-  // SLACK NOTIFICATION (optional). Uncomment to get instant pings.
-  // ────────────────────────────────────────────────────────────────────────
-  // if (process.env.SLACK_WEBHOOK_URL) {
-  //   try {
-  //     await fetch(process.env.SLACK_WEBHOOK_URL, {
-  //       method: 'POST',
-  //       headers: { 'Content-Type': 'application/json' },
-  //       body: JSON.stringify({ text: `*${subject}*\n\n${text}` })
-  //     });
-  //   } catch (err) {
-  //     console.error('[contact] Slack webhook failed:', err);
-  //   }
-  // }
+    const { error } = await resend.emails.send({
+      from: `Tradie Systems Co <${fromEmail}>`,
+      to: [contactEmail],
+      replyTo: email,
+      subject,
+      text
+    });
 
-  // For now, just log server-side so Vercel function logs capture it.
-  // Remove this once a real provider is wired up.
-  console.log('[contact] New lead received:', { subject, text });
+    if (error) {
+      console.error('[contact] Resend rejected submission:', error);
+
+      return NextResponse.json(
+        {
+          ok: false,
+          error:
+            'We could not send your message just now. Please email us directly.'
+        },
+        { status: 502 }
+      );
+    }
+  } catch (error) {
+    console.error('[contact] Email delivery failed:', error);
+
+    return NextResponse.json(
+      {
+        ok: false,
+        error:
+          'We could not send your message just now. Please email us directly.'
+      },
+      { status: 500 }
+    );
+  }
 
   return NextResponse.json({ ok: true });
 }
